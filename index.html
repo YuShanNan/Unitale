@@ -19,6 +19,10 @@
     <script src="./vendor/ffmpeg/ffmpeg.js"></script>
     <script src="./vendor/ffmpeg/util.js"></script>
     <style>
+        html {
+            color-scheme: light;
+        }
+
         .thinking {
             color: #6b7280;
             font-style: italic;
@@ -47,10 +51,28 @@
         }
 
         #app {
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 18px;
             background-color: rgba(255, 255, 255, 0.58) !important;
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.28);
+        }
+
+        #app .rounded,
+        #app .rounded-sm,
+        #app .rounded-md {
+            border-radius: var(--radius-sm) !important;
+        }
+
+        #app .rounded-lg {
+            border-radius: var(--radius-md) !important;
+        }
+
+        #app .rounded-xl,
+        #app .rounded-2xl {
+            border-radius: var(--radius-lg) !important;
         }
 
         /* 内部组件半透明化，增强层次感 */
@@ -64,12 +86,401 @@
         textarea,
         select {
             background-color: rgba(255, 255, 255, 0.8) !important;
+            border-radius: var(--radius-sm) !important;
+        }
+
+        input[type="range"] {
+            border-radius: 999px !important;
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(100, 116, 139, 0.72) rgba(226, 232, 240, 0.55);
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(226, 232, 240, 0.55);
+            border-radius: 999px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(100, 116, 139, 0.72);
+            border: 2px solid rgba(226, 232, 240, 0.55);
+            border-radius: 999px;
+            background-clip: padding-box;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(71, 85, 105, 0.82);
+            background-clip: padding-box;
+        }
+
+        .app-subtitle {
+            color: rgb(39, 92, 120);
+        }
+
+        .app-header {
+            position: relative;
+        }
+
+        .theme-toggle-btn {
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 8px 20px rgba(148, 163, 184, 0.08);
+        }
+
+        .main-tab-bar {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.05));
+            border-radius: 18px;
+            padding: 0.2rem 0.5rem 0;
+            box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .main-action-toolbar {
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 16px;
+            padding: 0.45rem 0.6rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 12px 30px rgba(148, 163, 184, 0.1);
+        }
+
+        .app-version-badge {
+            padding: 0.28rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        #app .script-line-selected {
+            background: linear-gradient(180deg, rgba(239, 246, 255, 0.96), rgba(219, 234, 254, 0.94)) !important;
+            border-color: rgba(96, 165, 250, 0.9) !important;
+            box-shadow:
+                0 0 0 1px rgba(96, 165, 250, 0.22),
+                0 12px 28px rgba(59, 130, 246, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.48) !important;
+        }
+
+        #app .script-bgimage-selected {
+            background: linear-gradient(180deg, rgba(236, 253, 245, 0.96), rgba(209, 250, 229, 0.94)) !important;
+            border-color: rgba(52, 211, 153, 0.88) !important;
+            box-shadow:
+                0 0 0 1px rgba(52, 211, 153, 0.2),
+                0 12px 28px rgba(16, 185, 129, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.46) !important;
+        }
+
+        #app .script-bgm-selected {
+            background: linear-gradient(180deg, rgba(245, 243, 255, 0.96), rgba(233, 213, 255, 0.94)) !important;
+            border-color: rgba(167, 139, 250, 0.88) !important;
+            box-shadow:
+                0 0 0 1px rgba(167, 139, 250, 0.2),
+                0 12px 28px rgba(139, 92, 246, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.46) !important;
+        }
+
+        body.theme-switching,
+        body.theme-switching *,
+        body.theme-switching *::before,
+        body.theme-switching *::after {
+            transition: none !important;
+            animation: none !important;
+        }
+
+        body[data-theme='dark'] {
+            background-color: #020617;
+            background-image:
+                radial-gradient(circle at top, rgba(56, 189, 248, 0.15), transparent 34%),
+                linear-gradient(180deg, rgba(2, 6, 23, 0.78), rgba(2, 6, 23, 0.92)),
+                url('https://picsum.photos/1920/1080');
+            color: #e2e8f0;
+        }
+
+        body[data-theme='dark'] #app {
+            background:
+                linear-gradient(180deg, rgba(15, 23, 42, 0.76), rgba(9, 16, 31, 0.84)) !important;
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow:
+                0 30px 80px rgba(2, 6, 23, 0.48),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        body[data-theme='dark'] #app .bg-white {
+            background-color: rgba(15, 23, 42, 0.72) !important;
+            border-color: rgba(148, 163, 184, 0.18) !important;
+            box-shadow: 0 12px 28px rgba(2, 6, 23, 0.22);
+        }
+
+        body[data-theme='dark'] #app .bg-slate-50 {
+            background-color: rgba(17, 25, 40, 0.82) !important;
+            border-color: rgba(148, 163, 184, 0.16) !important;
+        }
+
+        body[data-theme='dark'] #app .bg-slate-100 {
+            background-color: rgba(30, 41, 59, 0.74) !important;
+            border-color: rgba(148, 163, 184, 0.16) !important;
+        }
+
+        body[data-theme='dark'] #app .bg-slate-200 {
+            background-color: rgba(51, 65, 85, 0.5) !important;
+        }
+
+        body[data-theme='dark'] input,
+        body[data-theme='dark'] textarea,
+        body[data-theme='dark'] select {
+            background-color: rgba(8, 15, 30, 0.84) !important;
+            color: #e2e8f0 !important;
+            border-color: rgba(148, 163, 184, 0.2) !important;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        body[data-theme='dark'] * {
+            scrollbar-color: rgba(148, 163, 184, 0.72) rgba(15, 23, 42, 0.72);
+        }
+
+        body[data-theme='dark'] ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.72);
+        }
+
+        body[data-theme='dark'] ::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.72);
+            border-color: rgba(15, 23, 42, 0.72);
+        }
+
+        body[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+            background: rgba(191, 208, 228, 0.82);
+        }
+
+        body[data-theme='dark'] #app .text-slate-800 {
+            color: #f8fbff !important;
+        }
+
+        body[data-theme='dark'] #app .text-slate-700 {
+            color: #dde7f3 !important;
+        }
+
+        body[data-theme='dark'] #app .text-slate-600 {
+            color: #bfd0e4 !important;
+        }
+
+        body[data-theme='dark'] #app .text-slate-500,
+        body[data-theme='dark'] #app .text-slate-400,
+        body[data-theme='dark'] #app .text-slate-300 {
+            color: #8ea2bb !important;
+        }
+
+        body[data-theme='dark'] #app .border-slate-200,
+        body[data-theme='dark'] #app .border-slate-300 {
+            border-color: rgba(148, 163, 184, 0.18) !important;
+        }
+
+        body[data-theme='dark'] #app .border-slate-100 {
+            border-color: rgba(148, 163, 184, 0.08) !important;
+        }
+
+        body[data-theme='dark'] #app .shadow-sm,
+        body[data-theme='dark'] #app .shadow-md,
+        body[data-theme='dark'] #app .shadow-lg {
+            box-shadow:
+                0 14px 34px rgba(2, 6, 23, 0.24),
+                inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+        }
+
+        body[data-theme='dark'] #app .script-line-selected {
+            background: linear-gradient(180deg, rgba(36, 56, 88, 0.9), rgba(17, 24, 39, 0.96)) !important;
+            border-color: rgba(96, 165, 250, 0.6) !important;
+            box-shadow:
+                0 0 0 1px rgba(59, 130, 246, 0.22),
+                0 16px 32px rgba(2, 6, 23, 0.24),
+                inset 0 1px 0 rgba(191, 219, 254, 0.12) !important;
+        }
+
+        body[data-theme='dark'] #app .script-bgimage-selected {
+            background: linear-gradient(180deg, rgba(21, 72, 61, 0.84), rgba(9, 33, 28, 0.95)) !important;
+            border-color: rgba(52, 211, 153, 0.56) !important;
+            box-shadow:
+                0 0 0 1px rgba(16, 185, 129, 0.18),
+                0 16px 32px rgba(2, 6, 23, 0.24),
+                inset 0 1px 0 rgba(167, 243, 208, 0.1) !important;
+        }
+
+        body[data-theme='dark'] #app .script-bgm-selected {
+            background: linear-gradient(180deg, rgba(61, 33, 95, 0.82), rgba(28, 14, 47, 0.95)) !important;
+            border-color: rgba(167, 139, 250, 0.58) !important;
+            box-shadow:
+                0 0 0 1px rgba(139, 92, 246, 0.18),
+                0 16px 32px rgba(2, 6, 23, 0.24),
+                inset 0 1px 0 rgba(221, 214, 254, 0.11) !important;
+        }
+
+        body[data-theme='dark'] #app .hover\:bg-slate-200:hover {
+            background-color: rgba(51, 65, 85, 0.6) !important;
+        }
+
+        body[data-theme='dark'] #app .hover\:bg-slate-300:hover {
+            background-color: rgba(71, 85, 105, 0.55) !important;
+        }
+
+        body[data-theme='dark'] #app .hover\:text-slate-700:hover {
+            color: #f8fbff !important;
+        }
+
+        body[data-theme='dark'] .app-subtitle {
+            color: #9ac5e8 !important;
+        }
+
+        body[data-theme='dark'] #app .text-blue-600,
+        body[data-theme='dark'] #app .text-blue-700 {
+            color: #7dd3fc !important;
+        }
+
+        body[data-theme='dark'] #app .border-blue-600,
+        body[data-theme='dark'] #app .border-blue-500 {
+            border-color: rgba(56, 189, 248, 0.8) !important;
+        }
+
+        body[data-theme='dark'] #app .hover\:text-blue-600:hover,
+        body[data-theme='dark'] #app .hover\:text-blue-700:hover {
+            color: #bae6fd !important;
+        }
+
+        body[data-theme='dark'] .theme-toggle-btn {
+            background: rgba(15, 23, 42, 0.72) !important;
+            color: #dbe7f4 !important;
+            border-color: rgba(125, 211, 252, 0.18);
+            box-shadow:
+                0 14px 30px rgba(2, 6, 23, 0.24),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        body[data-theme='dark'] .main-tab-bar {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.44), rgba(15, 23, 42, 0.14));
+            box-shadow:
+                inset 0 -1px 0 rgba(148, 163, 184, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.02);
+        }
+
+        body[data-theme='dark'] .main-action-toolbar {
+            background: rgba(15, 23, 42, 0.42);
+            border-color: rgba(148, 163, 184, 0.12);
+            box-shadow:
+                0 18px 40px rgba(2, 6, 23, 0.22),
+                inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        body[data-theme='dark'] .app-version-badge {
+            background: rgba(30, 41, 59, 0.58);
+            border-color: rgba(148, 163, 184, 0.16);
+            color: #8ea2bb !important;
+        }
+
+        body[data-theme='dark'] #app .bg-amber-100 {
+            background-color: rgba(120, 53, 15, 0.34) !important;
+        }
+
+        body[data-theme='dark'] #app .text-amber-700 {
+            color: #fcd34d !important;
+        }
+
+        body[data-theme='dark'] #app .hover\:bg-amber-200:hover {
+            background-color: rgba(146, 64, 14, 0.52) !important;
+        }
+
+        body[data-theme='dark'] #app .bg-teal-100 {
+            background-color: rgba(17, 94, 89, 0.34) !important;
+        }
+
+        body[data-theme='dark'] #app .text-teal-700 {
+            color: #5eead4 !important;
+        }
+
+        body[data-theme='dark'] #app .hover\:bg-teal-200:hover {
+            background-color: rgba(15, 118, 110, 0.5) !important;
+        }
+
+        body[data-theme='dark'] #app .bg-purple-100 {
+            background-color: rgba(88, 28, 135, 0.34) !important;
+        }
+
+        body[data-theme='dark'] #app .text-purple-700,
+        body[data-theme='dark'] #app .text-purple-600,
+        body[data-theme='dark'] #app .text-purple-500,
+        body[data-theme='dark'] #app .text-purple-400 {
+            color: #d8b4fe !important;
+        }
+
+        body[data-theme='dark'] #app .hover\:bg-purple-200:hover,
+        body[data-theme='dark'] #app .hover\:bg-purple-100:hover {
+            background-color: rgba(107, 33, 168, 0.5) !important;
+        }
+
+        body[data-theme='dark'] #app .bg-sky-100,
+        body[data-theme='dark'] #app .bg-blue-100,
+        body[data-theme='dark'] #app .bg-indigo-50 {
+            background-color: rgba(14, 116, 144, 0.28) !important;
+        }
+
+        body[data-theme='dark'] #app .text-sky-700,
+        body[data-theme='dark'] #app .text-blue-700,
+        body[data-theme='dark'] #app .text-indigo-600 {
+            color: #93c5fd !important;
+        }
+
+        body[data-theme='dark'] #app .hover\:bg-sky-200:hover,
+        body[data-theme='dark'] #app .hover\:bg-blue-200:hover,
+        body[data-theme='dark'] #app .hover\:bg-indigo-100:hover {
+            background-color: rgba(2, 132, 199, 0.42) !important;
+        }
+
+        body[data-theme='dark'] #app .bg-emerald-100,
+        body[data-theme='dark'] #app .bg-pink-50 {
+            background-color: rgba(6, 95, 70, 0.3) !important;
+        }
+
+        body[data-theme='dark'] #app .text-emerald-700,
+        body[data-theme='dark'] #app .text-emerald-400,
+        body[data-theme='dark'] #app .text-pink-600 {
+            color: #6ee7b7 !important;
+        }
+
+        body[data-theme='dark'] #app .hover\:bg-emerald-200:hover,
+        body[data-theme='dark'] #app .hover\:bg-emerald-100:hover,
+        body[data-theme='dark'] #app .hover\:bg-pink-100:hover {
+            background-color: rgba(5, 150, 105, 0.4) !important;
+        }
+
+        body[data-theme='dark'] #app .bg-red-50 {
+            background-color: rgba(127, 29, 29, 0.34) !important;
+        }
+
+        body[data-theme='dark'] #app .text-red-600,
+        body[data-theme='dark'] #app .text-red-500 {
+            color: #fca5a5 !important;
+        }
+
+        body[data-theme='dark'] #app .hover\:bg-red-100:hover {
+            background-color: rgba(153, 27, 27, 0.48) !important;
+        }
+
+        body[data-theme='dark'] #app .border-emerald-200,
+        body[data-theme='dark'] #app .border-indigo-100,
+        body[data-theme='dark'] #app .border-pink-100,
+        body[data-theme='dark'] #app .border-red-100 {
+            border-color: rgba(148, 163, 184, 0.14) !important;
         }
     </style>
 </head>
 
 <body class="p-4 md:p-8">
-    <div id="app" class="w-full max-w-[96%] mx-auto p-6 rounded-2xl shadow-2xl">
+    <div id="app" :data-theme="themeMode" class="w-full max-w-[96%] mx-auto p-6 rounded-2xl shadow-2xl">
         <div v-if="previewImageUrl" @click="closeImagePreview"
             class="fixed inset-0 z-[10000] bg-slate-950/78 backdrop-blur-sm flex items-center justify-center p-4">
             <button @click.stop="closeImagePreview"
@@ -79,16 +490,22 @@
             <img :src="previewImageUrl" alt="背景图片大图预览" @click.stop
                 class="max-w-[95vw] max-h-[92vh] object-contain rounded-xl shadow-2xl bg-white">
         </div>
-        <header class="mb-6 flex justify-between items-end">
+        <header class="app-header mb-6 flex justify-between items-end">
             <div>
                 <h1 class="text-2xl font-bold text-slate-800">Unitale AI <span class="text-blue-600">1.5</span></h1>
-                <p style="color: rgb(39, 92, 120);" class="text-slate-400 text-xs mt-1">多角色音效合成有声书生成工具</p>
+                <p class="app-subtitle text-xs mt-1">多角色音效合成有声书生成工具</p>
             </div>
-            <div class="text-[10px] text-slate-300">v1.5</div>
+            <div class="flex items-center gap-2">
+                <button @click="toggleThemeMode"
+                    class="theme-toggle-btn px-3 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-200 transition-all">
+                    {{ themeMode === 'dark' ? '切到亮色' : '切到暗色' }}
+                </button>
+                <div class="app-version-badge text-[10px] font-semibold text-slate-800">v1.5</div>
+            </div>
         </header>
 
         <!-- 标签页导航 -->
-        <div class="flex flex-wrap items-center justify-between border-b border-slate-200 mb-6 gap-4">
+        <div class="main-tab-bar flex flex-wrap items-center justify-between border-b border-slate-200 mb-6 gap-4">
             <div class="flex overflow-x-auto">
                 <button @click="activeTab = 'config'"
                     :class="['px-6 py-3 text-sm font-bold transition-colors whitespace-nowrap', activeTab === 'config' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700']">
@@ -113,8 +530,9 @@
             </div>
 
             <!-- 全局功能栏 (导出/导入) -->
-            <div class="flex flex-wrap items-center gap-2 py-2">
+            <div class="main-action-toolbar flex flex-wrap items-center gap-2 py-2">
                 <button @click="exportScriptState" :disabled="isExportingProject"
+                    title="导出完整工程 JSON"
                     class="px-3 py-1.5 bg-amber-100 text-amber-700 rounded-lg text-xs font-bold hover:bg-amber-200 transition-all flex items-center gap-1 disabled:opacity-50 disabled:cursor-wait">
                     {{ isExportingProject ? exportStatus : '导出完整工程' }}
                 </button>
@@ -127,10 +545,12 @@
                     导入TXT
                 </button>
                 <button @click="exportSRT" :disabled="isExportingAudio"
+                    :title="`导出字幕：${getCurrentScriptExportFilename('srt')}`"
                     class="px-3 py-1.5 bg-teal-100 text-teal-700 rounded-lg text-xs font-bold hover:bg-teal-200 transition-all flex items-center gap-1 disabled:opacity-50 disabled:cursor-wait">
                     导出SRT字幕
                 </button>
                 <button @click="exportAudio" :disabled="isExportingAudio"
+                    :title="`导出音频：${getCurrentScriptExportFilename('wav')}`"
                     class="px-3 py-1.5 bg-purple-100 text-purple-700 rounded-lg text-xs font-bold hover:bg-purple-200 transition-all flex items-center gap-1 disabled:opacity-50 disabled:cursor-wait">
                     {{ isExportingAudio ? (exportStatus || '⏳ 处理中...') : '导出音频' }}
                 </button>
@@ -716,11 +1136,20 @@
         <!-- 页面 5: 脚本制作 (重构：左右分栏) -->
         <div v-if="activeTab === 'script'">
             <!-- 脚本多标签页管理 -->
-            <div class="flex items-center gap-2 overflow-x-auto pb-2 mb-6">
+            <div class="flex items-center gap-2 overflow-x-auto pt-10 -mt-10 pb-2 mb-6">
                 <div v-for="script in scriptList" :key="script.id" 
                     @click="switchScript(script.id)"
                     @dblclick="startEditingScript(script.id)"
-                    :class="['flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer text-xs font-bold transition-colors min-w-[100px] flex-shrink-0 justify-between group', currentScriptId === script.id ? 'bg-white border border-slate-200 text-blue-600' : 'bg-slate-100 border-transparent text-slate-500 hover:bg-slate-200']">
+                    :class="['relative flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer text-xs font-bold transition-all duration-150 min-w-[100px] flex-shrink-0 justify-between group', currentScriptId === script.id ? 'bg-white border border-slate-200 text-blue-600 shadow-sm hover:-translate-y-0.5 hover:shadow-md' : 'bg-slate-100 border-transparent text-slate-500 hover:bg-slate-200 hover:text-slate-700 hover:-translate-y-0.5 hover:shadow-sm']">
+                    <div v-if="editingScriptId !== script.id"
+                        class="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-[calc(100%+6px)] opacity-0 transition-opacity duration-150 pointer-events-none group-hover:opacity-100">
+                        <div class="relative">
+                            <div class="rounded-md bg-slate-800/95 px-2 py-0.5 text-[9px] font-medium text-white shadow-lg ring-1 ring-black/5 whitespace-nowrap">
+                                双击修改名称
+                            </div>
+                            <div class="absolute left-1/2 -bottom-0.5 h-1.5 w-1.5 -translate-x-1/2 rotate-45 bg-slate-800/95"></div>
+                        </div>
+                    </div>
                     <span v-if="editingScriptId !== script.id" class="whitespace-nowrap">{{ script.name }}</span>
                     <input v-else v-model="script.name" @click.stop @blur="stopEditingScript" @keyup.enter="stopEditingScript" :ref="el => { if(el) scriptNameInputRefs[script.id] = el }" class="bg-transparent outline-none w-full" />
                     <button @click.stop="deleteScriptTab(script.id)" class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-500">×</button>
@@ -731,18 +1160,19 @@
             <div class="flex flex-col lg:flex-row gap-6 items-start">
             <!-- 左侧：角色与音色绑定栏 -->
             <div class="w-full lg:w-60 flex-shrink-0 space-y-4">
-                <div class="bg-slate-100 p-4 rounded-xl border border-slate-200">
-                    <h3 class="text-sm font-bold text-slate-700 mb-3 flex justify-between items-center">
+                <div ref="characterListPanelRef" class="bg-slate-100 p-4 rounded-xl border border-slate-200 flex flex-col overflow-hidden"
+                    :style="{ height: characterListPanelHeight }">
+                    <h3 class="text-sm font-bold text-slate-700 mb-3 flex justify-between items-center flex-shrink-0">
                         角色列表
                         <button @click="addCharacter"
                             class="text-xs bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700">+ 新增</button>
                     </h3>
-                    <div class="space-y-3 pr-1">
+                    <div class="space-y-3 pr-1 overflow-y-auto min-h-0 flex-1">
                         <div v-for="char in characters" :key="char.id"
                             class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm text-sm space-y-2">
                             <div class="flex justify-between items-center">
                                 <input v-model="char.name"
-                                    class="font-bold text-slate-800 w-2/3 bg-transparent border-b border-transparent focus:border-blue-500 outline-none px-1"
+                                    class="font-bold text-slate-800 w-2/3 bg-transparent border-b border-transparent focus:border-blue-500 outline-none px-2.5 py-1 rounded-md"
                                     placeholder="角色名">
                                 <button @click="deleteCharacter(char.id)"
                                     class="text-slate-400 hover:text-red-500">×</button>
@@ -786,7 +1216,7 @@
 
                             <div class="mt-2 pt-2 border-t border-slate-100 space-y-2">
                                 <textarea v-model="char.voiceDescription" rows="2"
-                                    class="w-full px-2 py-1.5 text-[10px] border rounded bg-slate-50 focus:ring-1 focus:ring-blue-500 outline-none resize-none text-slate-600"
+                                    class="w-full px-3 py-2 text-[10px] border rounded bg-slate-50 focus:ring-1 focus:ring-blue-500 outline-none resize-none text-slate-600"
                                     placeholder="音色描述 (例如: 甜美少女音)"></textarea>
                                 <div class="flex gap-1">
                                     <button @click="analyzeCharacterVoice(char)"
@@ -910,24 +1340,54 @@
                         backgroundPosition: 'center center, center center',
                         backgroundSize: '100% 100%, contain'
                     } : {}">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-sm font-bold text-slate-700">2. 脚本台词列表 ({{ scriptLines.length }} 行)</h3>
+                    <div class="flex flex-col gap-3 mb-4">
+                        <div class="flex flex-wrap justify-between items-center gap-3">
+                            <h3 class="text-sm font-bold text-slate-700">
+                                2. 脚本台词列表
+                                <span class="text-slate-500">
+                                    ({{ scriptListCountLabel }} 行)
+                                </span>
+                            </h3>
+                            <button @click="regenerateFilteredRoleLines"
+                                :disabled="((!hasActiveRoleFilter || filteredDialogueLines.length === 0) && !isGeneratingAll) || isSequencePlaying"
+                                :class="['px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center', isGeneratingAll ? 'bg-red-500 text-white hover:bg-red-600' : 'bg-sky-100 text-sky-700 hover:bg-sky-200 disabled:opacity-50 disabled:cursor-not-allowed']">
+                                <span v-if="isGeneratingAll" class="animate-spin mr-2">⏳</span>
+                                {{ isGeneratingAll ? '停止生成' : (hasActiveRoleFilter ? `重配筛选角色（${filteredDialogueLines.length}条）` : '先选择角色后重配') }}
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2 px-3 py-3 bg-slate-50 border border-slate-200 rounded-xl">
+                            <span class="text-[10px] font-bold text-slate-500 uppercase whitespace-nowrap">角色筛选</span>
+                            <button @click="clearRoleFilters"
+                                :class="['px-2.5 py-1 rounded-full text-xs font-bold border transition-all', hasActiveRoleFilter ? 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100' : 'bg-blue-600 text-white border-blue-600 shadow-sm']">
+                                全部角色
+                            </button>
+                            <button v-for="roleName in roleFilterOptions" :key="roleName" @click="toggleRoleFilter(roleName)"
+                                :class="['px-2.5 py-1 rounded-full text-xs font-bold border transition-all', selectedRoleFilters.includes(roleName) ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100']">
+                                {{ roleName }}
+                            </button>
+                            <span v-if="hasActiveRoleFilter" class="text-xs text-slate-400 ml-auto">
+                                当前显示 {{ filteredDialogueLines.length }} 条筛选台词
+                            </span>
+                        </div>
                     </div>
-                    <div ref="scriptListContainer" class="space-y-3 max-h-[600px] overflow-y-auto px-2 pb-10">
-                        <div v-for="(line, index) in scriptLines" :key="line.id" @click="toggleLineSelection(index, $event)"
-                            :ref="el => { if (el) lineRefs[index] = el }"
+                    <div ref="scriptListContainer" @scroll.passive="handleScriptListScroll" class="space-y-3 max-h-[600px] overflow-y-auto px-2 pb-10">
+                        <div v-if="filteredScriptLines.length === 0" class="px-3 py-8 text-center text-sm text-slate-400">
+                            当前角色筛选下没有可显示的台词。
+                        </div>
+                        <div v-for="(line, index) in renderedScriptLines" :key="line.id" @click="toggleLineSelection(renderedScriptLineIndexes[index], $event)"
+                            :ref="el => { if (el) lineRefs[renderedScriptLineIndexes[index]] = el }"
                             class="transition-all duration-200">
 
                             <!-- BGM 控制块 -->
                             <div v-if="line.type === 'bgm'"
-                                :class="['flex flex-wrap items-center gap-3 p-3 rounded-lg border mb-2 transition-all', selectedLineIndex === index ? 'border-purple-500 bg-purple-50 shadow-md' : 'bg-purple-50/50 border-purple-200', currentSequenceIndex === index ? 'ring-2 ring-green-500' : '']">
+                                :class="['flex flex-wrap items-center gap-3 p-3 rounded-lg border mb-2 transition-all', selectedLineIndex === renderedScriptLineIndexes[index] ? 'script-bgm-selected' : 'bg-purple-50/50 border-purple-200', currentSequenceIndex === renderedScriptLineIndexes[index] ? 'ring-2 ring-green-500' : '']">
                                 <div
                                     class="flex flex-col items-center justify-center gap-1 w-8 flex-shrink-0 border-r border-purple-200 pr-2">
-                                    <button @click.stop="moveLineUp(index)"
+                                    <button @click.stop="moveLineUp(renderedScriptLineIndexes[index])"
                                         class="text-purple-400 hover:text-purple-700 p-0.5 hover:bg-purple-100 rounded"
                                         title="上移">▲</button>
-                                    <div class="text-xs font-bold text-purple-500 select-none">{{ index + 1 }}</div>
-                                    <button @click.stop="moveLineDown(index)"
+                                    <div class="text-xs font-bold text-purple-500 select-none">{{ renderedScriptLineIndexes[index] + 1 }}</div>
+                                    <button @click.stop="moveLineDown(renderedScriptLineIndexes[index])"
                                         class="text-purple-400 hover:text-purple-700 p-0.5 hover:bg-purple-100 rounded"
                                         title="下移">▼</button>
                                 </div>
@@ -957,7 +1417,7 @@
                                     <input type="range" v-model="line.volume" min="0" max="2" step="0.05"
                                         class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-purple-600">
                                 </div>
-                                <button @click="removeScriptLine(index)"
+                                <button @click="removeScriptLine(renderedScriptLineIndexes[index])"
                                     class="text-slate-300 hover:text-red-500 p-2">
                                     <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd"
@@ -969,15 +1429,15 @@
 
                             <!-- 背景图片块 -->
                             <div v-else-if="line.type === 'bgImage'"
-                                :class="['flex flex-col gap-2 p-3 rounded-lg mb-2 transition-all group cursor-pointer border', selectedLineIndex === index ? 'bg-emerald-50 border-emerald-300 shadow-md' : 'bg-emerald-50/50 border-emerald-200', currentSequenceIndex === index ? 'ring-2 ring-green-500' : '']">
+                                :class="['flex flex-col gap-2 p-3 rounded-lg mb-2 transition-all group cursor-pointer border', selectedLineIndex === renderedScriptLineIndexes[index] ? 'script-bgimage-selected' : 'bg-emerald-50/50 border-emerald-200', currentSequenceIndex === renderedScriptLineIndexes[index] ? 'ring-2 ring-green-500' : '']">
                                 <div class="flex flex-wrap items-start gap-3">
                                     <div
                                         class="flex flex-col items-center justify-center gap-1 w-8 flex-shrink-0 border-r border-emerald-200 pr-2">
-                                        <button @click.stop="moveLineUp(index)"
+                                        <button @click.stop="moveLineUp(renderedScriptLineIndexes[index])"
                                             class="text-emerald-400 hover:text-emerald-700 p-0.5 hover:bg-emerald-100 rounded"
                                             title="上移">▲</button>
-                                        <div class="text-xs font-bold text-emerald-500 select-none">{{ index + 1 }}</div>
-                                        <button @click.stop="moveLineDown(index)"
+                                        <div class="text-xs font-bold text-emerald-500 select-none">{{ renderedScriptLineIndexes[index] + 1 }}</div>
+                                        <button @click.stop="moveLineDown(renderedScriptLineIndexes[index])"
                                             class="text-emerald-400 hover:text-emerald-700 p-0.5 hover:bg-emerald-100 rounded"
                                             title="下移">▼</button>
                                     </div>
@@ -987,7 +1447,7 @@
                                             <div class="font-bold text-xs text-emerald-700 uppercase tracking-wider">
                                                 背景图片块
                                             </div>
-                                            <button @click="removeScriptLine(index)"
+                                            <button @click="removeScriptLine(renderedScriptLineIndexes[index])"
                                                 class="text-slate-300 hover:text-red-500 p-2"
                                                 title="删除"><svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd"
@@ -1012,7 +1472,7 @@
                                                         未选择
                                                     </div>
                                                 </div>
-                                                <button @click.stop="openBgImagePicker(index)" type="button"
+                                                <button @click.stop="openBgImagePicker(renderedScriptLineIndexes[index])" type="button"
                                                     class="w-full px-2 py-1.5 bg-emerald-100 text-emerald-700 text-[11px] border border-emerald-200 rounded hover:bg-emerald-200 transition-all font-bold">
                                                     选择图片（保存）
                                                 </button>
@@ -1041,15 +1501,15 @@
 
                             <!-- 台词块 -->
                             <div v-else
-                                :class="['flex flex-col gap-2 p-3 rounded-lg mb-2 transition-all group cursor-pointer border', selectedLineIndex === index ? 'bg-blue-50 border-blue-300 shadow-md' : 'bg-white border-slate-200 shadow-sm hover:bg-slate-50', currentSequenceIndex === index ? 'ring-2 ring-green-500' : '']">
+                                :class="['flex flex-col gap-2 p-3 rounded-lg mb-2 transition-all group cursor-pointer border', selectedLineIndex === renderedScriptLineIndexes[index] ? 'script-line-selected' : 'bg-white border-slate-200 shadow-sm hover:bg-slate-50', currentSequenceIndex === renderedScriptLineIndexes[index] ? 'ring-2 ring-green-500' : '']">
                                 <div class="flex flex-wrap items-stretch gap-3">
                                     <div
                                         class="flex flex-col items-center justify-center gap-1 w-8 flex-shrink-0 border-r border-slate-100 pr-2">
-                                        <button @click.stop="moveLineUp(index)"
+                                        <button @click.stop="moveLineUp(renderedScriptLineIndexes[index])"
                                             class="text-slate-400 hover:text-blue-600 p-0.5 hover:bg-slate-100 rounded"
                                             title="上移">▲</button>
-                                        <div class="text-xs font-bold text-slate-400 select-none">{{ index + 1 }}</div>
-                                        <button @click.stop="moveLineDown(index)"
+                                        <div class="text-xs font-bold text-slate-400 select-none">{{ renderedScriptLineIndexes[index] + 1 }}</div>
+                                        <button @click.stop="moveLineDown(renderedScriptLineIndexes[index])"
                                             class="text-slate-400 hover:text-blue-600 p-0.5 hover:bg-slate-100 rounded"
                                             title="下移">▼</button>
                                     </div>
@@ -1151,7 +1611,7 @@
                                                 <div :key="line.audioUrl"
                                                     class="relative w-full bg-slate-100 rounded border border-slate-200 overflow-hidden select-none group/wave"
                                                     style="height: 32px;">
-                                                    <canvas :ref="(el) => drawWaveform(el, line)" width="192"
+                                                    <canvas :ref="(el) => registerWaveformCanvas(el, line)" width="192"
                                                         height="32" class="w-full h-full block opacity-60"></canvas>
 
                                                     <!-- 遮罩层与手柄 -->
@@ -1234,7 +1694,7 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
-                                                <button @click="removeScriptLine(index)" title="删除"
+                                                <button @click="removeScriptLine(renderedScriptLineIndexes[index])" title="删除"
                                                     class="text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity p-2">
                                                     <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                                         viewBox="0 0 20 20" fill="currentColor">
@@ -1273,16 +1733,21 @@
                                 <!-- 文本与音效区域 -->
                                 <div class="w-full flex flex-col gap-2 min-w-0">
                                     <textarea v-model="line.text" rows="2"
-                                        class="w-full h-full bg-transparent border-none focus:ring-0 text-sm text-slate-700 resize-none leading-relaxed py-1.5"
+                                        class="w-full h-full bg-transparent border-none focus:ring-0 text-sm text-slate-700 resize-none leading-relaxed px-3 py-2"
                                         @input="autoResizeTextarea($event)"></textarea>
                                 </div>
+                            </div>
+                        </div>
+                        <div v-if="hasMoreRenderedScriptLines" ref="scriptListLoadMoreSentinel" class="py-4 flex justify-center">
+                            <div class="px-3 py-1.5 text-xs font-bold rounded-full bg-slate-100 text-slate-500 border border-slate-200">
+                                正在接近底部时自动加载更多台词（已加载 {{ renderedScriptLines.length }} / {{ filteredScriptLines.length }}）
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- 调试：显示原始 JSON -->
-                <div v-if="rawAnalysisResult" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                <div v-if="rawAnalysisResult" ref="rawAnalysisCardRef" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
                     <h3 class="text-sm font-bold text-slate-700 mb-2">3. AI 原始输出 (调试用)</h3>
                     <pre
                         class="bg-slate-800 text-slate-200 p-4 rounded-lg text-xs overflow-x-auto whitespace-pre-wrap max-h-64">{{ rawAnalysisResult }}</pre>
@@ -1382,7 +1847,7 @@
             </div>
         </div>
 
-        <p style="text-align: left; color: #888; font-size: 12px;">
+        <p style="text-align: left; color: #888; font-size: 12px; margin-top: 24px;">
             <a href="https://space.bilibili.com/11354448" target="_blank"
                 style="color: inherit; text-decoration: none;">
                 本网站由sdsds222制作，点击此处访问个人主页
@@ -1392,7 +1857,7 @@
     </div>
 
     <script>
-        const { createApp, ref, onMounted, computed, watch, onBeforeUpdate } = Vue;
+        const { createApp, ref, onMounted, onUnmounted, nextTick, computed, watch, onBeforeUpdate } = Vue;
 
         createApp({
             setup() {
@@ -1586,6 +2051,46 @@
 
                 // 状态
                 const activeTab = ref('script');
+                const selectedRoleFilters = ref([]);
+                const THEME_STORAGE_KEY = 'unitale_theme';
+                const getInitialTheme = () => {
+                    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+                    if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme;
+                    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                };
+                const themeMode = ref(getInitialTheme());
+                let themeSwitchCleanupTimer = null;
+                let hasAppliedThemeMode = false;
+                const applyThemeMode = (mode) => {
+                    if (themeSwitchCleanupTimer !== null) clearTimeout(themeSwitchCleanupTimer);
+                    if (hasAppliedThemeMode) {
+                        document.body.classList.add('theme-switching');
+                    }
+                    document.body.dataset.theme = mode;
+                    document.documentElement.style.colorScheme = mode;
+                    localStorage.setItem(THEME_STORAGE_KEY, mode);
+                    if (hasAppliedThemeMode) {
+                        themeSwitchCleanupTimer = setTimeout(() => {
+                            document.body.classList.remove('theme-switching');
+                            themeSwitchCleanupTimer = null;
+                        }, 64);
+                    } else {
+                        hasAppliedThemeMode = true;
+                    }
+                };
+                const toggleThemeMode = () => {
+                    themeMode.value = themeMode.value === 'dark' ? 'light' : 'dark';
+                };
+
+                watch(themeMode, (mode) => {
+                    applyThemeMode(mode);
+                }, { immediate: true });
+
+                onUnmounted(() => {
+                    if (themeSwitchCleanupTimer !== null) {
+                        clearTimeout(themeSwitchCleanupTimer);
+                    }
+                });
 
                 watch(activeTab, (newValue) => {
                     localStorage.setItem('storyforge_activeTab', newValue);
@@ -1671,6 +2176,12 @@
                 const currentScriptId = ref('default');
                 const editingScriptId = ref(null);
                 const scriptNameInputRefs = ref({});
+                watch(currentScriptId, () => {
+                    clearRoleFilters();
+                });
+                const characterListPanelRef = ref(null);
+                const rawAnalysisCardRef = ref(null);
+                const characterListPanelHeight = ref('28rem');
 
                 const syncCurrentScriptState = () => {
                     const current = scriptList.value.find(s => s.id === currentScriptId.value);
@@ -1733,6 +2244,41 @@
                     editingScriptId.value = null;
                 };
 
+                const getCurrentScriptName = () => {
+                    return scriptList.value.find(s => s.id === currentScriptId.value)?.name?.trim() || '脚本';
+                };
+
+                const sanitizeExportFilename = (name) => {
+                    const sanitized = String(name || '')
+                        .replace(/[<>:"/\\|?*\u0000-\u001F]/g, '_')
+                        .replace(/[. ]+$/g, '')
+                        .trim();
+                    return sanitized || '脚本';
+                };
+
+                const getCurrentScriptExportFilename = (extension) => {
+                    return `${sanitizeExportFilename(getCurrentScriptName())}.${extension}`;
+                };
+
+                const updateCharacterListPanelHeight = async () => {
+                    if (activeTab.value !== 'script') return;
+                    await nextTick();
+
+                    const panelEl = characterListPanelRef.value;
+                    if (!panelEl) return;
+
+                    const rawCardEl = rawAnalysisCardRef.value;
+                    if (!rawCardEl) {
+                        characterListPanelHeight.value = '28rem';
+                        return;
+                    }
+
+                    const panelRect = panelEl.getBoundingClientRect();
+                    const rawRect = rawCardEl.getBoundingClientRect();
+                    const height = Math.max(448, Math.round(rawRect.bottom - panelRect.top));
+                    characterListPanelHeight.value = `${height}px`;
+                };
+
                 const deleteScriptTab = (id) => {
                     if (isAnalyzingScript.value || isGeneratingAll.value || isSequencePlaying.value) {
                         return alert('请先停止当前的生成或播放任务，再删除脚本。');
@@ -1756,8 +2302,53 @@
                 const currentSequenceIndex = ref(-1);
                 const lineRefs = ref([]);
                 const scriptListContainer = ref(null);
+                const scriptListLoadMoreSentinel = ref(null);
+                const SCRIPT_LIST_INITIAL_RENDER = 40;
+                const SCRIPT_LIST_RENDER_STEP = 40;
+                const SCRIPT_LIST_AUTOLOAD_THRESHOLD = 320;
+                const renderedScriptLimit = ref(SCRIPT_LIST_INITIAL_RENDER);
+                let scriptListLoadObserver = null;
+                let currentLoadMoreSentinel = null;
+                let waveformVisibilityObserver = null;
+                let isAutoLoadingMoreScriptLines = false;
+                const pendingWaveformItems = new Map();
                 onBeforeUpdate(() => {
                     lineRefs.value = [];
+                });
+                onMounted(() => {
+                    if (typeof IntersectionObserver !== 'undefined') {
+                        scriptListLoadObserver = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    maybeAutoLoadMoreScriptLines();
+                                }
+                            });
+                        }, {
+                            root: scriptListContainer.value,
+                            rootMargin: '0px 0px 480px 0px',
+                            threshold: 0.01
+                        });
+
+                        waveformVisibilityObserver = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (!entry.isIntersecting) return;
+                                const item = pendingWaveformItems.get(entry.target);
+                                waveformVisibilityObserver.unobserve(entry.target);
+                                pendingWaveformItems.delete(entry.target);
+                                if (item) {
+                                    queueWaveformDraw(entry.target, item);
+                                }
+                            });
+                        }, {
+                            root: null,
+                            rootMargin: '160px 0px'
+                        });
+                    }
+                });
+                onUnmounted(() => {
+                    scriptListLoadObserver?.disconnect();
+                    waveformVisibilityObserver?.disconnect();
+                    pendingWaveformItems.clear();
                 });
                 let sequenceAbortController = null;
                 const isExportingAudio = ref(false);
@@ -2308,6 +2899,27 @@
                     }
                 };
 
+                const queueWaveformDraw = (canvas, item) => {
+                    if (!canvas || !item) return;
+                    if (typeof requestIdleCallback === 'function') {
+                        requestIdleCallback(() => drawWaveform(canvas, item), { timeout: 120 });
+                    } else {
+                        setTimeout(() => drawWaveform(canvas, item), 0);
+                    }
+                };
+
+                const registerWaveformCanvas = (canvas, item) => {
+                    if (!canvas || !item) return;
+                    const audioPath = item.audioUrl || item.filename || item.refPath;
+                    if (!audioPath) return;
+                    if (!waveformVisibilityObserver) {
+                        queueWaveformDraw(canvas, item);
+                        return;
+                    }
+                    pendingWaveformItems.set(canvas, item);
+                    waveformVisibilityObserver.observe(canvas);
+                };
+
                 const startDragTrim = (e, item, type) => {
                     draggingTrimState.value = {
                         item: item,
@@ -2359,9 +2971,17 @@
                     localStorage.setItem('unitale_bgImageCount', String(Math.max(0, Number(bgImageCount.value) || 0)));
                 });
 
+                watch(
+                    () => [activeTab.value, characters.value.length, scriptLines.value.length, Boolean(rawAnalysisResult.value)],
+                    () => {
+                        updateCharacterListPanelHeight();
+                    }
+                );
+
                 // 读取持久化配置
                 onMounted(async () => {
-
+                     window.addEventListener('resize', updateCharacterListPanelHeight);
+                     updateCharacterListPanelHeight();
                      // 仅保留 LLM 和 TTS 的配置持久化 (API Key 等)
                      const savedList = localStorage.getItem('storyforge_configs');
                      if (savedList) {
@@ -2556,6 +3176,10 @@
                          // Slightly longer delay to ensure background loading has started
                          setTimeout(() => { isRestoring.value = false; }, 500);
                      }
+                });
+
+                onUnmounted(() => {
+                    window.removeEventListener('resize', updateCharacterListPanelHeight);
                 });
 
                 const currentTtsConfig = computed(() => {
@@ -3148,6 +3772,138 @@
                     const roles = new Set(characters.value.map(c => c.name));
                     return Array.from(roles);
                 });
+                const roleFilterOptions = computed(() => {
+                    const roles = [];
+                    const seen = new Set();
+                    scriptLines.value.forEach(line => {
+                        if (line.type === 'dialogue' && line.role && !seen.has(line.role)) {
+                            seen.add(line.role);
+                            roles.push(line.role);
+                        }
+                    });
+                    availableRoles.value.forEach(roleName => {
+                        if (roleName && !seen.has(roleName)) {
+                            seen.add(roleName);
+                            roles.push(roleName);
+                        }
+                    });
+                    return roles;
+                });
+                const hasActiveRoleFilter = computed(() => selectedRoleFilters.value.length > 0);
+                const filteredScriptEntries = computed(() => {
+                    if (!hasActiveRoleFilter.value) {
+                        return scriptLines.value.map((line, originalIndex) => ({ line, originalIndex }));
+                    }
+                    const selectedRoles = new Set(selectedRoleFilters.value);
+                    return scriptLines.value
+                        .map((line, originalIndex) => ({ line, originalIndex }))
+                        .filter(({ line }) => line.type === 'dialogue' && selectedRoles.has(line.role));
+                });
+                const filteredScriptLines = computed(() => filteredScriptEntries.value.map(entry => entry.line));
+                const filteredScriptLineIndexes = computed(() => filteredScriptEntries.value.map(entry => entry.originalIndex));
+                const filteredDialogueLines = computed(() => filteredScriptLines.value.filter(line => line.type === 'dialogue'));
+                const renderedScriptEntries = computed(() => filteredScriptEntries.value.slice(0, renderedScriptLimit.value));
+                const renderedScriptLines = computed(() => renderedScriptEntries.value.map(entry => entry.line));
+                const renderedScriptLineIndexes = computed(() => renderedScriptEntries.value.map(entry => entry.originalIndex));
+                const hasMoreRenderedScriptLines = computed(() => renderedScriptLines.value.length < filteredScriptLines.value.length);
+                const scriptListCountLabel = computed(() => hasActiveRoleFilter.value
+                    ? `${filteredScriptLines.value.length} / ${scriptLines.value.length}`
+                    : `${filteredScriptLines.value.length}`);
+                const toggleRoleFilter = (roleName) => {
+                    const index = selectedRoleFilters.value.indexOf(roleName);
+                    if (index === -1) {
+                        selectedRoleFilters.value.push(roleName);
+                    } else {
+                        selectedRoleFilters.value.splice(index, 1);
+                    }
+                };
+                const clearRoleFilters = () => {
+                    selectedRoleFilters.value = [];
+                };
+                const resetRenderedScriptLimit = () => {
+                    renderedScriptLimit.value = Math.min(
+                        Math.max(filteredScriptEntries.value.length, 1),
+                        SCRIPT_LIST_INITIAL_RENDER
+                    );
+                };
+                const loadMoreVisibleScriptLines = () => {
+                    renderedScriptLimit.value = Math.min(
+                        filteredScriptEntries.value.length,
+                        renderedScriptLimit.value + SCRIPT_LIST_RENDER_STEP
+                    );
+                };
+                const maybeAutoLoadMoreScriptLines = async () => {
+                    const container = scriptListContainer.value;
+                    if (!container || !hasMoreRenderedScriptLines.value || isAutoLoadingMoreScriptLines) return;
+
+                    let remainingDistance = container.scrollHeight - container.scrollTop - container.clientHeight;
+                    if (remainingDistance > SCRIPT_LIST_AUTOLOAD_THRESHOLD) return;
+
+                    isAutoLoadingMoreScriptLines = true;
+                    try {
+                        while (hasMoreRenderedScriptLines.value && remainingDistance <= SCRIPT_LIST_AUTOLOAD_THRESHOLD) {
+                            loadMoreVisibleScriptLines();
+                            await nextTick();
+                            remainingDistance = container.scrollHeight - container.scrollTop - container.clientHeight;
+                        }
+                    } finally {
+                        isAutoLoadingMoreScriptLines = false;
+                    }
+                };
+                const handleScriptListScroll = () => {
+                    maybeAutoLoadMoreScriptLines();
+                };
+                const ensureRenderedScriptIndex = (originalIndex) => {
+                    if (originalIndex < 0) return;
+                    const filteredPosition = filteredScriptLineIndexes.value.indexOf(originalIndex);
+                    if (filteredPosition !== -1 && filteredPosition >= renderedScriptLimit.value) {
+                        renderedScriptLimit.value = Math.min(
+                            filteredScriptEntries.value.length,
+                            filteredPosition + SCRIPT_LIST_RENDER_STEP
+                        );
+                    }
+                };
+                watch(roleFilterOptions, (roles) => {
+                    const roleSet = new Set(roles);
+                    const nextFilters = selectedRoleFilters.value.filter(roleName => roleSet.has(roleName));
+                    if (nextFilters.length !== selectedRoleFilters.value.length) {
+                        selectedRoleFilters.value = nextFilters;
+                    }
+                });
+                watch(filteredScriptEntries, () => {
+                    if (renderedScriptLimit.value > filteredScriptEntries.value.length) {
+                        renderedScriptLimit.value = filteredScriptEntries.value.length;
+                    } else if (renderedScriptLimit.value === 0 && filteredScriptEntries.value.length > 0) {
+                        resetRenderedScriptLimit();
+                    }
+                });
+                watch(filteredScriptLineIndexes, (indexes) => {
+                    if (selectedLineIndex.value !== -1 && !indexes.includes(selectedLineIndex.value)) {
+                        selectedLineIndex.value = -1;
+                    }
+                });
+                watch([selectedRoleFilters, currentScriptId], () => {
+                    resetRenderedScriptLimit();
+                }, { deep: true });
+                watch(selectedLineIndex, (index) => {
+                    ensureRenderedScriptIndex(index);
+                });
+                watch(currentSequenceIndex, (index) => {
+                    ensureRenderedScriptIndex(index);
+                });
+                watch([scriptListLoadMoreSentinel, hasMoreRenderedScriptLines], async ([sentinel, hasMore]) => {
+                    await nextTick();
+                    if (!scriptListLoadObserver) return;
+                    if (currentLoadMoreSentinel) {
+                        scriptListLoadObserver.unobserve(currentLoadMoreSentinel);
+                        currentLoadMoreSentinel = null;
+                    }
+                    if (hasMore && sentinel) {
+                        currentLoadMoreSentinel = sentinel;
+                        scriptListLoadObserver.observe(sentinel);
+                        maybeAutoLoadMoreScriptLines();
+                    }
+                }, { immediate: true });
 
                 // --- 拖拽与排序逻辑 ---
                 const draggingIndex = ref(-1);
@@ -3304,151 +4060,165 @@
                     }
                 };
 
-                                let batchAbortController = null;
+                let batchAbortController = null;
 
-                                const generateAllLines = async () => {
+                const runDialogueBatchGeneration = async ({ linesToIterate, linesToGenerate, confirmMessage, successPrefix, emptyMessage }) => {
 
-                                    if (isGeneratingAll.value) {
+                    if (isGeneratingAll.value) {
 
-                                        if (batchAbortController) {
+                        if (batchAbortController) {
 
-                                            batchAbortController.abort();
+                            batchAbortController.abort();
 
-                                        }
+                        }
 
-                                        return;
+                        return;
+
+                    }
+
+                    const dialogueLines = linesToGenerate.filter(line => line.type === 'dialogue');
+
+                    if (dialogueLines.length === 0) {
+
+                        alert(emptyMessage);
+
+                        return;
+
+                    }
+
+                    for (const line of dialogueLines) {
+
+                        const char = characters.value.find(c => c.name === line.role);
+
+                        if (!char || !char.voiceFile) {
+
+                            const lineIndex = scriptLines.value.findIndex(l => l.id === line.id);
+
+                            alert(`${successPrefix}已终止。\n\n原因：第 ${lineIndex + 1} 行台词的角色（${line.role}）没有绑定音源。`);
+
+                            return;
+
+                        }
+
+                    }
+
+                    if (!confirm(confirmMessage(dialogueLines.length))) return;
+
+                    isGeneratingAll.value = true;
+
+                    batchAbortController = new AbortController();
+
+                    const batchSignal = batchAbortController.signal;
+                    const targetLineIds = new Set(dialogueLines.map(line => line.id));
+                    let failedCount = 0;
+
+                    try {
+
+                        for (const line of linesToIterate) {
+
+                            if (batchSignal.aborted) break;
+
+                            if (line.type === 'dialogue' && targetLineIds.has(line.id)) {
+
+                                try {
+
+                                    await generateLineAudio(line, batchSignal);
+
+                                } catch (e) {
+
+                                    if (e.name !== 'AbortError') {
+
+                                        console.error(`Error generating line for role ${line.role}:`, e);
+
+                                        failedCount++;
 
                                     }
 
-                
+                                }
 
-                                    const startIndex = selectedLineIndex.value !== -1 ? selectedLineIndex.value : 0;
+                            }
 
-                                    const linesToCheck = scriptLines.value.slice(startIndex);
+                        }
 
-                
+                        if (batchSignal.aborted) {
 
-                                    // Pre-flight check on lines that will be processed
+                            alert('批量生成已停止。');
 
-                                    const linesToProcess = linesToCheck.filter(l => l.type === 'dialogue' && !l.audioUrl);
+                        } else {
 
-                                    for (const line of linesToProcess) {
+                            await saveProjectToDB();
 
-                                        const char = characters.value.find(c => c.name === line.role);
+                            if (failedCount > 0) {
 
-                                        if (!char || !char.voiceFile) {
+                                alert(`${successPrefix}完成，但有 ${failedCount} 条台词生成失败。请检查控制台或单独重新生成失败的台词。`);
 
-                                            const lineIndex = scriptLines.value.findIndex(l => l.id === line.id);
+                            } else {
 
-                                            alert(`一键生成已终止。\n\n原因：第 ${lineIndex + 1} 行台词的角色（${line.role}）没有绑定音源。`);
+                                alert(`${successPrefix}完成！`);
 
-                                            return;
+                            }
 
-                                        }
+                        }
 
-                                    }
+                    } catch (e) {
 
-                
+                        console.error(`${successPrefix}时发生意外错误:`, e);
 
-                                    const dialogueCount = linesToProcess.length;
+                        alert('生成过程中出现未知错误，详情请查看控制台。');
 
-                                    if (dialogueCount === 0) {
+                    } finally {
 
-                                        alert('没有需要生成的台词音频。');
+                        isGeneratingAll.value = false;
 
-                                        return;
+                        batchAbortController = null;
 
-                                    }
+                    }
 
-                
+                };
 
-                                    const confirmMsg = startIndex > 0
+                const generateAllLines = async () => {
 
-                                        ? `即将从第 ${startIndex + 1} 行（选中行）开始，为后续 ${dialogueCount} 条【未生成】的台词生成音频。确定继续吗？`
+                    const startIndex = selectedLineIndex.value !== -1 ? selectedLineIndex.value : 0;
 
-                                        : `即将为全部 ${dialogueCount} 条【未生成】的台词生成音频。确定继续吗？`;
+                    const linesToCheck = scriptLines.value.slice(startIndex);
+                    const linesToProcess = linesToCheck.filter(line => line.type === 'dialogue' && !line.audioUrl);
+                    const confirmMsg = startIndex > 0
 
-                
+                        ? (dialogueCount) => `即将从第 ${startIndex + 1} 行（选中行）开始，为后续 ${dialogueCount} 条【未生成】的台词生成音频。确定继续吗？`
 
-                                    if (!confirm(confirmMsg)) return;
+                        : (dialogueCount) => `即将为全部 ${dialogueCount} 条【未生成】的台词生成音频。确定继续吗？`;
 
-                
+                    await runDialogueBatchGeneration({
+                        linesToIterate: linesToCheck,
+                        linesToGenerate: linesToProcess,
+                        confirmMessage: confirmMsg,
+                        successPrefix: '一键生成',
+                        emptyMessage: '没有需要生成的台词音频。'
+                    });
 
-                                    isGeneratingAll.value = true;
+                };
 
-                                    batchAbortController = new AbortController();
+                const regenerateFilteredRoleLines = async () => {
 
-                                    const batchSignal = batchAbortController.signal;
+                    if (!hasActiveRoleFilter.value) {
 
-                                    let failedCount = 0;
+                        alert('请先选择一个或多个角色，再使用重配功能。');
 
-                
+                        return;
 
-                                    try {
+                    }
 
-                                        // Iterate through the original slice to maintain order, but only process what's needed.
+                    const selectedRolesLabel = selectedRoleFilters.value.join('、');
 
-                                        for (const line of linesToCheck) {
+                    await runDialogueBatchGeneration({
+                        linesToIterate: filteredDialogueLines.value,
+                        linesToGenerate: filteredDialogueLines.value,
+                        confirmMessage: (dialogueCount) => `即将为当前筛选出的 ${dialogueCount} 条台词重新生成音频。\n\n角色：${selectedRolesLabel}\n\n已生成的音频会被新的结果覆盖，确定继续吗？`,
+                        successPrefix: '筛选角色重配',
+                        emptyMessage: '当前筛选下没有可重新配音的台词。'
+                    });
 
-                                            if (batchSignal.aborted) break;
-
-                
-
-                                            if (line.type === 'dialogue' && !line.audioUrl) {
-
-                                                try {
-
-                                                    await generateLineAudio(line, batchSignal);
-
-                                                } catch (e) {
-
-                                                    if (e.name !== 'AbortError') {
-
-                                                        console.error(`Error generating line for role ${line.role}:`, e);
-
-                                                        failedCount++;
-
-                                                    }
-
-                                                }
-
-                                            }
-
-                                        }
-
-                
-
-                                        if (batchSignal.aborted) {
-
-                                            alert('批量生成已停止。');
-
-                                        } else if (failedCount > 0) {
-
-                                            alert(`一键生成完成，但有 ${failedCount} 条台词生成失败。请检查控制台或单独重新生成失败的台词。`);
-
-                                        } else {
-
-                                            await saveProjectToDB();
-
-                                            alert('批量生成完成！');
-
-                                        }
-
-                                    } catch (e) {
-
-                                        console.error("生成全部音频时发生意外错误:", e);
-
-                                        alert('生成过程中出现未知错误，详情请查看控制台。');
-
-                                    } finally {
-
-                                        isGeneratingAll.value = false;
-
-                                        batchAbortController = null;
-
-                                    }
-
-                                };
+                };
 
                 
 
@@ -4528,7 +5298,7 @@
                         const url = URL.createObjectURL(wavBlob);
                         const a = document.createElement('a');
                         a.href = url;
-                        a.download = `storyforge_export_${Date.now()}.wav`;
+                        a.download = getCurrentScriptExportFilename('wav');
                         document.body.appendChild(a);
                         a.click();
                         document.body.removeChild(a);
@@ -4671,7 +5441,7 @@
                         const url = URL.createObjectURL(blob);
                         const a = document.createElement('a');
                         a.href = url;
-                        a.download = `Unitale字幕文件_${Date.now()}.srt`;
+                        a.download = getCurrentScriptExportFilename('srt');
                         document.body.appendChild(a);
                         a.click();
                         document.body.removeChild(a);
@@ -5903,7 +6673,9 @@ const generateVideo = async () => {
                     saveBgm, editBgm, deleteBgm, resetBgmForm, handleBgmFileUpload,
 
                     // Audition Actions
-                    availableRoles, isAuditioningId, generateLineAudio, playLineAudio, clearLineAudio,
+                    availableRoles, roleFilterOptions, selectedRoleFilters, hasActiveRoleFilter, filteredScriptLines, filteredScriptLineIndexes, filteredDialogueLines,
+                    renderedScriptLines, renderedScriptLineIndexes, hasMoreRenderedScriptLines, scriptListCountLabel,
+                    isAuditioningId, generateLineAudio, playLineAudio, clearLineAudio,
 
                     playPreview, previewPlayingFile,
                     send, stopGeneration, clearAll,
@@ -5914,23 +6686,27 @@ const generateVideo = async () => {
                     bgImagePickerRef,
                     previewImageUrl,
                     isGeneratingVideo,
+                    themeMode, toggleThemeMode,
 
                     // Script Actions
                     rawScript, scriptLines, splitScript, removeScriptLine, autoResizeTextarea, analyzeScript, isAnalyzingScript, rawAnalysisResult,
                     addBgmBlock, addDialogueBlock, addBgImageBlock, selectedLineIndex,
-                    drawWaveform, startDragTrim, // Exported for template
-                    generateAllLines, isGeneratingAll, clearAllGeneratedAudio,
+                    drawWaveform, registerWaveformCanvas, startDragTrim, // Exported for template
+                    generateAllLines, regenerateFilteredRoleLines, isGeneratingAll, clearAllGeneratedAudio,
                     moveLineUp, moveLineDown,
-                    toggleLineSelection,
+                    toggleLineSelection, toggleRoleFilter, clearRoleFilters,
+                    loadMoreVisibleScriptLines, handleScriptListScroll,
                     openBgImagePicker, handleBgImageFileChange, copyBgImagePrompt, openImagePreview, closeImagePreview,
                     exportScriptState, triggerImport, handleImportFile, importFileRef, exportAudio, isExportingAudio,
                     exportSRT, triggerImportTxt, handleImportTxt, importTxtRef,
                     isExportingProject, exportStatus, videoResolution,
                     playScriptSequentially, stopScriptSequentially, isSequencePlaying, currentSequenceIndex,
-                    lineRefs,
+                    lineRefs, scriptListLoadMoreSentinel,
                     scriptListContainer,
+                    characterListPanelRef, rawAnalysisCardRef, characterListPanelHeight,
                     scriptList, currentScriptId, switchScript, addScript, deleteScriptTab, 
                     editingScriptId, startEditingScript, stopEditingScript, scriptNameInputRefs,
+                    getCurrentScriptName, getCurrentScriptExportFilename,
 
                     customPromptTemplate, useCustomPrompt, savePrompt, resetPrompt,
                     customVoicePromptTemplate, useCustomVoicePrompt, saveVoicePrompt, resetVoicePrompt,
