@@ -158,6 +158,25 @@
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
+        .script-character-panel {
+            min-height: 20rem;
+            max-height: min(62vh, 28rem);
+        }
+
+        @media (min-width: 640px) {
+            .script-character-panel {
+                min-height: 22rem;
+                max-height: min(64vh, 30rem);
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .script-character-panel {
+                min-height: 28rem;
+                max-height: min(70vh, 32rem);
+            }
+        }
+
         #app .script-line-selected {
             background: linear-gradient(180deg, rgba(239, 246, 255, 0.96), rgba(219, 234, 254, 0.94)) !important;
             border-color: rgba(96, 165, 250, 0.9) !important;
@@ -165,6 +184,14 @@
                 0 0 0 1px rgba(96, 165, 250, 0.22),
                 0 12px 28px rgba(59, 130, 246, 0.14),
                 inset 0 1px 0 rgba(255, 255, 255, 0.48) !important;
+        }
+
+        #app .script-bgimage-card {
+            background: linear-gradient(180deg, rgba(240, 253, 250, 0.96), rgba(220, 252, 231, 0.94)) !important;
+            border-color: rgba(110, 231, 183, 0.85) !important;
+            box-shadow:
+                0 0 0 1px rgba(16, 185, 129, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
         }
 
         #app .script-bgimage-selected {
@@ -227,6 +254,24 @@
         body[data-theme='dark'] #app .bg-slate-100 {
             background-color: rgba(30, 41, 59, 0.74) !important;
             border-color: rgba(148, 163, 184, 0.16) !important;
+        }
+
+        body[data-theme='dark'] #app .script-bgimage-card {
+            background: linear-gradient(180deg, rgba(6, 78, 59, 0.34), rgba(17, 94, 89, 0.26)) !important;
+            border-color: rgba(45, 212, 191, 0.26) !important;
+            box-shadow:
+                0 0 0 1px rgba(45, 212, 191, 0.08),
+                0 10px 24px rgba(2, 6, 23, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
+        }
+
+        body[data-theme='dark'] #app .script-bgimage-selected {
+            background: linear-gradient(180deg, rgba(6, 95, 70, 0.7), rgba(4, 120, 87, 0.52)) !important;
+            border-color: rgba(94, 234, 212, 0.6) !important;
+            box-shadow:
+                0 0 0 1px rgba(94, 234, 212, 0.18),
+                0 14px 28px rgba(15, 118, 110, 0.24),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
         }
 
         body[data-theme='dark'] #app .bg-slate-200 {
@@ -303,15 +348,6 @@
                 inset 0 1px 0 rgba(191, 219, 254, 0.12) !important;
         }
 
-        body[data-theme='dark'] #app .script-bgimage-selected {
-            background: linear-gradient(180deg, rgba(21, 72, 61, 0.84), rgba(9, 33, 28, 0.95)) !important;
-            border-color: rgba(52, 211, 153, 0.56) !important;
-            box-shadow:
-                0 0 0 1px rgba(16, 185, 129, 0.18),
-                0 16px 32px rgba(2, 6, 23, 0.24),
-                inset 0 1px 0 rgba(167, 243, 208, 0.1) !important;
-        }
-
         body[data-theme='dark'] #app .script-bgm-selected {
             background: linear-gradient(180deg, rgba(61, 33, 95, 0.82), rgba(28, 14, 47, 0.95)) !important;
             border-color: rgba(167, 139, 250, 0.58) !important;
@@ -380,6 +416,12 @@
             background: rgba(30, 41, 59, 0.58);
             border-color: rgba(148, 163, 184, 0.16);
             color: #8ea2bb !important;
+        }
+
+        @media (min-width: 1280px) {
+            .script-character-panel {
+                max-height: calc(100vh - 8rem);
+            }
         }
 
         body[data-theme='dark'] #app .bg-amber-100 {
@@ -490,84 +532,113 @@
             <img :src="previewImageUrl" alt="背景图片大图预览" @click.stop
                 class="max-w-[95vw] max-h-[92vh] object-contain rounded-xl shadow-2xl bg-white">
         </div>
-        <header class="app-header mb-6 flex justify-between items-end">
-            <div>
-                <h1 class="text-2xl font-bold text-slate-800">Unitale AI <span class="text-blue-600">1.5</span></h1>
-                <p class="app-subtitle text-xs mt-1">多角色音效合成有声书生成工具</p>
-            </div>
-            <div class="flex items-center gap-2">
-                <button @click="toggleThemeMode"
-                    class="theme-toggle-btn px-3 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-200 transition-all">
-                    {{ themeMode === 'dark' ? '切到亮色' : '切到暗色' }}
-                </button>
-                <div class="app-version-badge text-[10px] font-semibold text-slate-800">v1.5</div>
-            </div>
-        </header>
+        <div class="space-y-3 mb-5">
+            <header class="app-header bg-white border border-white/40 shadow-sm rounded-2xl p-4 flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+                <div class="space-y-2 min-w-0">
+                    <div class="flex flex-wrap items-center gap-3">
+                        <h1 class="text-2xl font-bold text-slate-800">Unitale AI</h1>
+                        <div class="app-version-badge text-[10px] font-semibold text-slate-800">v1.5</div>
+                        <span class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold border border-blue-100">
+                            多角色有声书工作台
+                        </span>
+                    </div>
+                    <p class="app-subtitle text-xs leading-relaxed max-w-3xl">
+                        把配置、素材库、脚本拆分、逐行精修和导出流程放进同一个浏览器工作台。
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 self-start xl:self-auto">
+                    <button @click="toggleThemeMode"
+                        class="theme-toggle-btn px-3 py-2 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-200 transition-all">
+                        {{ themeMode === 'dark' ? '切到亮色' : '切到暗色' }}
+                    </button>
+                </div>
+            </header>
 
-        <!-- 标签页导航 -->
-        <div class="main-tab-bar flex flex-wrap items-center justify-between border-b border-slate-200 mb-6 gap-4">
-            <div class="flex overflow-x-auto">
-                <button @click="activeTab = 'config'"
-                    :class="['px-6 py-3 text-sm font-bold transition-colors whitespace-nowrap', activeTab === 'config' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700']">
-                    模型配置
-                </button>
-                <button @click="activeTab = 'timbres'"
-                    :class="['px-6 py-3 text-sm font-bold transition-colors whitespace-nowrap', activeTab === 'timbres' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700']">
-                    音色资源库
-                </button>
-                <button @click="activeTab = 'sfx'"
-                    :class="['px-6 py-3 text-sm font-bold transition-colors whitespace-nowrap', activeTab === 'sfx' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700']">
-                    音效与滤波器
-                </button>
-                <button @click="activeTab = 'script'"
-                    :class="['px-6 py-3 text-sm font-bold transition-colors whitespace-nowrap', activeTab === 'script' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700']">
-                    脚本制作
-                </button>
-                <button @click="activeTab = 'prompt'"
-                    :class="['px-6 py-3 text-sm font-bold transition-colors whitespace-nowrap', activeTab === 'prompt' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700']">
-                    Prompt 管理
-                </button>
-            </div>
+            <section class="bg-white border border-white/40 shadow-sm rounded-2xl p-3">
+                <div class="flex flex-col gap-4 2xl:flex-row 2xl:items-start 2xl:justify-between">
+                    <div class="space-y-2 min-w-0 2xl:max-w-xl">
+                        <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.24em]">工作区导航</div>
+                        <div class="flex flex-wrap gap-2">
+                            <button @click="activeTab = 'config'"
+                                :class="['px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap border', activeTab === 'config' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                                模型配置
+                            </button>
+                            <button @click="activeTab = 'timbres'"
+                                :class="['px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap border', activeTab === 'timbres' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                                音色资源库
+                            </button>
+                            <button @click="activeTab = 'sfx'"
+                                :class="['px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap border', activeTab === 'sfx' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                                音效与滤波器
+                            </button>
+                            <button @click="activeTab = 'script'"
+                                :class="['px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap border', activeTab === 'script' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                                脚本制作
+                            </button>
+                            <button @click="activeTab = 'prompt'"
+                                :class="['px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap border', activeTab === 'prompt' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                                Prompt 管理
+                            </button>
+                        </div>
+                    </div>
 
-            <!-- 全局功能栏 (导出/导入) -->
-            <div class="main-action-toolbar flex flex-wrap items-center gap-2 py-2">
-                <button @click="exportScriptState" :disabled="isExportingProject"
-                    title="导出完整工程 JSON"
-                    class="px-3 py-1.5 bg-amber-100 text-amber-700 rounded-lg text-xs font-bold hover:bg-amber-200 transition-all flex items-center gap-1 disabled:opacity-50 disabled:cursor-wait">
-                    {{ isExportingProject ? exportStatus : '导出完整工程' }}
-                </button>
-                <button @click="triggerImport" :disabled="isExportingProject"
-                    class="px-3 py-1.5 bg-amber-100 text-amber-700 rounded-lg text-xs font-bold hover:bg-amber-200 transition-all flex items-center gap-1 disabled:opacity-50">
-                    {{ isExportingProject ? '请等待...' : '导入完整工程' }}
-                </button>
-                <button @click="triggerImportTxt" :disabled="isExportingProject"
-                    class="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg text-xs font-bold hover:bg-slate-200 transition-all flex items-center gap-1 disabled:opacity-50">
-                    导入TXT
-                </button>
-                <button @click="exportSRT" :disabled="isExportingAudio"
-                    :title="`导出字幕：${getCurrentScriptExportFilename('srt')}`"
-                    class="px-3 py-1.5 bg-teal-100 text-teal-700 rounded-lg text-xs font-bold hover:bg-teal-200 transition-all flex items-center gap-1 disabled:opacity-50 disabled:cursor-wait">
-                    导出SRT字幕
-                </button>
-                <button @click="exportAudio" :disabled="isExportingAudio"
-                    :title="`导出音频：${getCurrentScriptExportFilename('wav')}`"
-                    class="px-3 py-1.5 bg-purple-100 text-purple-700 rounded-lg text-xs font-bold hover:bg-purple-200 transition-all flex items-center gap-1 disabled:opacity-50 disabled:cursor-wait">
-                    {{ isExportingAudio ? (exportStatus || '⏳ 处理中...') : '导出音频' }}
-                </button>
-                <select v-model="videoResolution" class="px-2 py-1.5 bg-white border border-slate-300 text-slate-700 rounded-lg text-xs font-bold outline-none focus:ring-2 focus:ring-sky-500">
-                    <option value="1920x1080">横屏 16:9</option>
-                    <option value="1080x1920">竖屏 9:16</option>
-                    <option value="1280x960">横屏 4:3</option>
-                    <option value="960x1280">竖屏 3:4</option>
-                </select>
-                <button @click="generateVideo" :disabled="isExportingAudio || isSequencePlaying || isGeneratingVideo"
-                    class="px-3 py-1.5 bg-sky-100 text-sky-700 rounded-lg text-xs font-bold hover:bg-sky-200 transition-all flex items-center gap-1 disabled:opacity-50 disabled:cursor-wait">
-                    {{ isGeneratingVideo ? (exportStatus || '⏳ 生成视频...') : '生成视频' }}
-                </button>
+                    <div class="grid gap-3 xl:grid-cols-3 flex-1 w-full">
+                        <div class="main-action-toolbar flex flex-col items-start gap-2">
+                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em]">工程</div>
+                            <div class="flex flex-wrap gap-2">
+                                <button @click="exportScriptState" :disabled="isExportingProject"
+                                    title="导出完整工程 JSON"
+                                    class="px-3 py-2 bg-amber-100 text-amber-700 rounded-xl text-xs font-bold hover:bg-amber-200 transition-all flex items-center gap-1 disabled:opacity-50 disabled:cursor-wait">
+                                    {{ isExportingProject ? exportStatus : '导出完整工程' }}
+                                </button>
+                                <button @click="triggerImport" :disabled="isExportingProject"
+                                    class="px-3 py-2 bg-amber-100 text-amber-700 rounded-xl text-xs font-bold hover:bg-amber-200 transition-all flex items-center gap-1 disabled:opacity-50">
+                                    {{ isExportingProject ? '请等待...' : '导入完整工程' }}
+                                </button>
+                                <button @click="triggerImportTxt" :disabled="isExportingProject"
+                                    class="px-3 py-2 bg-slate-100 text-slate-700 rounded-xl text-xs font-bold hover:bg-slate-200 transition-all flex items-center gap-1 disabled:opacity-50">
+                                    导入TXT
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="main-action-toolbar flex flex-col items-start gap-2">
+                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em]">音频与字幕</div>
+                            <div class="flex flex-wrap gap-2">
+                                <button @click="exportSRT" :disabled="isExportingAudio"
+                                    :title="`导出字幕：${getCurrentScriptExportFilename('srt')}`"
+                                    class="px-3 py-2 bg-teal-100 text-teal-700 rounded-xl text-xs font-bold hover:bg-teal-200 transition-all flex items-center gap-1 disabled:opacity-50 disabled:cursor-wait">
+                                    导出SRT字幕
+                                </button>
+                                <button @click="exportAudio" :disabled="isExportingAudio"
+                                    :title="`导出音频：${getCurrentScriptExportFilename('wav')}`"
+                                    class="px-3 py-2 bg-purple-100 text-purple-700 rounded-xl text-xs font-bold hover:bg-purple-200 transition-all flex items-center gap-1 disabled:opacity-50 disabled:cursor-wait">
+                                    {{ isExportingAudio ? (exportStatus || '⏳ 处理中...') : '导出音频' }}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="main-action-toolbar flex flex-col items-start gap-2">
+                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em]">视频导出</div>
+                            <div class="flex flex-wrap gap-2 w-full">
+                                <select v-model="videoResolution" class="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-xl text-xs font-bold outline-none focus:ring-2 focus:ring-sky-500 min-w-[128px]">
+                                    <option value="1920x1080">横屏 16:9</option>
+                                    <option value="1080x1920">竖屏 9:16</option>
+                                    <option value="1280x960">横屏 4:3</option>
+                                    <option value="960x1280">竖屏 3:4</option>
+                                </select>
+                                <button @click="generateVideo" :disabled="isExportingAudio || isSequencePlaying || isGeneratingVideo"
+                                    class="px-3 py-2 bg-sky-100 text-sky-700 rounded-xl text-xs font-bold hover:bg-sky-200 transition-all flex items-center gap-1 disabled:opacity-50 disabled:cursor-wait">
+                                    {{ isGeneratingVideo ? (exportStatus || '⏳ 生成视频...') : '生成视频' }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <input type="file" ref="importFileRef" @change="handleImportFile" accept=".json" class="hidden">
                 <input type="file" ref="importTxtRef" @change="handleImportTxt" accept=".txt" class="hidden">
                 <input type="file" ref="bgImagePickerRef" @change="handleBgImageFileChange" accept="image/*" class="hidden">
-            </div>
+            </section>
         </div>
 
         <!-- 页面 1: 模型配置 (LLM & TTS) -->
@@ -1136,32 +1207,50 @@
         <!-- 页面 5: 脚本制作 (重构：左右分栏) -->
         <div v-if="activeTab === 'script'">
             <!-- 脚本多标签页管理 -->
-            <div class="flex items-center gap-2 overflow-x-auto pt-10 -mt-10 pb-2 mb-6">
-                <div v-for="script in scriptList" :key="script.id" 
-                    @click="switchScript(script.id)"
-                    @dblclick="startEditingScript(script.id)"
-                    :class="['relative flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer text-xs font-bold transition-all duration-150 min-w-[100px] flex-shrink-0 justify-between group', currentScriptId === script.id ? 'bg-white border border-slate-200 text-blue-600 shadow-sm hover:-translate-y-0.5 hover:shadow-md' : 'bg-slate-100 border-transparent text-slate-500 hover:bg-slate-200 hover:text-slate-700 hover:-translate-y-0.5 hover:shadow-sm']">
-                    <div v-if="editingScriptId !== script.id"
-                        class="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-[calc(100%+6px)] opacity-0 transition-opacity duration-150 pointer-events-none group-hover:opacity-100">
-                        <div class="relative">
-                            <div class="rounded-md bg-slate-800/95 px-2 py-0.5 text-[9px] font-medium text-white shadow-lg ring-1 ring-black/5 whitespace-nowrap">
-                                双击修改名称
+            <div class="bg-white border border-slate-200 rounded-2xl p-3.5 shadow-sm mb-4">
+                <div class="flex flex-col gap-2.5 xl:flex-row xl:items-center xl:justify-between">
+                    <div class="space-y-1.5 min-w-0">
+                        <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em]">多脚本工作区</div>
+                        <div class="flex items-center gap-1.5 overflow-x-auto pt-5 -mt-5 pb-0.5">
+                            <div v-for="script in scriptList" :key="script.id" 
+                                @click="switchScript(script.id)"
+                                @dblclick="startEditingScript(script.id)"
+                                :class="['relative flex items-center gap-2 px-3 py-1.5 rounded-xl cursor-pointer text-[11px] font-bold transition-all duration-150 min-w-[104px] flex-shrink-0 justify-between group border', currentScriptId === script.id ? 'bg-blue-600 border-blue-600 text-white shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-500 hover:bg-white hover:text-slate-700 hover:shadow-sm']">
+                                <div v-if="editingScriptId !== script.id"
+                                    class="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-[calc(100%+6px)] opacity-0 transition-opacity duration-150 pointer-events-none group-hover:opacity-100">
+                                    <div class="relative">
+                                        <div class="rounded-md bg-slate-800/95 px-2 py-0.5 text-[9px] font-medium text-white shadow-lg ring-1 ring-black/5 whitespace-nowrap">
+                                            双击修改名称
+                                        </div>
+                                        <div class="absolute left-1/2 -bottom-0.5 h-1.5 w-1.5 -translate-x-1/2 rotate-45 bg-slate-800/95"></div>
+                                    </div>
+                                </div>
+                                <span v-if="editingScriptId !== script.id" class="whitespace-nowrap">{{ script.name }}</span>
+                                <input v-else v-model="script.name" @click.stop @blur="stopEditingScript" @keyup.enter="stopEditingScript" :ref="el => { if(el) scriptNameInputRefs[script.id] = el }" class="bg-transparent outline-none w-full" />
+                                <button @click.stop="deleteScriptTab(script.id)"
+                                    :class="[currentScriptId === script.id ? 'text-white/70 hover:text-white' : 'text-slate-400 hover:text-red-500']">×</button>
                             </div>
-                            <div class="absolute left-1/2 -bottom-0.5 h-1.5 w-1.5 -translate-x-1/2 rotate-45 bg-slate-800/95"></div>
+                            <button @click="addScript" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 font-bold text-[11px] border border-slate-200 whitespace-nowrap">+ 新脚本</button>
                         </div>
                     </div>
-                    <span v-if="editingScriptId !== script.id" class="whitespace-nowrap">{{ script.name }}</span>
-                    <input v-else v-model="script.name" @click.stop @blur="stopEditingScript" @keyup.enter="stopEditingScript" :ref="el => { if(el) scriptNameInputRefs[script.id] = el }" class="bg-transparent outline-none w-full" />
-                    <button @click.stop="deleteScriptTab(script.id)" class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-500">×</button>
+                    <div class="grid grid-cols-1 gap-1.5 text-[11px] sm:flex sm:flex-wrap">
+                        <span class="px-2.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600">
+                            当前：<span class="font-bold text-slate-800">{{ getCurrentScriptName() }}</span>
+                        </span>
+                        <span class="px-2.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600">
+                            脚本块：<span class="font-bold text-slate-800">{{ scriptLines.length }}</span>
+                        </span>
+                        <span class="px-2.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600">
+                            角色：<span class="font-bold text-slate-800">{{ characters.length }}</span>
+                        </span>
+                    </div>
                 </div>
-                <button @click="addScript" class="px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 font-bold text-xs">+</button>
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-6 items-start">
+            <div class="grid gap-3 xl:gap-4 xl:grid-cols-[232px_minmax(0,1fr)] items-start">
             <!-- 左侧：角色与音色绑定栏 -->
-            <div class="w-full lg:w-60 flex-shrink-0 space-y-4">
-                <div ref="characterListPanelRef" class="bg-slate-100 p-4 rounded-xl border border-slate-200 flex flex-col overflow-hidden"
-                    :style="{ height: characterListPanelHeight }">
+            <div class="order-2 w-full xl:order-1 xl:sticky xl:top-5 xl:self-start">
+                <div class="script-character-panel bg-slate-100 p-3 sm:p-4 rounded-xl border border-slate-200 flex flex-col overflow-hidden shadow-sm">
                     <h3 class="text-sm font-bold text-slate-700 mb-3 flex justify-between items-center flex-shrink-0">
                         角色列表
                         <button @click="addCharacter"
@@ -1237,103 +1326,115 @@
             </div>
 
             <!-- 原文输入区域 -->
-            <div class="flex-1 w-full space-y-6 min-w-0">
+            <div class="order-1 flex-1 w-full space-y-4 min-w-0 xl:order-2">
                 
-                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-sm font-bold text-slate-700">1. 输入原文 / 小说片段</h3>
+                <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm space-y-2.5">
+                    <div class="flex flex-wrap justify-between items-center gap-3">
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em] mb-1">主输入区</div>
+                            <h3 class="text-sm font-bold text-slate-700">1. 输入原文 / 小说片段</h3>
+                        </div>
+                        <div class="text-[11px] text-slate-400">高频动作集中在顶部，减少来回找按钮</div>
                     </div>
 
-                    <textarea v-model="rawScript"
-                        class="w-full p-4 border rounded-xl h-48 mb-4 focus:ring-2 focus:ring-blue-500 outline-none resize-none bg-slate-50 text-sm leading-relaxed"
-                        placeholder="请粘贴小说内容或剧本原文..."></textarea>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                        <!-- AI 拆分/分析 -->
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm space-y-2">
-                            <div class="font-bold text-xs text-slate-700">AI 深度分析</div>
-                            <select v-model="currentConfigId"
-                                class="px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white w-full"
-                                title="选择用于分析的 LLM 模型">
-                                <option value="" disabled>-- 选择LLM模型 --</option>
-                                <option v-for="conf in llmConfigs" :key="conf.id" :value="conf.id">
-                                    {{ conf.name }}
-                                </option>
-                            </select>
-                            <button @click="analyzeScript"
-                                :class="['w-full px-3 py-2 text-white rounded-lg text-sm font-bold transition-all flex items-center justify-center', isAnalyzingScript ? 'bg-red-500 hover:bg-red-600' : 'bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50']">
-                                <span v-if="isAnalyzingScript" class="animate-spin mr-2">⏳</span>
-                                {{ isAnalyzingScript ? '停止分析' : 'AI 深度分析' }}
-                            </button>
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-2.5 space-y-2.5">
+                        <div class="grid gap-2 md:grid-cols-2 xl:grid-cols-[minmax(0,1.05fr)_minmax(0,1.12fr)_minmax(0,1.2fr)]">
+                            <div class="min-w-0 rounded-xl border border-slate-200 bg-white px-3 py-2.5">
+                                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em] mb-2">分析</div>
+                                <div class="flex flex-wrap gap-2">
+                                    <select v-model="currentConfigId"
+                                        class="flex-1 min-w-[150px] px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+                                        title="选择用于分析的 LLM 模型">
+                                        <option value="" disabled>-- 选择LLM模型 --</option>
+                                        <option v-for="conf in llmConfigs" :key="conf.id" :value="conf.id">
+                                            {{ conf.name }}
+                                        </option>
+                                    </select>
+                                    <button @click="analyzeScript"
+                                        :class="['px-4 py-2 text-white rounded-lg text-sm font-bold transition-all flex items-center justify-center whitespace-nowrap', isAnalyzingScript ? 'bg-red-500 hover:bg-red-600' : 'bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50']">
+                                        <span v-if="isAnalyzingScript" class="animate-spin mr-2">⏳</span>
+                                        {{ isAnalyzingScript ? '停止分析' : 'AI 深度分析' }}
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="min-w-0 rounded-xl border border-slate-200 bg-white px-3 py-2.5">
+                                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em] mb-2">插块</div>
+                                <div class="flex flex-wrap items-start gap-2">
+                                    <div class="flex flex-wrap gap-2 flex-1 min-w-0">
+                                        <button @click="addDialogueBlock"
+                                            class="px-2.5 py-2 bg-blue-100 text-blue-600 rounded-lg text-sm font-bold hover:bg-blue-200 transition-all whitespace-nowrap">
+                                            ➕ 插入台词
+                                        </button>
+                                        <button @click="addBgmBlock"
+                                            class="px-2.5 py-2 bg-purple-100 text-purple-600 rounded-lg text-sm font-bold hover:bg-purple-200 transition-all whitespace-nowrap">
+                                            ➕ 插入BGM
+                                        </button>
+                                        <button @click="addBgImageBlock"
+                                            class="px-2.5 py-2 bg-emerald-100 text-emerald-700 rounded-lg text-sm font-bold hover:bg-emerald-200 transition-all whitespace-nowrap">
+                                            ➕ 插入背景图片
+                                        </button>
+                                    </div>
+                                    <div class="flex items-center gap-2 px-2 py-2 bg-slate-50 border border-slate-200 rounded-lg whitespace-nowrap">
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase whitespace-nowrap">背景图</label>
+                                        <input type="number" v-model.number="bgImageCount" min="0" max="100"
+                                            class="w-16 px-2 py-1 border rounded-lg text-xs focus:ring-2 focus:ring-emerald-500 outline-none bg-white"
+                                            title="LLM 将严格插入的 bgImage 块数量" />
+                                        <span class="text-[10px] text-slate-400 whitespace-nowrap">张</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="min-w-0 rounded-xl border border-slate-200 bg-white px-3 py-2.5 space-y-2 md:col-span-2 xl:col-span-1">
+                                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em] mb-2">生成与播放</div>
+                                <div class="flex flex-wrap gap-2">
+                                    <select v-model="currentTtsConfigId"
+                                        class="flex-1 min-w-[150px] px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+                                        title="选择用于生成的 TTS 服务">
+                                        <option value="" disabled>-- 选择 TTS 模型 --</option>
+                                        <option v-for="conf in ttsConfigs" :key="conf.id" :value="conf.id">
+                                            {{ conf.name }}
+                                        </option>
+                                    </select>
+                                    <button @click="handlePrimaryGenerationAction"
+                                        :disabled="isSequencePlaying || (hasActiveRoleFilter && filteredDialogueLines.length === 0 && !isGeneratingAll)"
+                                        :class="['px-4 py-2 text-white rounded-lg text-sm font-bold transition-all flex items-center justify-center whitespace-nowrap', isGeneratingAll ? 'bg-red-500 hover:bg-red-600' : 'bg-green-600 hover:bg-green-700 disabled:opacity-50']">
+                                        <span v-if="isGeneratingAll" class="animate-spin mr-2">⏳</span>
+                                        {{ isGeneratingAll ? '停止生成' : '一键生成配音' }}
+                                    </button>
+                                </div>
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <button @click="clearAllGeneratedAudio" :disabled="isSequencePlaying || isGeneratingAll"
+                                        class="px-3 py-1.5 bg-red-600 text-white rounded-lg text-xs font-bold hover:bg-red-700 disabled:opacity-50 transition-all flex items-center justify-center whitespace-nowrap">
+                                        清空配音
+                                    </button>
+                                    <button v-if="!isSequencePlaying" @click="playScriptSequentially"
+                                        class="px-3 py-1.5 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 disabled:opacity-50 transition-all whitespace-nowrap">
+                                        {{ selectedLineIndex !== -1 ? '从选中播放' : '顺序播放' }}
+                                    </button>
+                                    <button v-else @click="stopScriptSequentially"
+                                        class="px-3 py-1.5 bg-red-500 text-white rounded-lg text-xs font-bold hover:bg-red-600 transition-all whitespace-nowrap">
+                                        停止播放
+                                    </button>
+                                    <span v-if="hasActiveRoleFilter" class="text-[11px] text-sky-600 font-semibold">
+                                        当前筛选 {{ filteredDialogueLines.length }} 条，主按钮将直接重配
+                                    </span>
+                                    <span v-else-if="selectedLineIndex !== -1" class="text-[11px] text-slate-500">
+                                        已选中第 {{ selectedLineIndex + 1 }} 行，主按钮将从此处开始
+                                    </span>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- 插入控制块 -->
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm space-y-2">
-                            <div class="font-bold text-xs text-slate-700">插入控制块</div>
-                            <div class="flex flex-wrap gap-2">
-                                <button @click="addDialogueBlock"
-                                    class="px-2 py-2 bg-blue-100 text-blue-600 rounded-lg text-sm font-bold hover:bg-blue-200 transition-all">
-                                    ➕ 插入台词
-                                </button>
-                                <button @click="addBgmBlock"
-                                    class="px-2 py-2 bg-purple-100 text-purple-600 rounded-lg text-sm font-bold hover:bg-purple-200 transition-all">
-                                    ➕ 插入BGM
-                                </button>
-                                <button @click="addBgImageBlock"
-                                    class="px-2 py-2 bg-emerald-100 text-emerald-700 rounded-lg text-sm font-bold hover:bg-emerald-200 transition-all">
-                                    ➕ 插入背景图片
-                                </button>
-                            </div>
-                            <div class="flex flex-wrap items-center gap-2 px-2 py-2 bg-white border border-slate-200 rounded-lg">
-                                <label class="text-[10px] font-bold text-slate-500 uppercase whitespace-nowrap">背景图片数量</label>
-                                <input type="number" v-model.number="bgImageCount" min="0" max="100"
-                                    class="w-20 px-2 py-1 border rounded-lg text-xs focus:ring-2 focus:ring-emerald-500 outline-none bg-white"
-                                    title="LLM 将严格插入的 bgImage 块数量" />
-                                <span class="text-[10px] text-slate-400 whitespace-nowrap">张</span>
-                                <span class="text-[10px] text-slate-400 ml-2">（若需关闭，可从Prompt管理中删除背景图片块相关提示词）</span>
-                            </div>
-                        </div>
-
-                        <!-- 配音/生成/播放 -->
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm space-y-2">
-                            <div class="font-bold text-xs text-slate-700">配音与播放</div>
-                            <select v-model="currentTtsConfigId"
-                                class="px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white w-full"
-                                title="选择用于生成的 TTS 服务">
-                                <option value="" disabled>-- 选择 TTS 模型 --</option>
-                                <option v-for="conf in ttsConfigs" :key="conf.id" :value="conf.id">
-                                    {{ conf.name }}
-                                </option>
-                            </select>
-
-                            <div class="flex flex-wrap gap-2">
-                                <button @click="generateAllLines" :disabled="isSequencePlaying"
-                                    :class="['flex-1 px-2 py-2 text-white rounded-lg text-sm font-bold transition-all flex items-center justify-center', isGeneratingAll ? 'bg-red-500 hover:bg-red-600' : 'bg-green-600 hover:bg-green-700 disabled:opacity-50']">
-                                    <span v-if="isGeneratingAll" class="animate-spin mr-2">⏳</span>
-                                    {{ isGeneratingAll ? '停止生成' : (selectedLineIndex !== -1 ? '从选中行开始生成' : '一键生成配音(跳过已生成)') }}
-                                </button>
-                                <button @click="clearAllGeneratedAudio" :disabled="isSequencePlaying || isGeneratingAll"
-                                    class="px-2 py-2 bg-red-600 text-white rounded-lg text-sm font-bold hover:bg-red-700 disabled:opacity-50 transition-all flex items-center justify-center">
-                                    清空配音
-                                </button>
-                            </div>
-
-                            <div class="flex flex-wrap gap-2">
-                                <button v-if="!isSequencePlaying" @click="playScriptSequentially"
-                                    class="flex-1 px-2 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold hover:bg-blue-700 disabled:opacity-50 transition-all">
-                                    {{ selectedLineIndex !== -1 ? '▶️ 从选中位置播放' : '▶️ 顺序播放' }}
-                                </button>
-                                <button v-else @click="stopScriptSequentially"
-                                    class="flex-1 px-2 py-2 bg-red-500 text-white rounded-lg text-sm font-bold hover:bg-red-600 transition-all">
-                                    停止播放
-                                </button>
-                            </div>
-                        </div>
+                        <textarea v-model="rawScript"
+                            class="w-full p-4 border rounded-xl h-24 focus:ring-2 focus:ring-blue-500 outline-none resize-none bg-white text-sm leading-relaxed"
+                            placeholder="请粘贴小说内容或剧本原文..."></textarea>
                     </div>
                 </div>
 
                 <!-- 拆分结果列表 -->
                 <div v-if="scriptLines.length > 0"
-                    class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm"
+                    class="bg-white p-4 sm:p-5 rounded-xl border border-slate-200 shadow-sm"
                     :style="stageBgUrl ? {
                         backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0.76), rgba(255,255,255,0.58)), url(${stageBgUrl})`,
                         backgroundRepeat: 'no-repeat, no-repeat',
@@ -1348,12 +1449,9 @@
                                     ({{ scriptListCountLabel }} 行)
                                 </span>
                             </h3>
-                            <button @click="regenerateFilteredRoleLines"
-                                :disabled="((!hasActiveRoleFilter || filteredDialogueLines.length === 0) && !isGeneratingAll) || isSequencePlaying"
-                                :class="['px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center', isGeneratingAll ? 'bg-red-500 text-white hover:bg-red-600' : 'bg-sky-100 text-sky-700 hover:bg-sky-200 disabled:opacity-50 disabled:cursor-not-allowed']">
-                                <span v-if="isGeneratingAll" class="animate-spin mr-2">⏳</span>
-                                {{ isGeneratingAll ? '停止生成' : (hasActiveRoleFilter ? `重配筛选角色（${filteredDialogueLines.length}条）` : '先选择角色后重配') }}
-                            </button>
+                            <span v-if="hasActiveRoleFilter" class="px-3 py-2 rounded-lg text-xs font-bold bg-sky-100 text-sky-700">
+                                当前筛选 {{ filteredDialogueLines.length }} 条，主按钮可直接重配
+                            </span>
                         </div>
                         <div class="flex flex-wrap items-center gap-2 px-3 py-3 bg-slate-50 border border-slate-200 rounded-xl">
                             <span class="text-[10px] font-bold text-slate-500 uppercase whitespace-nowrap">角色筛选</span>
@@ -1370,7 +1468,7 @@
                             </span>
                         </div>
                     </div>
-                    <div ref="scriptListContainer" @scroll.passive="handleScriptListScroll" class="space-y-3 max-h-[600px] overflow-y-auto px-2 pb-10">
+                    <div ref="scriptListContainer" @scroll.passive="handleScriptListScroll" class="space-y-3 max-h-[48vh] sm:max-h-[42vh] xl:max-h-[46vh] 2xl:max-h-[52vh] overflow-y-auto px-1 sm:px-2 pb-8 sm:pb-10">
                         <div v-if="filteredScriptLines.length === 0" class="px-3 py-8 text-center text-sm text-slate-400">
                             当前角色筛选下没有可显示的台词。
                         </div>
@@ -1429,7 +1527,7 @@
 
                             <!-- 背景图片块 -->
                             <div v-else-if="line.type === 'bgImage'"
-                                :class="['flex flex-col gap-2 p-3 rounded-lg mb-2 transition-all group cursor-pointer border', selectedLineIndex === renderedScriptLineIndexes[index] ? 'script-bgimage-selected' : 'bg-emerald-50/50 border-emerald-200', currentSequenceIndex === renderedScriptLineIndexes[index] ? 'ring-2 ring-green-500' : '']">
+                                :class="['flex flex-col gap-2 p-3 rounded-lg mb-2 transition-all group cursor-pointer border', selectedLineIndex === renderedScriptLineIndexes[index] ? 'script-bgimage-selected' : 'script-bgimage-card', currentSequenceIndex === renderedScriptLineIndexes[index] ? 'ring-2 ring-green-500' : '']">
                                 <div class="flex flex-wrap items-start gap-3">
                                     <div
                                         class="flex flex-col items-center justify-center gap-1 w-8 flex-shrink-0 border-r border-emerald-200 pr-2">
@@ -1706,7 +1804,6 @@
                                             </div>
                                         </div>
                                     </div>
-                            </div>
 
                                 <!-- 音效管理条 -->
                                 <div class="flex flex-wrap items-center gap-2 w-full">
@@ -1738,22 +1835,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="hasMoreRenderedScriptLines" ref="scriptListLoadMoreSentinel" class="py-4 flex justify-center">
-                            <div class="px-3 py-1.5 text-xs font-bold rounded-full bg-slate-100 text-slate-500 border border-slate-200">
-                                正在接近底部时自动加载更多台词（已加载 {{ renderedScriptLines.length }} / {{ filteredScriptLines.length }}）
-                            </div>
+                    </div>
+                    <div v-if="hasMoreRenderedScriptLines" ref="scriptListLoadMoreSentinel" class="py-4 flex justify-center">
+                        <div class="px-3 py-1.5 text-xs font-bold rounded-full bg-slate-100 text-slate-500 border border-slate-200">
+                            正在接近底部时自动加载更多台词（已加载 {{ renderedScriptLines.length }} / {{ filteredScriptLines.length }}）
                         </div>
                     </div>
+                    </div>
+                </div>
                 </div>
 
                 <!-- 调试：显示原始 JSON -->
-                <div v-if="rawAnalysisResult" ref="rawAnalysisCardRef" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                <div v-if="rawAnalysisResult" class="order-3 xl:col-start-2 min-w-0 bg-white p-3 sm:p-4 xl:p-5 rounded-xl border border-slate-200 shadow-sm">
                     <h3 class="text-sm font-bold text-slate-700 mb-2">3. AI 原始输出 (调试用)</h3>
                     <pre
-                        class="bg-slate-800 text-slate-200 p-4 rounded-lg text-xs overflow-x-auto whitespace-pre-wrap max-h-64">{{ rawAnalysisResult }}</pre>
+                        class="bg-slate-800 text-slate-200 p-3 sm:p-4 rounded-lg text-[11px] sm:text-xs overflow-x-auto whitespace-pre-wrap max-h-[16rem] sm:max-h-[20rem] xl:max-h-[26rem]">{{ rawAnalysisResult }}</pre>
                 </div>
             </div>
-        </div>
         </div>
 
         <!-- 页面 7: Prompt 管理 -->
@@ -2179,9 +2277,6 @@
                 watch(currentScriptId, () => {
                     clearRoleFilters();
                 });
-                const characterListPanelRef = ref(null);
-                const rawAnalysisCardRef = ref(null);
-                const characterListPanelHeight = ref('28rem');
 
                 const syncCurrentScriptState = () => {
                     const current = scriptList.value.find(s => s.id === currentScriptId.value);
@@ -2258,25 +2353,6 @@
 
                 const getCurrentScriptExportFilename = (extension) => {
                     return `${sanitizeExportFilename(getCurrentScriptName())}.${extension}`;
-                };
-
-                const updateCharacterListPanelHeight = async () => {
-                    if (activeTab.value !== 'script') return;
-                    await nextTick();
-
-                    const panelEl = characterListPanelRef.value;
-                    if (!panelEl) return;
-
-                    const rawCardEl = rawAnalysisCardRef.value;
-                    if (!rawCardEl) {
-                        characterListPanelHeight.value = '28rem';
-                        return;
-                    }
-
-                    const panelRect = panelEl.getBoundingClientRect();
-                    const rawRect = rawCardEl.getBoundingClientRect();
-                    const height = Math.max(448, Math.round(rawRect.bottom - panelRect.top));
-                    characterListPanelHeight.value = `${height}px`;
                 };
 
                 const deleteScriptTab = (id) => {
@@ -2971,17 +3047,8 @@
                     localStorage.setItem('unitale_bgImageCount', String(Math.max(0, Number(bgImageCount.value) || 0)));
                 });
 
-                watch(
-                    () => [activeTab.value, characters.value.length, scriptLines.value.length, Boolean(rawAnalysisResult.value)],
-                    () => {
-                        updateCharacterListPanelHeight();
-                    }
-                );
-
                 // 读取持久化配置
                 onMounted(async () => {
-                     window.addEventListener('resize', updateCharacterListPanelHeight);
-                     updateCharacterListPanelHeight();
                      // 仅保留 LLM 和 TTS 的配置持久化 (API Key 等)
                      const savedList = localStorage.getItem('storyforge_configs');
                      if (savedList) {
@@ -3176,10 +3243,6 @@
                          // Slightly longer delay to ensure background loading has started
                          setTimeout(() => { isRestoring.value = false; }, 500);
                      }
-                });
-
-                onUnmounted(() => {
-                    window.removeEventListener('resize', updateCharacterListPanelHeight);
                 });
 
                 const currentTtsConfig = computed(() => {
@@ -4217,6 +4280,20 @@
                         successPrefix: '筛选角色重配',
                         emptyMessage: '当前筛选下没有可重新配音的台词。'
                     });
+
+                };
+
+                const handlePrimaryGenerationAction = async () => {
+
+                    if (hasActiveRoleFilter.value) {
+
+                        await regenerateFilteredRoleLines();
+
+                        return;
+
+                    }
+
+                    await generateAllLines();
 
                 };
 
@@ -6692,7 +6769,7 @@ const generateVideo = async () => {
                     rawScript, scriptLines, splitScript, removeScriptLine, autoResizeTextarea, analyzeScript, isAnalyzingScript, rawAnalysisResult,
                     addBgmBlock, addDialogueBlock, addBgImageBlock, selectedLineIndex,
                     drawWaveform, registerWaveformCanvas, startDragTrim, // Exported for template
-                    generateAllLines, regenerateFilteredRoleLines, isGeneratingAll, clearAllGeneratedAudio,
+                    generateAllLines, regenerateFilteredRoleLines, handlePrimaryGenerationAction, isGeneratingAll, clearAllGeneratedAudio,
                     moveLineUp, moveLineDown,
                     toggleLineSelection, toggleRoleFilter, clearRoleFilters,
                     loadMoreVisibleScriptLines, handleScriptListScroll,
@@ -6703,7 +6780,6 @@ const generateVideo = async () => {
                     playScriptSequentially, stopScriptSequentially, isSequencePlaying, currentSequenceIndex,
                     lineRefs, scriptListLoadMoreSentinel,
                     scriptListContainer,
-                    characterListPanelRef, rawAnalysisCardRef, characterListPanelHeight,
                     scriptList, currentScriptId, switchScript, addScript, deleteScriptTab, 
                     editingScriptId, startEditingScript, stopEditingScript, scriptNameInputRefs,
                     getCurrentScriptName, getCurrentScriptExportFilename,
