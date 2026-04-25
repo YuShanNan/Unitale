@@ -46,9 +46,10 @@
 
         /* 随机背景与毛玻璃特效 */
         body {
-            background-color: #f1f5f9;
-            /* Fallback color */
-            background-image: url('https://picsum.photos/1920/1080');
+            background-color: #e2e8f0;
+            background-image:
+                linear-gradient(180deg, rgba(241, 245, 249, 0.55), rgba(241, 245, 249, 0.75)),
+                url('https://picsum.photos/1920/1080');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -148,7 +149,7 @@
             background: rgba(255, 255, 255, 0.16);
             border: 1px solid rgba(255, 255, 255, 0.16);
             border-radius: 16px;
-            padding: 0.45rem 0.6rem;
+            padding: 0.38rem 0.5rem;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 12px 30px rgba(148, 163, 184, 0.1);
@@ -160,6 +161,18 @@
             background: rgba(255, 255, 255, 0.22);
             border: 1px solid rgba(255, 255, 255, 0.28);
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .header-workbench-badge {
+            display: inline-flex;
+            align-items: center;
+            min-height: 32px;
+            padding: 0 0.8rem;
+            border-radius: 999px;
+            background: rgba(239, 246, 255, 0.92);
+            border: 1px solid rgba(147, 197, 253, 0.7);
+            color: #2563eb;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
 
         .script-character-panel {
@@ -228,7 +241,7 @@
             background-color: #020617;
             background-image:
                 radial-gradient(circle at top, rgba(56, 189, 248, 0.15), transparent 34%),
-                linear-gradient(180deg, rgba(2, 6, 23, 0.78), rgba(2, 6, 23, 0.92)),
+                linear-gradient(180deg, rgba(2, 6, 23, 0.45), rgba(2, 6, 23, 0.65)),
                 url('https://picsum.photos/1920/1080');
             color: #e2e8f0;
         }
@@ -258,6 +271,15 @@
         body[data-theme='dark'] #app .bg-slate-100 {
             background-color: rgba(30, 41, 59, 0.74) !important;
             border-color: rgba(148, 163, 184, 0.16) !important;
+        }
+
+        body[data-theme='dark'] .header-workbench-badge {
+            background: linear-gradient(180deg, rgba(30, 64, 175, 0.28), rgba(37, 99, 235, 0.2));
+            border-color: rgba(96, 165, 250, 0.32);
+            color: #bfdbfe;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                0 8px 20px rgba(2, 6, 23, 0.2);
         }
 
         body[data-theme='dark'] #app .script-bgimage-card {
@@ -516,20 +538,173 @@
             background-color: rgba(153, 27, 27, 0.48) !important;
         }
 
+        body[data-theme='dark'] #app .bg-blue-50 {
+            background-color: rgba(30, 58, 138, 0.35) !important;
+        }
+
+        body[data-theme='dark'] #app .hover\:bg-blue-100:hover {
+            background-color: rgba(30, 64, 175, 0.45) !important;
+        }
+
         body[data-theme='dark'] #app .border-emerald-200,
         body[data-theme='dark'] #app .border-indigo-100,
         body[data-theme='dark'] #app .border-pink-100,
         body[data-theme='dark'] #app .border-red-100 {
             border-color: rgba(148, 163, 184, 0.14) !important;
         }
+
+        /* Toast 通知动画 */
+        .toast-enter-active { transition: all 0.3s ease-out; }
+        .toast-leave-active { transition: all 0.25s ease-in; }
+        .toast-enter-from { opacity: 0; transform: translateX(40px) scale(0.92); }
+        .toast-leave-to { opacity: 0; transform: translateX(40px) scale(0.92); }
+
+        /* Section 标题左竖线装饰 */
+        .section-title-accent {
+            position: relative;
+            padding-left: 14px;
+            padding-bottom: 10px;
+        }
+        .section-title-accent::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            border-radius: 3px;
+            background: linear-gradient(180deg, #3b82f6, #60a5fa);
+        }
+        body[data-theme='dark'] .section-title-accent::before {
+            background: linear-gradient(180deg, #60a5fa, #93c5fd);
+        }
+        .section-title-accent::after {
+            content: '';
+            position: absolute;
+            left: 14px;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(148,163,184,0.25), transparent);
+        }
+        body[data-theme='dark'] .section-title-accent::after {
+            background: linear-gradient(90deg, rgba(148,163,184,0.15), transparent);
+        }
+        body[data-theme='dark'] .section-title-accent {
+            color: #f1f5f9;
+        }
+
+        /* 卡片统一微阴影增强 */
+        .card-elevated {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+            transition: box-shadow 0.2s ease;
+        }
+        .card-elevated:hover {
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.05);
+        }
+        body[data-theme='dark'] .card-elevated {
+            box-shadow: 0 1px 3px rgba(2,6,23,0.3), 0 4px 12px rgba(2,6,23,0.2);
+        }
+        body[data-theme='dark'] .card-elevated:hover {
+            box-shadow: 0 2px 6px rgba(2,6,23,0.4), 0 8px 24px rgba(2,6,23,0.3);
+        }
+
+        /* 空状态美化 */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+        .empty-state-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 0.75rem;
+            border-radius: 999px;
+            background: rgba(148,163,184,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        body[data-theme='dark'] .empty-state {
+            color: #64748b;
+        }
+        body[data-theme='dark'] .empty-state-icon {
+            background: rgba(148,163,184,0.08);
+        }
+
+        /* 表单卡片内 grid 间距统一 */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 768px) {
+            .form-grid { grid-template-columns: 1fr 1fr; }
+            .form-grid .col-span-2 { grid-column: span 2; }
+        }
+
+        /* 分割线简化 */
+        .divider-subtle {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(148,163,184,0.2), transparent);
+            margin: 1.5rem 0;
+        }
+        body[data-theme='dark'] .divider-subtle {
+            background: linear-gradient(90deg, transparent, rgba(148,163,184,0.1), transparent);
+        }
+
+        /* 配置列表中的信息文本超出省略 */
+        .config-meta {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
+        }
     </style>
 </head>
 
 <body class="p-4 md:p-8">
-    <div id="app" :data-theme="themeMode" class="w-full max-w-[96%] mx-auto p-6 rounded-2xl shadow-2xl">
+    <div id="app" :data-theme="themeMode" class="w-full max-w-[94%] xl:max-w-[1520px] mx-auto p-5 xl:p-7 rounded-2xl shadow-2xl">
+        <!-- Toast 通知 -->
+        <div class="fixed top-4 right-4 z-[9999] space-y-2 pointer-events-none">
+            <TransitionGroup name="toast">
+                <div v-for="t in toasts" :key="t.id"
+                    :class="['px-4 py-3 rounded-xl shadow-2xl text-sm font-bold pointer-events-auto flex items-center gap-2 max-w-sm', toastStyles[t.type]]">
+                    <template v-if="t.type === 'success'">
+                        <svg class="h-4 w-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                    </template>
+                    <template v-else-if="t.type === 'error'">
+                        <svg class="h-4 w-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                    </template>
+                    <template v-else-if="t.type === 'warning'">
+                        <svg class="h-4 w-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                    </template>
+                    {{ t.message }}
+                </div>
+            </TransitionGroup>
+        </div>
+
+        <!-- 确认对话框 -->
+        <div v-if="confirmDialog.show" class="fixed inset-0 z-[9998] flex items-center justify-center bg-black/40 backdrop-blur-sm" @click.self="confirmDialog.reject()">
+            <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full mx-4 space-y-4" @click.stop>
+                <p class="text-sm text-slate-700 leading-relaxed">{{ confirmDialog.message }}</p>
+                <div class="flex justify-end gap-2">
+                    <button type="button" @click="confirmDialog.reject()"
+                        class="px-4 py-2 bg-slate-100 text-slate-600 rounded-xl text-sm font-bold hover:bg-slate-200 transition-all">取消</button>
+                    <button type="button" @click="confirmDialog.resolve()"
+                        class="px-4 py-2 bg-red-600 text-white rounded-xl text-sm font-bold hover:bg-red-700 transition-all">确认</button>
+                </div>
+            </div>
+        </div>
         <div v-if="previewImageUrl" @click="closeImagePreview"
             class="fixed inset-0 z-[10000] bg-slate-950/78 backdrop-blur-sm flex items-center justify-center p-4">
-            <button @click.stop="closeImagePreview"
+            <button type="button" @click.stop="closeImagePreview"
                 class="absolute top-4 right-4 px-3 py-1.5 rounded-lg bg-white/15 text-white text-sm font-bold hover:bg-white/25 transition-all">
                 关闭
             </button>
@@ -542,7 +717,7 @@
                     <div class="flex flex-wrap items-center gap-3">
                         <h1 class="text-2xl font-bold text-slate-800">Unitale AI</h1>
                         <div class="app-version-badge text-[10px] font-semibold text-slate-800">v1.5</div>
-                        <span class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold border border-blue-100">
+                        <span class="header-workbench-badge text-[11px] font-bold">
                             多角色有声书工作台
                         </span>
                     </div>
@@ -551,8 +726,8 @@
                     </p>
                 </div>
                 <div class="flex items-center gap-2 self-start xl:self-auto">
-                    <button @click="toggleThemeMode"
-                        class="theme-toggle-btn px-3 py-2 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-200 transition-all">
+                    <button @click="toggleThemeMode" type="button"
+                        class="theme-toggle-btn px-3 py-1.5 min-h-[34px] bg-slate-100 text-slate-600 rounded-xl text-[11px] font-bold hover:bg-slate-200 transition-all">
                         {{ themeMode === 'dark' ? '切到亮色' : '切到暗色' }}
                     </button>
                 </div>
@@ -563,77 +738,85 @@
                     <div class="space-y-2 min-w-0 2xl:max-w-xl">
                         <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.24em]">工作区导航</div>
                         <div class="flex flex-wrap gap-2">
-                            <button @click="activeTab = 'config'"
-                                :class="['px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap border', activeTab === 'config' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                            <button type="button" @click="activeTab = 'config'"
+                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'config' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
                                 模型配置
                             </button>
-                            <button @click="activeTab = 'timbres'"
-                                :class="['px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap border', activeTab === 'timbres' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                            <button type="button" @click="activeTab = 'timbres'"
+                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'timbres' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
                                 音色资源库
                             </button>
-                            <button @click="activeTab = 'sfx'"
-                                :class="['px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap border', activeTab === 'sfx' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                            <button type="button" @click="activeTab = 'sfx'"
+                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'sfx' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
                                 音效与滤波器
                             </button>
-                            <button @click="activeTab = 'script'"
-                                :class="['px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap border', activeTab === 'script' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                            <button type="button" @click="activeTab = 'script'"
+                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'script' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
                                 脚本制作
                             </button>
-                            <button @click="activeTab = 'prompt'"
-                                :class="['px-4 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap border', activeTab === 'prompt' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                            <button type="button" @click="activeTab = 'prompt'"
+                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'prompt' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
                                 Prompt 管理
                             </button>
                         </div>
                     </div>
 
-                    <div class="grid gap-2 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.96fr)_minmax(0,0.9fr)] flex-1 w-full">
-                        <div class="main-action-toolbar flex flex-col items-start gap-2 w-full">
+                    <div class="grid gap-2 xl:grid-cols-3 flex-1 w-full">
+                        <div class="main-action-toolbar flex flex-col items-start gap-1.5 w-full">
                             <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em]">工程</div>
-                            <div class="grid grid-cols-2 gap-2 w-full">
+                            <div class="grid gap-1.5 w-full grid-cols-[1fr_1fr_auto]">
                                 <button @click="exportScriptState" :disabled="isExportingProject"
                                     title="导出完整工程 JSON"
-                                    class="px-3 py-2 bg-amber-100 text-amber-700 rounded-xl text-xs font-bold hover:bg-amber-200 transition-all flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[40px]">
+                                    class="px-2.5 py-1.5 bg-amber-100 text-amber-700 rounded-xl text-[11px] font-bold hover:bg-amber-200 transition-all inline-flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[36px]">
                                     {{ isExportingProject ? exportStatus : '导出完整工程' }}
                                 </button>
                                 <button @click="triggerImport" :disabled="isExportingProject"
-                                    class="px-3 py-2 bg-amber-100 text-amber-700 rounded-xl text-xs font-bold hover:bg-amber-200 transition-all flex items-center justify-center gap-1 disabled:opacity-50 min-h-[40px]">
+                                    class="px-2.5 py-1.5 bg-amber-100 text-amber-700 rounded-xl text-[11px] font-bold hover:bg-amber-200 transition-all inline-flex items-center justify-center gap-1 disabled:opacity-50 min-h-[36px]">
                                     {{ isExportingProject ? '请等待...' : '导入完整工程' }}
                                 </button>
                                 <button @click="triggerImportTxt" :disabled="isExportingProject"
-                                    class="col-span-2 px-3 py-2 bg-slate-100 text-slate-700 rounded-xl text-xs font-bold hover:bg-slate-200 transition-all flex items-center justify-center gap-1 disabled:opacity-50 min-h-[40px]">
+                                    class="px-2.5 py-1.5 bg-slate-100 text-slate-700 rounded-xl text-[11px] font-bold hover:bg-slate-200 transition-all inline-flex items-center justify-center gap-1 disabled:opacity-50 min-h-[36px]">
                                     导入TXT
                                 </button>
                             </div>
                         </div>
 
-                        <div class="main-action-toolbar flex flex-col items-start gap-2 w-full">
+                        <div class="main-action-toolbar flex flex-col items-start gap-1.5 w-full">
                             <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em]">音频与字幕</div>
-                            <div class="grid grid-cols-2 gap-2 w-full">
+                            <div class="grid grid-cols-2 gap-1.5 w-full">
                                 <button @click="exportSRT" :disabled="isExportingAudio"
                                     :title="`导出字幕：${getCurrentScriptExportFilename('srt')}`"
-                                    class="px-3 py-2 bg-teal-100 text-teal-700 rounded-xl text-xs font-bold hover:bg-teal-200 transition-all flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[40px]">
+                                    class="px-2.5 py-1.5 bg-teal-100 text-teal-700 rounded-xl text-[11px] font-bold hover:bg-teal-200 transition-all flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[36px]">
                                     导出SRT字幕
                                 </button>
                                 <button @click="exportAudio" :disabled="isExportingAudio"
                                     :title="`导出音频：${getCurrentScriptExportFilename('wav')}`"
-                                    class="px-3 py-2 bg-purple-100 text-purple-700 rounded-xl text-xs font-bold hover:bg-purple-200 transition-all flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[40px]">
-                                    {{ isExportingAudio ? (exportStatus || '⏳ 处理中...') : '导出音频' }}
+                                    class="px-2.5 py-1.5 bg-purple-100 text-purple-700 rounded-xl text-[11px] font-bold hover:bg-purple-200 transition-all flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[36px]">
+                                    <template v-if="isExportingAudio">
+                                        <svg class="animate-spin h-3.5 w-3.5 -ml-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
+                                        {{ exportStatus || '处理中...' }}
+                                    </template>
+                                    <template v-else>导出音频</template>
                                 </button>
                             </div>
                         </div>
 
-                        <div class="main-action-toolbar flex flex-col items-start gap-2 w-full">
+                        <div class="main-action-toolbar flex flex-col items-start gap-1.5 w-full">
                             <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em]">视频导出</div>
-                            <div class="grid gap-2 w-full sm:grid-cols-[minmax(0,1fr)_auto]">
-                                <select v-model="videoResolution" class="w-full px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-xl text-xs font-bold outline-none focus:ring-2 focus:ring-sky-500 min-w-0 min-h-[40px]">
+                            <div class="grid gap-1.5 w-full grid-cols-[1fr_auto]">
+                                <select v-model="videoResolution" class="w-full px-2.5 py-1.5 bg-white border border-slate-300 text-slate-700 rounded-xl text-[11px] font-bold outline-none focus:ring-2 focus:ring-sky-500 min-w-0 min-h-[36px]">
                                     <option value="1920x1080">横屏 16:9</option>
                                     <option value="1080x1920">竖屏 9:16</option>
                                     <option value="1280x960">横屏 4:3</option>
                                     <option value="960x1280">竖屏 3:4</option>
                                 </select>
                                 <button @click="generateVideo" :disabled="isExportingAudio || isSequencePlaying || isGeneratingVideo"
-                                    class="px-3 py-2 bg-sky-100 text-sky-700 rounded-xl text-xs font-bold hover:bg-sky-200 transition-all flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[40px]">
-                                    {{ isGeneratingVideo ? (exportStatus || '⏳ 生成视频...') : '生成视频' }}
+                                    class="px-2.5 py-1.5 bg-sky-100 text-sky-700 rounded-xl text-[11px] font-bold hover:bg-sky-200 transition-all flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[36px]">
+                                    <template v-if="isGeneratingVideo">
+                                        <svg class="animate-spin h-3.5 w-3.5 -ml-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
+                                        {{ exportStatus || '生成视频...' }}
+                                    </template>
+                                    <template v-else>生成视频</template>
                                 </button>
                             </div>
                         </div>
@@ -647,11 +830,11 @@
 
         <!-- 页面 1: 模型配置 (LLM & TTS) -->
         <div v-if="activeTab === 'config'" class="space-y-6">
-            <h2 class="text-lg font-bold text-slate-800 border-b pb-2">LLM 模型配置（OpenAI通用接口）</h2>
+            <h2 class="section-title-accent text-lg font-bold text-slate-800">LLM 模型配置（OpenAI通用接口）</h2>
             <!-- 添加/编辑表单 -->
-            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 card-elevated">
                 <h3 class="text-sm font-bold text-slate-700 mb-4">{{ isEditing ? '编辑配置' : '添加新配置' }}</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div class="form-grid mb-4">
                     <div>
                         <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">配置名称</label>
                         <input v-model="form.name"
@@ -684,39 +867,39 @@
                             placeholder='例如: {"temperature": 0.7, "max_tokens": 2000}'>
                     </div>
                 </div>
-                <div class="flex gap-2">
+                <div class="flex gap-2 justify-end">
                     <button type="button" @click.prevent="saveConfig"
-                        class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition-all">保存配置</button>
+                        class="px-6 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存配置</button>
                     <button type="button" v-if="isEditing" @click="resetForm"
-                        class="px-4 py-2 bg-slate-200 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                        class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
                 </div>
             </div>
 
             <!-- 配置列表 -->
             <div class="grid gap-3">
                 <div v-for="conf in llmConfigs" :key="conf.id"
-                    class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:shadow-sm transition-shadow">
+                    class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:shadow-md hover:border-blue-200 transition-all">
                     <div>
                         <div class="font-bold text-slate-800 text-sm">{{ conf.name }}</div>
-                        <div class="text-xs text-slate-400 mt-1">{{ conf.model }} | {{ conf.baseUrl }}</div>
+                        <div class="text-xs text-slate-400 mt-1 config-meta">{{ conf.model }} | {{ conf.baseUrl }}</div>
                     </div>
                     <div class="flex gap-2">
                         <button @click="editConfig(conf)"
-                            class="text-xs text-blue-600 hover:underline font-medium">编辑</button>
+                            class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
                         <button @click="deleteConfig(conf.id)"
-                            class="text-xs text-red-500 hover:underline font-medium">删除</button>
+                            class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
                     </div>
                 </div>
-                <div v-if="llmConfigs.length === 0" class="text-center py-8 text-slate-400 text-sm">
+                <div v-if="llmConfigs.length === 0" class="empty-state">
                     暂无配置，请在上方添加
                 </div>
             </div>
 
-            <h2 class="text-lg font-bold text-slate-800 border-b pb-2 pt-6">TTS 语音合成配置</h2>
+            <h2 class="section-title-accent text-lg font-bold text-slate-800">TTS 语音合成配置</h2>
             <!-- 添加/编辑表单 -->
-            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 card-elevated">
                 <h3 class="text-sm font-bold text-slate-700 mb-4">{{ isEditingTts ? '编辑 TTS 配置' : '添加新 TTS 配置' }}</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div class="form-grid mb-4">
                     <div>
                         <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">配置名称</label>
                         <input v-model="ttsForm.name"
@@ -730,30 +913,30 @@
                             placeholder="http://127.0.0.1:8300">
                     </div>
                 </div>
-                <div class="flex gap-2">
+                <div class="flex gap-2 justify-end">
                     <button type="button" @click.prevent="saveTtsConfig"
-                        class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition-all">保存配置</button>
+                        class="px-6 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存配置</button>
                     <button type="button" v-if="isEditingTts" @click="resetTtsForm"
-                        class="px-4 py-2 bg-slate-200 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                        class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
                 </div>
             </div>
 
             <!-- 配置列表 -->
             <div class="grid gap-3">
                 <div v-for="conf in ttsConfigs" :key="conf.id"
-                    class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:shadow-sm transition-shadow">
+                    class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:shadow-md hover:border-blue-200 transition-all">
                     <div>
                         <div class="font-bold text-slate-800 text-sm">{{ conf.name }}</div>
-                        <div class="text-xs text-slate-400 mt-1">{{ conf.baseUrl }}</div>
+                        <div class="text-xs text-slate-400 mt-1 config-meta">{{ conf.baseUrl }}</div>
                     </div>
                     <div class="flex gap-2">
                         <button @click="editTtsConfig(conf)"
-                            class="text-xs text-blue-600 hover:underline font-medium">编辑</button>
+                            class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
                         <button @click="deleteTtsConfig(conf.id)"
-                            class="text-xs text-red-500 hover:underline font-medium">删除</button>
+                            class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
                     </div>
                 </div>
-                <div v-if="ttsConfigs.length === 0" class="text-center py-8 text-slate-400 text-sm">
+                <div v-if="ttsConfigs.length === 0" class="empty-state">
                     暂无 TTS 配置，请在上方添加
                 </div>
             </div>
@@ -763,11 +946,11 @@
         <div v-if="activeTab === 'timbres'" class="space-y-8">
             <!-- 音色管理区域 -->
             <section class="space-y-6">
-                <h2 class="text-lg font-bold text-slate-800 border-b pb-2">音色管理</h2>
+                <h2 class="section-title-accent text-lg font-bold text-slate-800">音色管理</h2>
                 <!-- 添加/编辑表单 -->
-                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 card-elevated">
                     <h3 class="text-sm font-bold text-slate-700 mb-4">{{ isEditingTimbre ? '编辑音色' : '添加新音色' }}</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="form-grid mb-4">
                         <div>
                             <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">音色名称</label>
                             <input v-model="timbreForm.name"
@@ -797,16 +980,16 @@
                     </div>
                     <div class="flex gap-2">
                         <button type="button" @click.prevent="saveTimbre"
-                            class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition-all">保存音色</button>
+                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存音色</button>
                         <button type="button" v-if="isEditingTimbre" @click="resetTimbreForm"
-                            class="px-4 py-2 bg-slate-200 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                            class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
                     </div>
                 </div>
 
                 <!-- 音色列表 -->
                 <div class="grid gap-3">
                     <div v-for="timbre in timbres" :key="timbre.id"
-                        class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:shadow-sm transition-shadow">
+                        class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:shadow-md hover:border-blue-200 transition-all">
                         <div class="flex items-center gap-3">
                             <div
                                 class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-lg">
@@ -814,13 +997,13 @@
                             </div>
                             <div>
                                 <div class="font-bold text-slate-800 text-sm">{{ timbre.name }}</div>
-                                <div v-if="timbre.description" class="text-xs text-slate-500 mt-0.5">{{
+                                <div v-if="timbre.description" class="text-xs text-slate-500 mt-0.5 config-meta">{{
                                     timbre.description }}</div>
-                                <div class="text-xs text-slate-400 mt-1">{{ timbre.refPath }}</div>
+                                <div class="text-xs text-slate-400 mt-1 config-meta">{{ timbre.refPath }}</div>
                             </div>
                         </div>
                         <div class="flex gap-2">
-                            <button @click="playPreview(timbre.refPath)"
+                            <button type="button" @click="playPreview(timbre.refPath)" aria-label="试听音色"
                                 class="text-xs text-slate-400 hover:text-green-600 mr-1" title="试听">
                                 <svg v-if="previewPlayingFile === timbre.refPath" class="h-4 w-4 text-green-600"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -836,12 +1019,12 @@
                                 </svg>
                             </button>
                             <button @click="editTimbre(timbre)"
-                                class="text-xs text-blue-600 hover:underline font-medium">编辑</button>
+                                class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
                             <button @click="deleteTimbre(timbre.id)"
-                                class="text-xs text-red-500 hover:underline font-medium">删除</button>
+                                class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
                         </div>
                     </div>
-                    <div v-if="timbres.length === 0" class="text-center py-8 text-slate-400 text-sm">
+                    <div v-if="timbres.length === 0" class="empty-state">
                         暂无音色，请在上方添加
                     </div>
                 </div>
@@ -849,60 +1032,69 @@
 
             <!-- 情绪向量预设区域 -->
             <section class="space-y-6">
-                <h2 class="text-lg font-bold text-slate-800 border-b pb-2">情绪描述预设</h2>
+                <h2 class="section-title-accent text-lg font-bold text-slate-800">情绪描述预设</h2>
                 <!-- 添加/编辑情绪表单 -->
-                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
-                    <h3 class="text-sm font-bold text-slate-700 mb-4">{{ isEditingEmotion ? '编辑情绪预设' : '添加新情绪预设' }}</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 card-elevated">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-bold text-slate-700">{{ isEditingEmotion ? '编辑情绪预设' : '添加新情绪预设' }}</h3>
+                        <button type="button" @click="resetEmotionsToDefault"
+                            class="px-3 py-1.5 text-xs font-bold rounded-xl bg-slate-100 text-slate-500 hover:bg-slate-200 transition-all">重置预设</button>
+                    </div>
+                    <div class="form-grid mb-4">
                         <div>
                             <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">情绪名称</label>
                             <input v-model="emotionForm.name"
                                 class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                                 placeholder="例如: 开心 / 愤怒">
                         </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-[10px] font-bold text-slate-500 uppercase mb-2">8维情感向量 (对应: 高兴, 生气,
-                                伤心, 害怕, 厌恶, 低落, 惊喜, 平静) <span
-                                    class="text-slate-400 font-normal ml-2 normal-case">提示：所有值必须在 0.0 到 1.0
-                                    之间</span></label>
-                            <div class="grid grid-cols-4 md:grid-cols-8 gap-2">
+                        <div class="md:col-span-2 bg-slate-100 rounded-lg p-3 sm:p-4">
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase mb-3">
+                                8维情感向量 <span class="text-slate-400 font-normal normal-case">— 高兴、生气、伤心、害怕、厌恶、低落、惊喜、平静 (0.0 ~ 1.0)</span>
+                            </label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-2 sm:gap-3">
                                 <div v-for="(val, idx) in 8" :key="idx" class="flex flex-col items-center">
-                                    <span class="text-[8px] text-slate-400 mb-1">{{
+                                    <span class="text-[10px] text-slate-500 mb-1.5 font-medium">{{
                                         ['高兴','生气','伤心','害怕','厌恶','低落','惊喜','平静'][idx] }}</span>
                                     <input type="number" step="0.1" min="0" max="1"
                                         v-model.number="emotionForm.vector[idx]"
-                                        class="w-full px-1 py-1 border rounded text-xs text-center focus:ring-1 focus:ring-blue-500"
+                                        class="w-full px-2 py-1.5 border rounded-lg text-sm text-center focus:ring-1 focus:ring-blue-500 outline-none"
                                         placeholder="0">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="flex gap-2">
+                    <div class="flex gap-2 justify-end">
                         <button type="button" @click.prevent="saveEmotion"
-                            class="px-4 py-2 bg-green-600 text-white rounded-lg text-xs font-bold hover:bg-green-700 transition-all">保存情绪</button>
+                            class="px-5 py-2.5 bg-green-600 text-white rounded-xl text-sm font-bold hover:bg-green-700 transition-all shadow-sm">保存情绪</button>
                         <button type="button" v-if="isEditingEmotion" @click="resetEmotionForm"
-                            class="px-4 py-2 bg-slate-200 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                            class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
                     </div>
                 </div>
 
                 <!-- 情绪列表 -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     <div v-for="emo in emotionPresets.filter(e => !isSystemEmotion(e.name))" :key="emo.id"
-                        class="p-3 bg-white border border-slate-200 rounded-xl hover:shadow-sm transition-shadow flex justify-between items-center">
+                        class="p-3 bg-white border border-slate-200 rounded-xl hover:shadow-md hover:border-blue-200 transition-all flex justify-between items-center">
                         <div class="flex items-center gap-3">
                             <input type="checkbox" v-model="emo.enabled"
                                 class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 cursor-pointer"
                                 title="启用/禁用此情绪">
-                            <div>
+                            <div class="min-w-0 flex-1">
                                 <div class="font-bold text-slate-800 text-sm">{{ emo.name }}</div>
-                                <div class="text-[8px] text-slate-400 mt-1 font-mono tracking-tighter"
-                                    v-if="emo.vector">[{{ emo.vector.join(',') }}]</div>
+                                <div class="flex items-center gap-0.5 mt-1.5 h-3" v-if="emo.vector">
+                                    <div v-for="(v, i) in emo.vector" :key="i"
+                                        class="w-3 rounded-sm transition-all"
+                                        :class="v > 0.5 ? 'bg-blue-500' : (v > 0 ? 'bg-blue-300' : 'bg-slate-200')"
+                                        :style="{ height: Math.max(v * 12, 2) + 'px' }"
+                                        :title="['高兴','生气','伤心','害怕','厌恶','低落','惊喜','平静'][i] + ': ' + v">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="flex gap-2">
-                            <button @click="editEmotion(emo)" class="text-xs text-blue-600 hover:underline">编辑</button>
+                            <button @click="editEmotion(emo)" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
                             <button @click="deleteEmotion(emo.id)"
-                                class="text-xs text-red-500 hover:underline">删除</button>
+                                class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
                         </div>
                     </div>
                 </div>
@@ -912,11 +1104,11 @@
         <!-- 页面 6: 音效素材库 -->
         <div v-if="activeTab === 'sfx'" class="space-y-8">
             <section class="space-y-6">
-                <h2 class="text-lg font-bold text-slate-800 border-b pb-2">音效素材管理</h2>
+                <h2 class="section-title-accent text-lg font-bold text-slate-800">音效素材管理</h2>
                 <p>音效和背景音乐可以自行使用其他的AI模型生成，或者前往在线免费音效网站下载：<a style="color: blue;" href="https://pixabay.com/zh/sound-effects">Pixabay在线音效库</a></p>
-                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 card-elevated">
                     <h3 class="text-sm font-bold text-slate-700 mb-4">{{ isEditingSfx ? '编辑音效' : '添加新音效' }}</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="form-grid mb-4">
                         <div>
                             <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">音效名称</label>
                             <input v-model="sfxForm.name"
@@ -983,14 +1175,14 @@
                     </div>
                     <div class="flex gap-2">
                         <button type="button" @click.prevent="saveSfx"
-                            class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition-all">保存音效</button>
+                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存音效</button>
                         <button type="button" v-if="isEditingSfx" @click="resetSfxForm"
-                            class="px-4 py-2 bg-slate-200 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                            class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[600px] overflow-y-auto pr-1">
-                    <div v-for="sfx in sfxLibrary" :key="sfx.id" class="bg-white border border-slate-200 rounded-xl hover:shadow-sm transition-shadow flex flex-col">
+                    <div v-for="sfx in sfxLibrary" :key="sfx.id" class="bg-white border border-slate-200 rounded-xl hover:shadow-md hover:border-blue-200 transition-all flex flex-col">
                         <div class="flex items-start justify-between p-4">
                             <div class="flex items-start gap-3">
                                 <input type="checkbox" v-model="sfx.enabled" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 cursor-pointer mt-1 flex-shrink-0" title="启用/禁用此资源">
@@ -1001,7 +1193,7 @@
                                 </div>
                             </div>
                             <div class="flex gap-2 flex-shrink-0 ml-2">
-                                <button @click="playPreview(sfx)" class="text-xs text-slate-400 hover:text-green-600 mr-1" title="试听">
+                                <button type="button" @click="playPreview(sfx)" aria-label="试听音效" class="text-xs text-slate-400 hover:text-green-600 mr-1" title="试听">
                                     <svg v-if="previewPlayingFile === sfx.filename" class="h-4 w-4 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                     </svg>
@@ -1009,20 +1201,20 @@
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
                                     </svg>
                                 </button>
-                                <button @click="editSfx(sfx)" class="text-xs text-blue-600 hover:underline font-medium">编辑</button>
-                                <button @click="deleteSfx(sfx.id)" class="text-xs text-red-500 hover:underline font-medium">删除</button>
+                                <button @click="editSfx(sfx)" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
+                                <button @click="deleteSfx(sfx.id)" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
                             </div>
                         </div>
                     </div>
-                    <div v-if="sfxLibrary.length === 0" class="col-span-full text-center py-8 text-slate-400 text-sm">暂无音效素材</div>
+                    <div v-if="sfxLibrary.length === 0" class="col-span-full empty-state">暂无音效素材</div>
                 </div>
             </section>
 
             <section class="space-y-6 border-t border-slate-200 pt-6">
-                <h2 class="text-lg font-bold text-slate-800 border-b pb-2">背景音乐管理 (BGM)</h2>
-                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <h2 class="section-title-accent text-lg font-bold text-slate-800">背景音乐管理 (BGM)</h2>
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 card-elevated">
                     <h3 class="text-sm font-bold text-slate-700 mb-4">{{ isEditingBgm ? '编辑 BGM' : '添加新 BGM' }}</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="form-grid mb-4">
                         <div>
                             <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">BGM 名称</label>
                             <input v-model="bgmForm.name"
@@ -1089,26 +1281,26 @@
                     </div>
                     <div class="flex gap-2">
                         <button type="button" @click.prevent="saveBgm"
-                            class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition-all">保存
+                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存
                             BGM</button>
                         <button type="button" v-if="isEditingBgm" @click="resetBgmForm"
-                            class="px-4 py-2 bg-slate-200 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                            class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[600px] overflow-y-auto pr-1">
-                    <div v-for="bgm in bgmLibrary" :key="bgm.id" class="bg-white border border-slate-200 rounded-xl hover:shadow-sm transition-shadow flex flex-col">
+                    <div v-for="bgm in bgmLibrary" :key="bgm.id" class="bg-white border border-slate-200 rounded-xl hover:shadow-md hover:border-blue-200 transition-all flex flex-col">
                         <div class="flex items-start justify-between p-4">
                             <div class="flex items-start gap-3">
                                 <input type="checkbox" v-model="bgm.enabled" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 cursor-pointer mt-1 flex-shrink-0" title="启用/禁用此资源">
                                 <div>
                                     <div class="font-bold text-slate-800 text-sm">{{ bgm.name }}</div>
-                                    <div class="text-xs text-slate-500 mt-0.5">{{ bgm.description }}</div>
-                                    <div class="text-xs text-slate-400 mt-1">{{ bgm.filename }}</div>
+                                    <div class="text-xs text-slate-500 mt-0.5 config-meta">{{ bgm.description }}</div>
+                                    <div class="text-xs text-slate-400 mt-1 config-meta">{{ bgm.filename }}</div>
                                 </div>
                             </div>
                             <div class="flex gap-2 flex-shrink-0 ml-2">
-                                <button @click="playPreview(bgm)" class="text-xs text-slate-400 hover:text-green-600 mr-1" title="试听">
+                                <button type="button" @click="playPreview(bgm)" aria-label="试听BGM" class="text-xs text-slate-400 hover:text-green-600 mr-1" title="试听">
                                     <svg v-if="previewPlayingFile === bgm.filename" class="h-4 w-4 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                     </svg>
@@ -1116,20 +1308,20 @@
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
                                     </svg>
                                 </button>
-                                <button @click="editBgm(bgm)" class="text-xs text-blue-600 hover:underline font-medium">编辑</button>
-                                <button @click="deleteBgm(bgm.id)" class="text-xs text-red-500 hover:underline font-medium">删除</button>
+                                <button @click="editBgm(bgm)" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
+                                <button @click="deleteBgm(bgm.id)" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
                             </div>
                         </div>
                     </div>
-                    <div v-if="bgmLibrary.length === 0" class="col-span-full text-center py-8 text-slate-400 text-sm">暂无 BGM 素材</div>
+                    <div v-if="bgmLibrary.length === 0" class="col-span-full empty-state">暂无 BGM 素材</div>
                 </div>
             </section>
 
             <section class="space-y-6 border-t border-slate-200 pt-6">
-                <h2 class="text-lg font-bold text-slate-800 border-b pb-2">音频滤波器管理</h2>
-                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                <h2 class="section-title-accent text-lg font-bold text-slate-800">音频滤波器管理</h2>
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 card-elevated">
                     <h3 class="text-sm font-bold text-slate-700 mb-4">{{ isEditingFilter ? '编辑滤波器' : '添加新滤波器' }}</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="form-grid mb-4">
                         <div>
                             <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">滤波器名称</label>
                             <input v-model="filterForm.name"
@@ -1174,15 +1366,15 @@
                     </div>
                     <div class="flex gap-2">
                         <button type="button" @click.prevent="saveFilter"
-                            class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition-all">保存滤波器</button>
+                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存滤波器</button>
                         <button type="button" v-if="isEditingFilter" @click="resetFilterForm"
-                            class="px-4 py-2 bg-slate-200 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                            class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     <div v-for="filter in filterLibrary" :key="filter.id"
-                        class="p-4 bg-white border border-slate-200 rounded-xl hover:shadow-sm transition-shadow flex justify-between items-center">
+                        class="p-4 bg-white border border-slate-200 rounded-xl hover:shadow-md hover:border-blue-200 transition-all flex justify-between items-center">
                         <div class="flex items-center gap-3">
                             <input type="checkbox" v-model="filter.enabled"
                                 class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 cursor-pointer"
@@ -1197,13 +1389,13 @@
                         </div>
                         <div class="flex gap-2">
                             <button @click="editFilter(filter)"
-                                class="text-xs text-blue-600 hover:underline font-medium">编辑</button>
+                                class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
                             <button @click="deleteFilter(filter.id)"
-                                class="text-xs text-red-500 hover:underline font-medium">删除</button>
+                                class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
                         </div>
                     </div>
                     <div v-if="filterLibrary.length === 0"
-                        class="col-span-full text-center py-8 text-slate-400 text-sm">暂无滤波器，请添加</div>
+                        class="col-span-full empty-state">暂无滤波器，请添加</div>
                 </div>
             </section>
         </div>
@@ -1231,7 +1423,7 @@
                                 </div>
                                 <span v-if="editingScriptId !== script.id" class="whitespace-nowrap">{{ script.name }}</span>
                                 <input v-else v-model="script.name" @click.stop @blur="stopEditingScript" @keyup.enter="stopEditingScript" :ref="el => { if(el) scriptNameInputRefs[script.id] = el }" class="bg-transparent outline-none w-full" />
-                                <button @click.stop="deleteScriptTab(script.id)"
+                                <button type="button" @click.stop="deleteScriptTab(script.id)" aria-label="关闭脚本"
                                     :class="[currentScriptId === script.id ? 'text-white/70 hover:text-white' : 'text-slate-400 hover:text-red-500']">×</button>
                             </div>
                             <button @click="addScript" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 font-bold text-[11px] border border-slate-200 whitespace-nowrap">+ 新脚本</button>
@@ -1258,17 +1450,17 @@
                     <h3 class="text-sm font-bold text-slate-700 mb-3 flex justify-between items-center flex-shrink-0">
                         角色列表
                         <button @click="addCharacter"
-                            class="text-xs bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700">+ 新增</button>
+                            class="text-xs font-bold rounded-xl bg-blue-600 text-white px-3 py-1.5 hover:bg-blue-700 transition-all">+ 新增</button>
                     </h3>
                     <div class="space-y-3 pr-1 overflow-y-auto min-h-0 flex-1">
                         <div v-for="char in characters" :key="char.id"
                             class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm text-sm space-y-2">
-                            <div class="flex justify-between items-center">
+                            <div class="flex justify-between items-center gap-2">
                                 <input v-model="char.name"
-                                    class="font-bold text-slate-800 w-2/3 bg-transparent border-b border-transparent focus:border-blue-500 outline-none px-2.5 py-1 rounded-md"
+                                    class="font-bold text-slate-800 flex-1 min-w-0 bg-transparent border-b border-transparent focus:border-blue-500 outline-none px-2.5 py-1 rounded-md"
                                     placeholder="角色名">
-                                <button @click="deleteCharacter(char.id)"
-                                    class="text-slate-400 hover:text-red-500">×</button>
+                                <button type="button" @click="deleteCharacter(char.id)"
+                                    class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all whitespace-nowrap">删除</button>
                             </div>
 
                             <div>
@@ -1281,7 +1473,7 @@
                                             {{ timbre.name }}
                                         </option>
                                     </select>
-                                    <button @click="playPreview(char.voiceFile)" :disabled="!char.voiceFile"
+                                    <button type="button" @click="playPreview(char.voiceFile)" :disabled="!char.voiceFile" aria-label="试听当前音色"
                                         class="px-2 bg-slate-100 border border-slate-200 rounded text-slate-500 hover:text-green-600 disabled:opacity-50"
                                         title="试听当前音色">
                                         <svg v-if="previewPlayingFile === char.voiceFile" class="h-4 w-4 text-green-600"
@@ -1313,17 +1505,17 @@
                                     placeholder="音色描述 (例如: 甜美少女音)"></textarea>
                                 <div class="flex gap-1">
                                     <button @click="analyzeCharacterVoice(char)"
-                                        :class="['flex-1 px-2 py-1.5 border rounded text-[10px] font-bold transition-colors flex justify-center items-center gap-1', char.isAnalyzing ? 'bg-red-50 text-red-600 border-red-100 hover:bg-red-100' : 'bg-indigo-50 text-indigo-600 border-indigo-100 hover:bg-indigo-100']">
-                                        <span v-if="char.isAnalyzing" class="animate-spin">⏳</span>{{ char.isAnalyzing ? '停止分析' : 'AI分析音色' }}
+                                        :class="['flex-1 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all flex justify-center items-center gap-1', char.isAnalyzing ? 'bg-red-50 text-red-600 border border-red-100 hover:bg-red-100' : 'bg-indigo-50 text-indigo-600 border border-indigo-100 hover:bg-indigo-100']">
+                                        <svg v-if="char.isAnalyzing" class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>{{ char.isAnalyzing ? '停止分析' : '分析音色' }}
                                     </button>
                                     <button @click="generateQwenVoice(char)"
-                                        :class="['flex-1 px-2 py-1.5 border rounded text-[10px] font-bold transition-colors flex justify-center items-center gap-1', char.isGeneratingVoice ? 'bg-red-50 text-red-600 border-red-100 hover:bg-red-100' : 'bg-pink-50 text-pink-600 border-pink-100 hover:bg-pink-100']">
-                                        <span v-if="char.isGeneratingVoice" class="animate-spin">⏳</span>{{ char.isGeneratingVoice ? '停止生成' : 'Qwen生成音色' }}
+                                        :class="['flex-1 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all flex justify-center items-center gap-1', char.isGeneratingVoice ? 'bg-red-50 text-red-600 border border-red-100 hover:bg-red-100' : 'bg-pink-50 text-pink-600 border border-pink-100 hover:bg-pink-100']">
+                                        <svg v-if="char.isGeneratingVoice" class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>{{ char.isGeneratingVoice ? '停止生成' : '生成音色' }}
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div v-if="characters.length === 0" class="text-center text-xs text-slate-400 py-4">暂无角色，请点击新增
+                        <div v-if="characters.length === 0" class="empty-state">暂无角色，请点击新增
                         </div>
                     </div>
                 </div>
@@ -1345,8 +1537,8 @@
                             class="w-full p-4 sm:p-5 border rounded-2xl h-40 sm:h-48 xl:h-52 focus:ring-2 focus:ring-blue-500 outline-none resize-none bg-white text-[15px] sm:text-base leading-7"
                             placeholder="请粘贴小说内容或剧本原文..."></textarea>
 
-                        <div class="grid gap-2 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.36fr)]">
-                            <div class="min-w-0 rounded-xl border border-slate-200 bg-white px-3 py-3">
+                        <div class="grid gap-1.5 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,0.96fr)_minmax(0,1.08fr)]">
+                            <div class="min-w-0 rounded-xl border border-slate-200 bg-white px-2.5 py-2.5">
                                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em] mb-2">分析</div>
                                 <div class="flex flex-wrap gap-2">
                                     <select v-model="currentConfigId"
@@ -1358,79 +1550,77 @@
                                         </option>
                                     </select>
                                     <button @click="analyzeScript"
-                                        :class="['px-4 py-2 text-white rounded-lg text-sm font-bold transition-all flex items-center justify-center whitespace-nowrap', isAnalyzingScript ? 'bg-red-500 hover:bg-red-600' : 'bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50']">
-                                        <span v-if="isAnalyzingScript" class="animate-spin mr-2">⏳</span>
+                                        :class="['px-4 py-2 text-white rounded-lg text-sm font-bold transition-all flex items-center justify-center whitespace-nowrap min-h-[40px]', isAnalyzingScript ? 'bg-red-500 hover:bg-red-600' : 'bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50']">
+                                        <svg v-if="isAnalyzingScript" class="animate-spin h-4 w-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
                                         {{ isAnalyzingScript ? '停止分析' : 'AI 深度分析' }}
                                     </button>
                                 </div>
                             </div>
 
-                            <div class="grid gap-2 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.02fr)]">
-                                <div class="min-w-0 rounded-xl border border-slate-200 bg-white px-3 py-3">
-                                    <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em] mb-2">插块</div>
-                                    <div class="grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto] items-start">
-                                        <div class="grid grid-cols-2 gap-2 min-w-0">
-                                            <button @click="addDialogueBlock"
-                                                class="px-2.5 py-2 bg-blue-100 text-blue-600 rounded-lg text-xs sm:text-sm font-bold hover:bg-blue-200 transition-all whitespace-nowrap min-h-[42px]">
-                                                ➕ 插入台词
-                                            </button>
-                                            <button @click="addBgmBlock"
-                                                class="px-2.5 py-2 bg-purple-100 text-purple-600 rounded-lg text-xs sm:text-sm font-bold hover:bg-purple-200 transition-all whitespace-nowrap min-h-[42px]">
-                                                ➕ 插入BGM
-                                            </button>
-                                            <button @click="addBgImageBlock"
-                                                class="col-span-2 sm:col-span-1 px-2.5 py-2 bg-emerald-100 text-emerald-700 rounded-lg text-xs sm:text-sm font-bold hover:bg-emerald-200 transition-all whitespace-nowrap min-h-[42px]">
-                                                ➕ 插入背景图片
-                                            </button>
-                                        </div>
-                                        <div class="flex items-center gap-2 px-2.5 py-2 bg-slate-50 border border-slate-200 rounded-lg whitespace-nowrap min-h-[42px]">
-                                            <label class="text-[10px] font-bold text-slate-500 uppercase whitespace-nowrap">背景图</label>
-                                            <input type="number" v-model.number="bgImageCount" min="0" max="100"
-                                                class="w-14 px-2 py-1 border rounded-lg text-xs focus:ring-2 focus:ring-emerald-500 outline-none bg-white"
-                                                title="LLM 将严格插入的 bgImage 块数量" />
-                                            <span class="text-[10px] text-slate-400 whitespace-nowrap">张</span>
-                                        </div>
+                            <div class="min-w-0 rounded-xl border border-slate-200 bg-white px-2.5 py-2.5">
+                                <div class="flex items-center justify-between gap-2 mb-2">
+                                    <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em]">插块</div>
+                                    <div class="flex items-center gap-1.5 px-2 py-1 rounded-full bg-slate-50 border border-slate-200 text-[10px] font-semibold text-slate-500 whitespace-nowrap">
+                                        <span>背景图</span>
+                                        <input type="number" v-model.number="bgImageCount" min="0" max="100"
+                                            class="w-10 bg-transparent border-none px-0 py-0 text-center text-[11px] font-bold text-slate-700 focus:ring-0"
+                                            title="LLM 将严格插入的 bgImage 块数量" />
+                                        <span>张</span>
                                     </div>
                                 </div>
+                                <div class="grid gap-1.5 sm:grid-cols-3">
+                                    <button @click="addDialogueBlock"
+                                        class="px-2.5 py-1.5 bg-blue-100 text-blue-600 rounded-lg text-[11px] sm:text-xs font-bold hover:bg-blue-200 transition-all whitespace-nowrap min-h-[36px]">
+                                        <svg class="h-3.5 w-3.5 -ml-0.5 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/></svg> 插入台词
+                                    </button>
+                                    <button @click="addBgmBlock"
+                                        class="px-2.5 py-1.5 bg-purple-100 text-purple-600 rounded-lg text-[11px] sm:text-xs font-bold hover:bg-purple-200 transition-all whitespace-nowrap min-h-[36px]">
+                                        <svg class="h-3.5 w-3.5 -ml-0.5 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/></svg> 插入BGM
+                                    </button>
+                                    <button @click="addBgImageBlock"
+                                        class="px-2.5 py-1.5 bg-emerald-100 text-emerald-700 rounded-lg text-[11px] sm:text-xs font-bold hover:bg-emerald-200 transition-all whitespace-nowrap min-h-[36px]">
+                                        <svg class="h-3.5 w-3.5 -ml-0.5 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/></svg> 插入背景图
+                                    </button>
+                                </div>
+                            </div>
 
-                                <div class="min-w-0 rounded-xl border border-slate-200 bg-white px-3 py-3 space-y-2">
-                                    <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em] mb-2">生成与播放</div>
-                                    <div class="flex flex-col sm:flex-row gap-2">
-                                        <select v-model="currentTtsConfigId"
-                                            class="flex-1 min-w-0 px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white min-h-[42px]"
-                                            title="选择用于生成的 TTS 服务">
-                                            <option value="" disabled>-- 选择 TTS 模型 --</option>
-                                            <option v-for="conf in ttsConfigs" :key="conf.id" :value="conf.id">
-                                                {{ conf.name }}
-                                            </option>
-                                        </select>
-                                        <button @click="handlePrimaryGenerationAction"
-                                            :disabled="isSequencePlaying || (hasActiveRoleFilter && filteredDialogueLines.length === 0 && !isGeneratingAll)"
-                                            :class="['px-4 py-2 text-white rounded-lg text-sm font-bold transition-all flex items-center justify-center whitespace-nowrap min-h-[42px] sm:min-w-[148px]', isGeneratingAll ? 'bg-red-500 hover:bg-red-600' : 'bg-green-600 hover:bg-green-700 disabled:opacity-50']">
-                                            <span v-if="isGeneratingAll" class="animate-spin mr-2">⏳</span>
-                                            {{ isGeneratingAll ? '停止生成' : '一键生成配音' }}
-                                        </button>
-                                    </div>
-                                    <div class="flex flex-wrap items-center gap-2">
+                            <div class="min-w-0 rounded-xl border border-slate-200 bg-white px-2.5 py-2.5 space-y-1.5">
+                                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.22em]">生成与播放</div>
+                                <div class="flex flex-col gap-1.5 xl:flex-row xl:items-center">
+                                    <select v-model="currentTtsConfigId"
+                                        class="w-full min-w-0 px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white min-h-[38px] xl:w-[132px] xl:flex-none"
+                                        title="选择用于生成的 TTS 服务">
+                                        <option value="" disabled>-- 选择 TTS 模型 --</option>
+                                        <option v-for="conf in ttsConfigs" :key="conf.id" :value="conf.id">
+                                            {{ conf.name }}
+                                        </option>
+                                    </select>
+                                    <div class="flex flex-wrap items-center gap-1.5 xl:flex-none">
                                         <button @click="clearAllGeneratedAudio" :disabled="isSequencePlaying || isGeneratingAll"
-                                            class="px-3 py-1.5 bg-red-600 text-white rounded-lg text-xs font-bold hover:bg-red-700 disabled:opacity-50 transition-all flex items-center justify-center whitespace-nowrap min-h-[38px]">
+                                            class="px-2.5 py-1 bg-red-600 text-white rounded-lg text-[11px] font-bold hover:bg-red-700 disabled:opacity-50 transition-all flex items-center justify-center whitespace-nowrap min-h-[32px]">
                                             清空配音
                                         </button>
                                         <button v-if="!isSequencePlaying" @click="playScriptSequentially"
-                                            class="px-3 py-1.5 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 disabled:opacity-50 transition-all whitespace-nowrap min-h-[38px]">
+                                            class="px-2.5 py-1 bg-blue-600 text-white rounded-lg text-[11px] font-bold hover:bg-blue-700 disabled:opacity-50 transition-all whitespace-nowrap min-h-[32px]">
                                             {{ selectedLineIndex !== -1 ? '从选中播放' : '顺序播放' }}
                                         </button>
                                         <button v-else @click="stopScriptSequentially"
-                                            class="px-3 py-1.5 bg-red-500 text-white rounded-lg text-xs font-bold hover:bg-red-600 transition-all whitespace-nowrap min-h-[38px]">
+                                            class="px-2.5 py-1 bg-red-500 text-white rounded-lg text-[11px] font-bold hover:bg-red-600 transition-all whitespace-nowrap min-h-[32px]">
                                             停止播放
                                         </button>
-                                        <span v-if="hasActiveRoleFilter" class="text-[11px] text-sky-600 font-semibold sm:ml-auto">
-                                            当前筛选 {{ filteredDialogueLines.length }} 条，主按钮将直接重配
-                                        </span>
-                                        <span v-else-if="selectedLineIndex !== -1" class="text-[11px] text-slate-500 sm:ml-auto">
-                                            已选中第 {{ selectedLineIndex + 1 }} 行，主按钮将从此处开始
-                                        </span>
                                     </div>
+                                    <button @click="handlePrimaryGenerationAction"
+                                        :disabled="isSequencePlaying || (hasActiveRoleFilter && filteredDialogueLines.length === 0 && !isGeneratingAll)"
+                                        :class="['px-4 py-2 text-white rounded-lg text-sm font-bold transition-all flex items-center justify-center whitespace-nowrap min-h-[40px] xl:flex-1', isGeneratingAll ? 'bg-red-500 hover:bg-red-600' : 'bg-green-600 hover:bg-green-700 disabled:opacity-50']">
+                                        <svg v-if="isGeneratingAll" class="animate-spin h-4 w-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
+                                        {{ isGeneratingAll ? (exportStatus || '停止生成') : '一键生成配音' }}
+                                    </button>
+                                </div>
+                                <div v-if="hasActiveRoleFilter" class="min-w-0 text-[11px] text-sky-600 font-semibold leading-5 break-words [text-wrap:pretty]">
+                                    当前筛选 {{ filteredDialogueLines.length }} 条，主按钮将直接重配
+                                </div>
+                                <div v-else-if="selectedLineIndex !== -1" class="min-w-0 text-[11px] text-slate-500 leading-5 break-words [text-wrap:pretty]">
+                                    已选中第 {{ selectedLineIndex + 1 }} 行，主按钮将从此处开始
                                 </div>
                             </div>
                         </div>
@@ -1464,7 +1654,8 @@
                                 :class="['px-2.5 py-1 rounded-full text-xs font-bold border transition-all', hasActiveRoleFilter ? 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100' : 'bg-blue-600 text-white border-blue-600 shadow-sm']">
                                 全部角色
                             </button>
-                            <button v-for="roleName in roleFilterOptions" :key="roleName" @click="toggleRoleFilter(roleName)"
+                            <button v-for="roleName in roleFilterOptions" :key="roleName" @click="toggleRoleFilter(roleName)" type="button"
+                                :aria-pressed="selectedRoleFilters.includes(roleName)"
                                 :class="['px-2.5 py-1 rounded-full text-xs font-bold border transition-all', selectedRoleFilters.includes(roleName) ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100']">
                                 {{ roleName }}
                             </button>
@@ -1474,7 +1665,7 @@
                         </div>
                     </div>
                     <div ref="scriptListContainer" @scroll.passive="handleScriptListScroll" class="space-y-3 max-h-[48vh] sm:max-h-[42vh] xl:max-h-[46vh] 2xl:max-h-[52vh] overflow-y-auto px-1 sm:px-2 pb-8 sm:pb-10">
-                        <div v-if="filteredScriptLines.length === 0" class="px-3 py-8 text-center text-sm text-slate-400">
+                        <div v-if="filteredScriptLines.length === 0" class="empty-state">
                             当前角色筛选下没有可显示的台词。
                         </div>
                         <div v-for="(line, index) in renderedScriptLines" :key="line.id" @click="toggleLineSelection(renderedScriptLineIndexes[index], $event)"
@@ -1488,11 +1679,11 @@
                                     class="flex flex-col items-center justify-center gap-1 w-8 flex-shrink-0 border-r border-purple-200 pr-2">
                                     <button @click.stop="moveLineUp(renderedScriptLineIndexes[index])"
                                         class="text-purple-400 hover:text-purple-700 p-0.5 hover:bg-purple-100 rounded"
-                                        title="上移">▲</button>
+                                        type="button" aria-label="上移" title="上移"><svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/></svg></button>
                                     <div class="text-xs font-bold text-purple-500 select-none">{{ renderedScriptLineIndexes[index] + 1 }}</div>
                                     <button @click.stop="moveLineDown(renderedScriptLineIndexes[index])"
                                         class="text-purple-400 hover:text-purple-700 p-0.5 hover:bg-purple-100 rounded"
-                                        title="下移">▼</button>
+                                        type="button" aria-label="下移" title="下移"><svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></button>
                                 </div>
                                 <div
                                     class="w-24 flex-shrink-0 font-bold text-xs text-purple-600 uppercase tracking-wider flex items-center justify-center border-r border-purple-200 pr-3">
@@ -1521,6 +1712,7 @@
                                         class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-purple-600">
                                 </div>
                                 <button @click="removeScriptLine(renderedScriptLineIndexes[index])"
+                                    type="button" aria-label="删除" type="button" aria-label="删除" title="删除"
                                     class="text-slate-300 hover:text-red-500 p-2">
                                     <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd"
@@ -1538,11 +1730,11 @@
                                         class="flex flex-col items-center justify-center gap-1 w-8 flex-shrink-0 border-r border-emerald-200 pr-2">
                                         <button @click.stop="moveLineUp(renderedScriptLineIndexes[index])"
                                             class="text-emerald-400 hover:text-emerald-700 p-0.5 hover:bg-emerald-100 rounded"
-                                            title="上移">▲</button>
+                                            type="button" aria-label="上移" title="上移"><svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/></svg></button>
                                         <div class="text-xs font-bold text-emerald-500 select-none">{{ renderedScriptLineIndexes[index] + 1 }}</div>
                                         <button @click.stop="moveLineDown(renderedScriptLineIndexes[index])"
                                             class="text-emerald-400 hover:text-emerald-700 p-0.5 hover:bg-emerald-100 rounded"
-                                            title="下移">▼</button>
+                                            type="button" aria-label="下移" title="下移"><svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></button>
                                     </div>
 
                                     <div class="flex-1 min-w-[260px]">
@@ -1552,7 +1744,7 @@
                                             </div>
                                             <button @click="removeScriptLine(renderedScriptLineIndexes[index])"
                                                 class="text-slate-300 hover:text-red-500 p-2"
-                                                title="删除"><svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                type="button" aria-label="删除" title="删除"><svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd"
                                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
                                                     clip-rule="evenodd" />
@@ -1610,11 +1802,11 @@
                                         class="flex flex-col items-center justify-center gap-1 w-8 flex-shrink-0 border-r border-slate-100 pr-2">
                                         <button @click.stop="moveLineUp(renderedScriptLineIndexes[index])"
                                             class="text-slate-400 hover:text-blue-600 p-0.5 hover:bg-slate-100 rounded"
-                                            title="上移">▲</button>
+                                            type="button" aria-label="上移" title="上移"><svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/></svg></button>
                                         <div class="text-xs font-bold text-slate-400 select-none">{{ renderedScriptLineIndexes[index] + 1 }}</div>
                                         <button @click.stop="moveLineDown(renderedScriptLineIndexes[index])"
                                             class="text-slate-400 hover:text-blue-600 p-0.5 hover:bg-slate-100 rounded"
-                                            title="下移">▼</button>
+                                            type="button" aria-label="下移" title="下移"><svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></button>
                                     </div>
 
                                     <!-- 角色选择 -->
@@ -1797,7 +1989,7 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                 </button>
-                                                <button @click="removeScriptLine(renderedScriptLineIndexes[index])" title="删除"
+                                                <button @click="removeScriptLine(renderedScriptLineIndexes[index])" type="button" aria-label="删除" title="删除"
                                                     class="text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity p-2">
                                                     <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                                         viewBox="0 0 20 20" fill="currentColor">
@@ -1824,7 +2016,7 @@
                                         <input type="number" v-model="sfx.position" step="0.1" min="0" max="1"
                                             class="w-10 bg-transparent text-center outline-none border-b border-transparent hover:border-blue-300"
                                             title="插入位置 (0.0 - 1.0)">
-                                        <button @click="removeLineSfx(line, sIdx)"
+                                        <button type="button" @click="removeLineSfx(line, sIdx)" aria-label="移除音效"
                                             class="ml-2 text-slate-400 hover:text-red-500 font-bold">×</button>
                                     </div>
                                     <button @click="addLineSfx(line)"
@@ -1861,14 +2053,14 @@
 
         <!-- 页面 7: Prompt 管理 -->
         <div v-if="activeTab === 'prompt'" class="space-y-6">
-            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+            <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 card-elevated">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-bold text-slate-700">自定义 Prompt 模板</h3>
                     <div class="space-x-2">
                         <button @click="savePrompt"
-                            class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition-all">保存设置</button>
+                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存设置</button>
                         <button @click="resetPrompt"
-                            class="px-4 py-2 bg-slate-200 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-300 transition-all">恢复默认</button>
+                            class="px-5 py-2 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-200 transition-all">恢复默认</button>
                     </div>
                 </div>
 
@@ -1892,15 +2084,15 @@
                     ${rawScript}
                 </div>
 
-                <hr class="my-6 border-slate-200">
+                <hr class="divider-subtle">
 
                 <div class="flex justify-between items-center mb-2">
                     <h4 class="text-sm font-bold text-slate-600">2. 角色音色分析 Prompt</h4>
                     <div class="space-x-2">
                         <button @click="saveVoicePrompt"
-                            class="px-3 py-1.5 bg-blue-100 text-blue-700 rounded-lg text-xs font-bold hover:bg-blue-200 transition-all">保存音色Prompt</button>
+                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存设置</button>
                         <button @click="resetVoicePrompt"
-                            class="px-3 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-200 transition-all">恢复默认</button>
+                            class="px-5 py-2 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-200 transition-all">恢复默认</button>
                     </div>
                 </div>
                 <div class="flex items-center gap-2 mb-4 bg-white p-3 rounded-lg border border-slate-200">
@@ -1920,15 +2112,15 @@
                     <span class="font-bold">可用变量:</span> ${charName}, ${rawScript}
                 </div>
 
-                <hr class="my-6 border-slate-200">
+                <hr class="divider-subtle">
 
                 <div class="flex justify-between items-center mb-2">
                     <h4 class="text-sm font-bold text-slate-600">3. Qwen 音色生成参考音频 文本模板</h4>
                     <div class="space-x-2">
                         <button @click="saveQwenVoiceText"
-                            class="px-3 py-1.5 bg-pink-100 text-pink-700 rounded-lg text-xs font-bold hover:bg-pink-200 transition-all">保存生成文本</button>
+                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存设置</button>
                         <button @click="resetQwenVoiceText"
-                            class="px-3 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-200 transition-all">恢复默认</button>
+                            class="px-5 py-2 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-200 transition-all">恢复默认</button>
                     </div>
                 </div>
                 <div class="flex items-center gap-2 mb-4 bg-white p-3 rounded-lg border border-slate-200">
@@ -1960,10 +2152,37 @@
     </div>
 
     <script>
-        const { createApp, ref, onMounted, onUnmounted, nextTick, computed, watch, onBeforeUpdate } = Vue;
+        const { createApp, ref, reactive, onMounted, onUnmounted, nextTick, computed, watch, onBeforeUpdate } = Vue;
 
         createApp({
             setup() {
+                // --- Toast 通知系统 ---
+                const toasts = ref([]);
+                let toastIdCounter = 0;
+                const toastStyles = {
+                    success: 'bg-emerald-600 text-white shadow-lg',
+                    error: 'bg-red-600 text-white shadow-lg',
+                    warning: 'bg-amber-500 text-white shadow-lg',
+                    info: 'bg-slate-800 text-white shadow-lg'
+                };
+                const showToast = (message, type = 'info', duration = 3000) => {
+                    const id = ++toastIdCounter;
+                    toasts.value.push({ id, message, type });
+                    setTimeout(() => {
+                        const idx = toasts.value.findIndex(t => t.id === id);
+                        if (idx !== -1) toasts.value.splice(idx, 1);
+                    }, duration);
+                };
+
+                // --- 确认对话框 ---
+                const confirmDialog = reactive({ show: false, message: '', resolve: null, reject: null });
+                const showConfirm = (message) => new Promise((resolve) => {
+                    confirmDialog.message = message;
+                    confirmDialog.show = true;
+                    confirmDialog.resolve = () => { confirmDialog.show = false; resolve(true); };
+                    confirmDialog.reject = () => { confirmDialog.show = false; resolve(false); };
+                });
+
                 // --- System Emotions Definition ---
                 const SYSTEM_EMOTIONS = [
                     { id: 'sys_1', name: '高兴', vector: [1, 0, 0, 0, 0, 0, 0, 0] },
@@ -2360,22 +2579,24 @@
                     return `${sanitizeExportFilename(getCurrentScriptName())}.${extension}`;
                 };
 
-                const deleteScriptTab = (id) => {
+                const deleteScriptTab = async (id) => {
                     if (isAnalyzingScript.value || isGeneratingAll.value || isSequencePlaying.value) {
-                        return alert('请先停止当前的生成或播放任务，再删除脚本。');
+                        showToast('请先停止当前的生成或播放任务，再删除脚本。', 'warning');
+                        return;
                     }
-                    if (scriptList.value.length <= 1) return alert('至少保留一个脚本');
-                    if (!confirm('确定删除此脚本吗？')) return;
-                    
+                    if (scriptList.value.length <= 1) { showToast('至少保留一个脚本', 'warning'); return; }
+                    if (!await showConfirm('确定删除此脚本吗？')) return;
+
                     const idx = scriptList.value.findIndex(s => s.id === id);
                     if (idx === -1) return;
-                    
+
                     if (id === currentScriptId.value) {
                         const nextIdx = idx === 0 ? 1 : idx - 1;
                         switchScript(scriptList.value[nextIdx].id);
                     }
                     scriptList.value.splice(idx, 1);
                     triggerAutoSave();
+                    showToast('脚本已删除', 'success');
                 };
 
                 const isGeneratingAll = ref(false);
@@ -3289,11 +3510,12 @@
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 };
 
-                const deleteConfig = (id) => {
-                    if (!confirm('确定删除此配置吗？')) return;
+                const deleteConfig = async (id) => {
+                    if (!await showConfirm('确定删除此配置吗？')) return;
                     llmConfigs.value = llmConfigs.value.filter(c => c.id !== id);
                     saveConfigsToLocal();
                     if (currentConfigId.value === id) currentConfigId.value = '';
+                    showToast('配置已删除', 'success');
                 };
 
                 const resetForm = () => {
@@ -3350,9 +3572,10 @@
                     });
                 };
 
-                const deleteCharacter = (id) => {
-                    if (!confirm('确定删除此角色吗？')) return;
+                const deleteCharacter = async (id) => {
+                    if (!await showConfirm('确定删除此角色吗？')) return;
                     characters.value = characters.value.filter(c => c.id !== id);
+                    showToast('角色已删除', 'success');
                 };
 
                 const analyzeCharacterVoice = async (char) => {
@@ -3678,9 +3901,11 @@
                     isEditingSfx.value = true;
                 };
 
-                const deleteSfx = (id) => {
-                    if (!confirm('确定删除？')) return;
+                const deleteSfx = async (id) => {
+                    if (!await showConfirm('确定删除此音效吗？')) return;
                     sfxLibrary.value = sfxLibrary.value.filter(s => s.id !== id);
+                    saveSfxToLocal();
+                    showToast('音效已删除', 'success');
                 };
 
                 const resetSfxForm = () => {
@@ -3830,8 +4055,8 @@
                     isEditingEmotion.value = false;
                 };
 
-                const resetEmotionsToDefault = () => {
-                    if (!confirm('确定要重置所有情绪预设为默认值吗？这将清除自定义的情绪。')) return;
+                const resetEmotionsToDefault = async () => {
+                    if (!await showConfirm('确定要重置所有情绪预设为默认值吗？这将清除自定义的情绪。')) return;
                     emotionPresets.value = [...SYSTEM_EMOTIONS];
                     // saveEmotionPresetsToLocal();
                 };
@@ -4181,6 +4406,8 @@
                     let failedCount = 0;
 
                     try {
+                        let completedCount = 0;
+                        const totalToGenerate = [...linesToIterate].filter(l => l.type === 'dialogue' && targetLineIds.has(l.id)).length;
 
                         for (const line of linesToIterate) {
 
@@ -4188,9 +4415,12 @@
 
                             if (line.type === 'dialogue' && targetLineIds.has(line.id)) {
 
+                                exportStatus.value = `配音生成中 ${completedCount + 1}/${totalToGenerate}...`;
+
                                 try {
 
                                     await generateLineAudio(line, batchSignal);
+                                    completedCount++;
 
                                 } catch (e) {
 
@@ -4310,17 +4540,18 @@
 
                                     if (linesWithAudio.length === 0) {
 
-                                        return alert('没有已生成的音频可以清除。');
+                                        showToast('没有已生成的音频可以清除', 'info');
+                                        return;
 
                                     }
 
-                                    if (!confirm(`确定要清除所有 ${linesWithAudio.length} 条已生成的音频吗？此操作不可撤销。`)) {
+                                    if (!await showConfirm(`确定要清除所有 ${linesWithAudio.length} 条已生成的音频吗？此操作不可撤销。`)) {
 
                                         return;
 
                                     }
 
-                
+
 
                                     for (const line of linesWithAudio) {
 
@@ -4639,7 +4870,7 @@
                 };
 
                 const exportScriptState = async () => {
-                    if (!confirm('即将导出包含所有素材（音效、BGM、音色）的完整工程文件。如果素材较多，文件可能较大，请耐心等待。')) return;
+                    if (!await showConfirm('即将导出包含所有素材（音效、BGM、音色）的完整工程文件。如果素材较多，文件可能较大，请耐心等待。')) return;
 
                     isExportingProject.value = true;
                     exportStatus.value = '准备中...';
@@ -4936,7 +5167,7 @@
 
                             if (data.version === '2.0' || data.project) {
                                 // v2.0 完整工程格式
-                                if (!confirm('检测到完整工程文件。导入将覆盖当前的【资源库和脚本】（模型配置不会被覆盖）。确定继续吗？')) return;
+                                if (!await showConfirm('检测到完整工程文件。导入将覆盖当前的【资源库和脚本】（模型配置不会被覆盖）。确定继续吗？')) return;
 
                                 // --- 清空当前数据 ---
                                 rawScript.value = '';
@@ -5087,7 +5318,7 @@
 
                             } else if (data.scriptLines && Array.isArray(data.scriptLines)) {
                                 // v1.x 旧版存档格式兼容
-                                if (confirm('检测到旧版存档。确定要读取吗？当前未保存的进度将被覆盖。')) {
+                                if (await showConfirm('检测到旧版存档。确定要读取吗？当前未保存的进度将被覆盖。')) {
                                     // 修复：先清空角色列表，防止残留
                                     characters.value = [];
 
@@ -5208,7 +5439,7 @@
                     const dialogueLines = scriptLines.value.filter(l => l.type === 'dialogue');
                     if (dialogueLines.length === 0) return alert('脚本为空');
                     if (dialogueLines.some(l => !l.audioUrl)) {
-                        if (!confirm('部分台词尚未生成音频，导出时将被跳过。确定继续吗？')) return;
+                        if (!await showConfirm('部分台词尚未生成音频，导出时将被跳过。确定继续吗？')) return;
                     }
 
                     isExportingAudio.value = true;
@@ -5399,7 +5630,7 @@
                     if (dialogueLines.length === 0) return alert('脚本为空');
 
                     if (dialogueLines.some(l => !l.audioUrl)) {
-                        if (!confirm('部分台词尚未生成音频，导出字幕时时间轴可能不准确（将跳过未生成音频的行）。确定继续吗？')) return;
+                        if (!await showConfirm('部分台词尚未生成音频，导出字幕时时间轴可能不准确（将跳过未生成音频的行）。确定继续吗？')) return;
                     }
 
                     isExportingAudio.value = true; // 复用 loading 状态
@@ -5716,7 +5947,7 @@
                     if (!text) return;
                     try {
                         await navigator.clipboard.writeText(text);
-                        alert('已复制背景图片提示词');
+                        showToast('已复制背景图片提示词', 'info');
                     } catch (e) {
                         // Fallback for environments without clipboard permission
                         const ta = document.createElement('textarea');
@@ -5727,7 +5958,7 @@
                         ta.select();
                         document.execCommand('copy');
                         document.body.removeChild(ta);
-                        alert('已复制背景图片提示词');
+                        showToast('已复制背景图片提示词', 'info');
                     }
                 };
 
@@ -5946,7 +6177,7 @@ const generateVideo = async () => {
                     if (dialogueLines.length === 0) return alert('脚本为空');
 
                     if (dialogueLines.some(l => !l.audioUrl)) {
-                        if (!confirm('部分台词尚未生成音频，导出视频时将跳过未生成的台词。确定继续吗？')) return;
+                        if (!await showConfirm('部分台词尚未生成音频，导出视频时将跳过未生成的台词。确定继续吗？')) return;
                     }
 
                     if (typeof VideoEncoder === 'undefined') {
@@ -6664,39 +6895,39 @@ const generateVideo = async () => {
                     localStorage.setItem('storyforge_use_custom_prompt', JSON.stringify(useCustomPrompt.value));
                     localStorage.setItem('storyforge_voice_prompt_template', customVoicePromptTemplate.value);
                     localStorage.setItem('storyforge_use_custom_voice_prompt', JSON.stringify(useCustomVoicePrompt.value));
-                    alert('Prompt 设置已保存');
+                    showToast('Prompt 设置已保存', 'success');
                 };
 
                 const saveVoicePrompt = () => {
                     localStorage.setItem('storyforge_voice_prompt_template', customVoicePromptTemplate.value);
                     localStorage.setItem('storyforge_use_custom_voice_prompt', JSON.stringify(useCustomVoicePrompt.value));
-                    alert('音色分析 Prompt 设置已保存');
+                    showToast('音色分析 Prompt 设置已保存', 'success');
                 };
 
-                const resetPrompt = () => {
-                    if (confirm('确定要恢复默认 Prompt 吗？')) {
-                        customPromptTemplate.value = defaultPromptTemplate;
-                        customVoicePromptTemplate.value = defaultVoicePromptTemplate;
-                    }
+                const resetPrompt = async () => {
+                    if (!await showConfirm('确定要恢复默认 Prompt 吗？')) return;
+                    customPromptTemplate.value = defaultPromptTemplate;
+                    customVoicePromptTemplate.value = defaultVoicePromptTemplate;
+                    showToast('Prompt 已恢复默认', 'success');
                 };
 
-                const resetVoicePrompt = () => {
-                    if (confirm('确定要恢复默认的音色分析 Prompt 吗？')) {
-                        customVoicePromptTemplate.value = defaultVoicePromptTemplate;
-                        localStorage.setItem('storyforge_voice_prompt_template', defaultVoicePromptTemplate);
-                    }
+                const resetVoicePrompt = async () => {
+                    if (!await showConfirm('确定要恢复默认的音色分析 Prompt 吗？')) return;
+                    customVoicePromptTemplate.value = defaultVoicePromptTemplate;
+                    localStorage.setItem('storyforge_voice_prompt_template', defaultVoicePromptTemplate);
+                    showToast('音色分析 Prompt 已恢复默认', 'success');
                 };
 
                 const saveQwenVoiceText = () => {
                     localStorage.setItem('storyforge_qwen_voice_text_template', customQwenVoiceTextTemplate.value);
                     localStorage.setItem('storyforge_use_custom_qwen_voice_text', JSON.stringify(useCustomQwenVoiceText.value));
-                    alert('Qwen 生成文本设置已保存');
+                    showToast('Qwen 生成文本设置已保存', 'success');
                 };
 
-                const resetQwenVoiceText = () => {
-                    if (confirm('确定要恢复默认文本吗？')) {
-                        customQwenVoiceTextTemplate.value = defaultQwenVoiceTextTemplate;
-                    }
+                const resetQwenVoiceText = async () => {
+                    if (!await showConfirm('确定要恢复默认文本吗？')) return;
+                    customQwenVoiceTextTemplate.value = defaultQwenVoiceTextTemplate;
+                    showToast('文本已恢复默认', 'success');
                 };
 
                 // 监听开关状态，实时保存
@@ -6769,6 +7000,11 @@ const generateVideo = async () => {
                     previewImageUrl,
                     isGeneratingVideo,
                     themeMode, toggleThemeMode,
+
+                    // Toast 通知
+                    toasts, toastStyles, showToast,
+                    // 确认对话框
+                    confirmDialog, showConfirm,
 
                     // Script Actions
                     rawScript, scriptLines, splitScript, removeScriptLine, autoResizeTextarea, analyzeScript, isAnalyzingScript, rawAnalysisResult,
