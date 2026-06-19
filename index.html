@@ -59,7 +59,7 @@
             --radius-sm: 10px;
             --radius-md: 14px;
             --radius-lg: 18px;
-            background-color: rgba(255, 255, 255, 0.58) !important;
+            background-color: rgba(255, 255, 255, 0.38) !important;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.28);
@@ -84,7 +84,7 @@
         #app .bg-white,
         #app .bg-slate-50,
         #app .bg-slate-100 {
-            background-color: rgba(255, 255, 255, 0.34) !important;
+            background-color: rgba(255, 255, 255, 0.24) !important;
         }
 
         input,
@@ -237,6 +237,278 @@
             animation: none !important;
         }
 
+        /* ===== 预设按钮样式 (统一浅底深字带边框) ===== */
+        .btn-pri {
+            background: #dbeafe;
+            color: #1d4ed8;
+            border: 1px solid #93c5fd;
+        }
+        .btn-pri:hover {
+            background: #bfdbfe;
+        }
+        .btn-pri:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-sec {
+            background: #f1f5f9;
+            color: #334155;
+            border: 1px solid #cbd5e1;
+        }
+        .btn-sec:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-danger {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fca5a5;
+        }
+        .btn-danger:hover {
+            background: #fecaca;
+        }
+
+        .btn-danger-solid {
+            background: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #f87171;
+        }
+        .btn-danger-solid:hover {
+            background: #fecaca;
+        }
+
+        .btn-ins {
+            background: #d1fae5;
+            color: #047857;
+            border: 1px solid #6ee7b7;
+        }
+        .btn-ins:hover {
+            background: #a7f3d0;
+        }
+
+        .btn-ins-blue {
+            background: #dbeafe;
+            color: #1d4ed8;
+            border: 1px solid #93c5fd;
+        }
+        .btn-ins-blue:hover {
+            background: #bfdbfe;
+        }
+
+        .btn-ins-purple {
+            background: #f3e8ff;
+            color: #7c3aed;
+            border: 1px solid #c4b5fd;
+        }
+        .btn-ins-purple:hover {
+            background: #ede9fe;
+        }
+
+        .btn-ins-green {
+            background: #d1fae5;
+            color: #047857;
+            border: 1px solid #6ee7b7;
+        }
+        .btn-ins-green:hover {
+            background: #a7f3d0;
+        }
+
+        .btn-icon {
+            color: #64748b;
+        }
+        .btn-icon:hover {
+            color: #3b82f6;
+        }
+
+        /* Tab 标签 */
+        .btn-tab-on {
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-color: #3b82f6;
+        }
+        .btn-tab-off {
+            background: #fff;
+            color: #64748b;
+            border-color: #e2e8f0;
+        }
+        .btn-tab-off:hover {
+            background: #f1f5f9;
+        }
+
+        /* 运行中/排队状态 */
+        .btn-running {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+        .btn-running:hover {
+            background: #fecaca;
+        }
+        .btn-queued {
+            background: #fef3c7;
+            color: #d97706;
+            border: 1px solid #fde68a;
+        }
+        .btn-queued:hover {
+            background: #fde68a;
+        }
+
+        /* 音色分析 */
+        .btn-analyze {
+            background: #eef2ff;
+            color: #4f46e5;
+            border: 1px solid #c7d2fe;
+        }
+        .btn-analyze:hover {
+            background: #e0e7ff;
+        }
+
+        /* 音色生成 */
+        .btn-gen {
+            background: #fdf2f8;
+            color: #db2777;
+            border: 1px solid #fbcfe8;
+        }
+        .btn-gen:hover {
+            background: #fce7f3;
+        }
+
+        /* ---- 暗色模式 ---- */
+        body[data-theme='dark'] .btn-pri {
+            background: #2563eb;
+            color: #fff;
+            border-color: #60a5fa;
+        }
+        body[data-theme='dark'] .btn-pri:hover {
+            background: #1d4ed8;
+            border-color: #93c5fd;
+        }
+
+        body[data-theme='dark'] .btn-sec {
+            background: rgba(51, 65, 85, 0.85);
+            color: #bfd0e4;
+            border-color: rgba(148, 163, 184, 0.2);
+        }
+        body[data-theme='dark'] .btn-sec:hover {
+            background: rgba(51, 65, 85, 0.95);
+        }
+
+        body[data-theme='dark'] .btn-danger {
+            background: rgba(127, 29, 29, 0.85);
+            color: #fca5a5;
+        }
+        body[data-theme='dark'] .btn-danger:hover {
+            background: rgba(127, 29, 29, 0.95);
+        }
+
+        body[data-theme='dark'] .btn-danger-solid {
+            background: #dc2626;
+            color: #fff;
+            border-color: #f87171;
+        }
+        body[data-theme='dark'] .btn-danger-solid:hover {
+            background: #b91c1c;
+            border-color: #fca5a5;
+        }
+
+        body[data-theme='dark'] .btn-ins,
+        body[data-theme='dark'] .btn-ins-green {
+            background: rgba(6, 95, 70, 0.85);
+            color: #6ee7b7;
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+        body[data-theme='dark'] .btn-ins:hover,
+        body[data-theme='dark'] .btn-ins-green:hover {
+            background: rgba(6, 95, 70, 0.95);
+        }
+
+        body[data-theme='dark'] .btn-ins-blue {
+            background: rgba(30, 58, 138, 0.85);
+            color: #93c5fd;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        body[data-theme='dark'] .btn-ins-blue:hover {
+            background: rgba(30, 58, 138, 0.95);
+        }
+
+        body[data-theme='dark'] .btn-ins-purple {
+            background: rgba(76, 29, 149, 0.85);
+            color: #c4b5fd;
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+        body[data-theme='dark'] .btn-ins-purple:hover {
+            background: rgba(76, 29, 149, 0.95);
+        }
+
+        body[data-theme='dark'] .btn-icon {
+            color: #8ea2bb;
+        }
+        body[data-theme='dark'] .btn-icon:hover {
+            color: #60a5fa;
+        }
+
+        body[data-theme='dark'] .btn-tab-on {
+            background: #2563eb;
+            color: #fff;
+            border-color: #60a5fa;
+        }
+        body[data-theme='dark'] .btn-tab-off {
+            background: transparent;
+            color: #8ea2bb;
+            border-color: rgba(148, 163, 184, 0.18);
+        }
+        body[data-theme='dark'] .btn-tab-off:hover {
+            background: rgba(51, 65, 85, 0.85);
+        }
+
+        body[data-theme='dark'] .btn-running {
+            background: #dc2626;
+            color: #fff;
+            border-color: #f87171;
+        }
+        body[data-theme='dark'] .btn-running:hover {
+            background: #b91c1c;
+            border-color: #fca5a5;
+        }
+
+        body[data-theme='dark'] .btn-queued {
+            background: rgba(120, 53, 15, 0.85);
+            color: #fbbf24;
+            border-color: rgba(251, 191, 36, 0.25);
+        }
+        body[data-theme='dark'] .btn-queued:hover {
+            background: rgba(120, 53, 15, 0.95);
+        }
+        body[data-theme='dark'] .btn-analyze {
+            background: #4338ca;
+            color: #fff;
+            border-color: #818cf8;
+        }
+        body[data-theme='dark'] .btn-analyze:hover {
+            background: #3730a3;
+            border-color: #a5b4fc;
+        }
+
+        body[data-theme='dark'] .btn-gen {
+            background: #db2777;
+            color: #fff;
+            border-color: #f472b6;
+        }
+        body[data-theme='dark'] .btn-gen:hover {
+            background: #be185d;
+            border-color: #f9a8d4;
+        }
+        /* ===== 预设按钮样式结束 ===== */
+
+        /* 全局文字纯色 */
+        #app .text-slate-800,
+        #app .text-slate-700,
+        #app .text-slate-600,
+        #app .text-slate-500 {
+            color: #0f172a !important;
+        }
+
         body[data-theme='dark'] {
             background-color: #020617;
             background-image:
@@ -330,22 +602,13 @@
             background: rgba(191, 208, 228, 0.82);
         }
 
-        body[data-theme='dark'] #app .text-slate-800 {
-            color: #f8fbff !important;
-        }
-
-        body[data-theme='dark'] #app .text-slate-700 {
-            color: #dde7f3 !important;
-        }
-
-        body[data-theme='dark'] #app .text-slate-600 {
-            color: #bfd0e4 !important;
-        }
-
+        body[data-theme='dark'] #app .text-slate-800,
+        body[data-theme='dark'] #app .text-slate-700,
+        body[data-theme='dark'] #app .text-slate-600,
         body[data-theme='dark'] #app .text-slate-500,
         body[data-theme='dark'] #app .text-slate-400,
         body[data-theme='dark'] #app .text-slate-300 {
-            color: #8ea2bb !important;
+            color: #fff !important;
         }
 
         body[data-theme='dark'] #app .border-slate-200,
@@ -392,7 +655,7 @@
         }
 
         body[data-theme='dark'] #app .hover\:text-slate-700:hover {
-            color: #f8fbff !important;
+            color: #fff !important;
         }
 
         body[data-theme='dark'] .app-subtitle {
@@ -673,7 +936,7 @@
     <div id="app" :data-theme="themeMode" class="w-full max-w-[94%] xl:max-w-[1520px] mx-auto p-5 xl:p-7 rounded-2xl shadow-2xl">
         <!-- Toast 通知 -->
         <div class="fixed top-4 right-4 z-[9999] space-y-2 pointer-events-none">
-            <TransitionGroup name="toast">
+            <transition-group name="toast">
                 <div v-for="t in toasts" :key="t.id"
                     :class="['px-4 py-3 rounded-xl shadow-2xl text-sm font-bold pointer-events-auto flex items-center gap-2 max-w-sm', toastStyles[t.type]]">
                     <template v-if="t.type === 'success'">
@@ -687,7 +950,7 @@
                     </template>
                     {{ t.message }}
                 </div>
-            </TransitionGroup>
+            </transition-group>
         </div>
 
         <!-- 确认对话框 -->
@@ -696,9 +959,9 @@
                 <p class="text-sm text-slate-700 leading-relaxed">{{ confirmDialog.message }}</p>
                 <div class="flex justify-end gap-2">
                     <button type="button" @click="confirmDialog.reject()"
-                        class="px-4 py-2 bg-slate-100 text-slate-600 rounded-xl text-sm font-bold hover:bg-slate-200 transition-all">取消</button>
+                        class="px-4 py-2 rounded-xl text-sm font-bold transition-all btn-sec">取消</button>
                     <button type="button" @click="confirmDialog.resolve()"
-                        class="px-4 py-2 bg-red-600 text-white rounded-xl text-sm font-bold hover:bg-red-700 transition-all">确认</button>
+                        class="px-4 py-2 rounded-xl text-sm font-bold transition-all btn-danger-solid">确认</button>
                 </div>
             </div>
         </div>
@@ -727,7 +990,7 @@
                 </div>
                 <div class="flex items-center gap-2 self-start xl:self-auto">
                     <button @click="toggleThemeMode" type="button"
-                        class="theme-toggle-btn px-3 py-1.5 min-h-[34px] bg-slate-100 text-slate-600 rounded-xl text-[11px] font-bold hover:bg-slate-200 transition-all">
+                        class="theme-toggle-btn px-3 py-1.5 min-h-[34px] rounded-xl text-[11px] font-bold transition-all btn-sec">
                         {{ themeMode === 'dark' ? '切到亮色' : '切到暗色' }}
                     </button>
                 </div>
@@ -739,23 +1002,23 @@
                         <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.24em]">工作区导航</div>
                         <div class="flex flex-wrap gap-2">
                             <button type="button" @click="activeTab = 'config'"
-                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'config' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'config' ? 'btn-tab-on shadow-sm' : 'btn-tab-off']">
                                 模型配置
                             </button>
                             <button type="button" @click="activeTab = 'timbres'"
-                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'timbres' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'timbres' ? 'btn-tab-on shadow-sm' : 'btn-tab-off']">
                                 音色资源库
                             </button>
                             <button type="button" @click="activeTab = 'sfx'"
-                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'sfx' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'sfx' ? 'btn-tab-on shadow-sm' : 'btn-tab-off']">
                                 音效与滤波器
                             </button>
                             <button type="button" @click="activeTab = 'script'"
-                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'script' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'script' ? 'btn-tab-on shadow-sm' : 'btn-tab-off']">
                                 脚本制作
                             </button>
                             <button type="button" @click="activeTab = 'prompt'"
-                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'prompt' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-500 border-slate-200 hover:text-slate-700 hover:bg-slate-50']">
+                                :class="['px-4 py-2 rounded-xl text-sm font-bold transition-all whitespace-nowrap border min-h-[40px]', activeTab === 'prompt' ? 'btn-tab-on shadow-sm' : 'btn-tab-off']">
                                 Prompt 管理
                             </button>
                         </div>
@@ -767,15 +1030,15 @@
                             <div class="grid gap-1.5 w-full grid-cols-[1fr_1fr_auto]">
                                 <button @click="exportScriptState" :disabled="isExportingProject"
                                     title="导出完整工程 JSON"
-                                    class="px-2.5 py-1.5 bg-amber-100 text-amber-700 rounded-xl text-[11px] font-bold hover:bg-amber-200 transition-all inline-flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[36px]">
+                                    class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold transition-all inline-flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[36px] btn-sec">
                                     {{ isExportingProject ? exportStatus : '导出完整工程' }}
                                 </button>
                                 <button @click="triggerImport" :disabled="isExportingProject"
-                                    class="px-2.5 py-1.5 bg-amber-100 text-amber-700 rounded-xl text-[11px] font-bold hover:bg-amber-200 transition-all inline-flex items-center justify-center gap-1 disabled:opacity-50 min-h-[36px]">
+                                    class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold transition-all inline-flex items-center justify-center gap-1 disabled:opacity-50 min-h-[36px] btn-sec">
                                     {{ isExportingProject ? '请等待...' : '导入完整工程' }}
                                 </button>
                                 <button @click="triggerImportTxt" :disabled="isExportingProject"
-                                    class="px-2.5 py-1.5 bg-slate-100 text-slate-700 rounded-xl text-[11px] font-bold hover:bg-slate-200 transition-all inline-flex items-center justify-center gap-1 disabled:opacity-50 min-h-[36px]">
+                                    class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold transition-all inline-flex items-center justify-center gap-1 disabled:opacity-50 min-h-[36px] btn-sec">
                                     导入TXT
                                 </button>
                             </div>
@@ -786,12 +1049,12 @@
                             <div class="grid grid-cols-2 gap-1.5 w-full">
                                 <button @click="exportSRT" :disabled="isExportingAudio"
                                     :title="`导出字幕：${getCurrentScriptExportFilename('srt')}`"
-                                    class="px-2.5 py-1.5 bg-teal-100 text-teal-700 rounded-xl text-[11px] font-bold hover:bg-teal-200 transition-all flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[36px]">
+                                    class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold transition-all flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[36px] btn-sec">
                                     导出SRT字幕
                                 </button>
                                 <button @click="exportAudio" :disabled="isExportingAudio"
                                     :title="`导出音频：${getCurrentScriptExportFilename('wav')}`"
-                                    class="px-2.5 py-1.5 bg-purple-100 text-purple-700 rounded-xl text-[11px] font-bold hover:bg-purple-200 transition-all flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[36px]">
+                                    class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold transition-all flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[36px] btn-pri">
                                     <template v-if="isExportingAudio">
                                         <svg class="animate-spin h-3.5 w-3.5 -ml-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
                                         {{ exportStatus || '处理中...' }}
@@ -811,7 +1074,7 @@
                                     <option value="960x1280">竖屏 3:4</option>
                                 </select>
                                 <button @click="generateVideo" :disabled="isExportingAudio || isSequencePlaying || isGeneratingVideo"
-                                    class="px-2.5 py-1.5 bg-sky-100 text-sky-700 rounded-xl text-[11px] font-bold hover:bg-sky-200 transition-all flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[36px]">
+                                    class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold transition-all flex items-center justify-center gap-1 disabled:opacity-50 disabled:cursor-wait min-h-[36px] btn-sec">
                                     <template v-if="isGeneratingVideo">
                                         <svg class="animate-spin h-3.5 w-3.5 -ml-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
                                         {{ exportStatus || '生成视频...' }}
@@ -869,9 +1132,9 @@
                 </div>
                 <div class="flex gap-2 justify-end">
                     <button type="button" @click.prevent="saveConfig"
-                        class="px-6 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存配置</button>
+                        class="px-6 py-2.5 rounded-xl text-sm font-bold transition-all btn-pri">保存配置</button>
                     <button type="button" v-if="isEditing" @click="resetForm"
-                        class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                        class="px-5 py-2 rounded-xl text-xs font-bold transition-all btn-sec">取消</button>
                 </div>
             </div>
 
@@ -885,9 +1148,9 @@
                     </div>
                     <div class="flex gap-2">
                         <button @click="editConfig(conf)"
-                            class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
+                            class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-sec">编辑</button>
                         <button @click="deleteConfig(conf.id)"
-                            class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
+                            class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-danger">删除</button>
                     </div>
                 </div>
                 <div v-if="llmConfigs.length === 0" class="empty-state">
@@ -915,9 +1178,9 @@
                 </div>
                 <div class="flex gap-2 justify-end">
                     <button type="button" @click.prevent="saveTtsConfig"
-                        class="px-6 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存配置</button>
+                        class="px-6 py-2.5 rounded-xl text-sm font-bold transition-all btn-pri">保存配置</button>
                     <button type="button" v-if="isEditingTts" @click="resetTtsForm"
-                        class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                        class="px-5 py-2 rounded-xl text-xs font-bold transition-all btn-sec">取消</button>
                 </div>
             </div>
 
@@ -931,9 +1194,9 @@
                     </div>
                     <div class="flex gap-2">
                         <button @click="editTtsConfig(conf)"
-                            class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
+                            class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-sec">编辑</button>
                         <button @click="deleteTtsConfig(conf.id)"
-                            class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
+                            class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-danger">删除</button>
                     </div>
                 </div>
                 <div v-if="ttsConfigs.length === 0" class="empty-state">
@@ -970,7 +1233,7 @@
                                 <input type="file" ref="timbreFileRef" @change="handleTimbreFileUpload"
                                     accept=".wav,.mp3" class="hidden">
                                 <button type="button" @click="$refs.timbreFileRef.click()"
-                                    class="whitespace-nowrap px-3 py-2 bg-slate-100 border border-slate-300 text-slate-600 rounded-lg text-xs hover:bg-slate-200 transition-colors">选择文件</button>
+                                    class="whitespace-nowrap px-3 py-2 border rounded-lg text-xs transition-colors btn-sec">选择文件</button>
                                 <input v-model="timbreForm.refPath"
                                     class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                                     placeholder="选择一个音频文件作为音色参考">
@@ -980,9 +1243,9 @@
                     </div>
                     <div class="flex gap-2">
                         <button type="button" @click.prevent="saveTimbre"
-                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存音色</button>
+                            class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all btn-pri">保存音色</button>
                         <button type="button" v-if="isEditingTimbre" @click="resetTimbreForm"
-                            class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                            class="px-5 py-2 rounded-xl text-xs font-bold transition-all btn-sec">取消</button>
                     </div>
                 </div>
 
@@ -1004,7 +1267,7 @@
                         </div>
                         <div class="flex gap-2">
                             <button type="button" @click="playPreview(timbre.refPath)" aria-label="试听音色"
-                                class="text-xs text-slate-400 hover:text-green-600 mr-1" title="试听">
+                                class="text-xs mr-1 btn-icon" title="试听">
                                 <svg v-if="previewPlayingFile === timbre.refPath" class="h-4 w-4 text-green-600"
                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd"
@@ -1019,9 +1282,9 @@
                                 </svg>
                             </button>
                             <button @click="editTimbre(timbre)"
-                                class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
+                                class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-sec">编辑</button>
                             <button @click="deleteTimbre(timbre.id)"
-                                class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
+                                class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-danger">删除</button>
                         </div>
                     </div>
                     <div v-if="timbres.length === 0" class="empty-state">
@@ -1038,7 +1301,7 @@
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-sm font-bold text-slate-700">{{ isEditingEmotion ? '编辑情绪预设' : '添加新情绪预设' }}</h3>
                         <button type="button" @click="resetEmotionsToDefault"
-                            class="px-3 py-1.5 text-xs font-bold rounded-xl bg-slate-100 text-slate-500 hover:bg-slate-200 transition-all">重置预设</button>
+                            class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-sec">重置预设</button>
                     </div>
                     <div class="form-grid mb-4">
                         <div>
@@ -1065,9 +1328,9 @@
                     </div>
                     <div class="flex gap-2 justify-end">
                         <button type="button" @click.prevent="saveEmotion"
-                            class="px-5 py-2.5 bg-green-600 text-white rounded-xl text-sm font-bold hover:bg-green-700 transition-all shadow-sm">保存情绪</button>
+                            class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all btn-pri">保存情绪</button>
                         <button type="button" v-if="isEditingEmotion" @click="resetEmotionForm"
-                            class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                            class="px-5 py-2 rounded-xl text-xs font-bold transition-all btn-sec">取消</button>
                     </div>
                 </div>
 
@@ -1092,9 +1355,9 @@
                             </div>
                         </div>
                         <div class="flex gap-2">
-                            <button @click="editEmotion(emo)" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
+                            <button @click="editEmotion(emo)" class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-sec">编辑</button>
                             <button @click="deleteEmotion(emo.id)"
-                                class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
+                                class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-danger">删除</button>
                         </div>
                     </div>
                 </div>
@@ -1128,7 +1391,7 @@
                                 <input type="file" ref="sfxFileRef" @change="handleSfxFileUpload" accept=".wav,.mp3"
                                     class="hidden">
                                 <button type="button" @click="$refs.sfxFileRef.click()"
-                                    class="whitespace-nowrap px-3 py-2 bg-slate-100 border border-slate-300 text-slate-600 rounded-lg text-xs hover:bg-slate-200 transition-colors">选择文件</button>
+                                    class="whitespace-nowrap px-3 py-2 border rounded-lg text-xs transition-colors btn-sec">选择文件</button>
                                 <input v-model="sfxForm.filename"
                                     class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                                     placeholder="例如: door_slam.wav">
@@ -1140,7 +1403,7 @@
                                 <span class="text-[10px] font-bold text-slate-500 uppercase w-16">默认音量</span>
                                 <input type="range" v-model.number="sfxForm.volume" min="0" max="2" step="0.05" class="flex-1 h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
                                 <span class="text-xs text-slate-500 font-mono w-10 text-right">{{ Math.round((sfxForm.volume ?? 1) * 100) }}%</span>
-                                <button type="button" @click="playPreview(sfxForm)" :disabled="!sfxForm.filename" class="text-xs text-slate-400 hover:text-green-600 ml-2 disabled:opacity-30 disabled:cursor-not-allowed" title="试听">
+                                <button type="button" @click="playPreview(sfxForm)" :disabled="!sfxForm.filename" class="text-xs ml-2 disabled:opacity-30 disabled:cursor-not-allowed btn-icon" title="试听">
                                     <svg v-if="previewPlayingFile === sfxForm.filename" class="h-5 w-5 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                     </svg>
@@ -1175,9 +1438,9 @@
                     </div>
                     <div class="flex gap-2">
                         <button type="button" @click.prevent="saveSfx"
-                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存音效</button>
+                            class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all btn-pri">保存音效</button>
                         <button type="button" v-if="isEditingSfx" @click="resetSfxForm"
-                            class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                            class="px-5 py-2 rounded-xl text-xs font-bold transition-all btn-sec">取消</button>
                     </div>
                 </div>
 
@@ -1193,7 +1456,7 @@
                                 </div>
                             </div>
                             <div class="flex gap-2 flex-shrink-0 ml-2">
-                                <button type="button" @click="playPreview(sfx)" aria-label="试听音效" class="text-xs text-slate-400 hover:text-green-600 mr-1" title="试听">
+                                <button type="button" @click="playPreview(sfx)" aria-label="试听音效" class="text-xs mr-1 btn-icon" title="试听">
                                     <svg v-if="previewPlayingFile === sfx.filename" class="h-4 w-4 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                     </svg>
@@ -1201,8 +1464,8 @@
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
                                     </svg>
                                 </button>
-                                <button @click="editSfx(sfx)" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
-                                <button @click="deleteSfx(sfx.id)" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
+                                <button @click="editSfx(sfx)" class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-sec">编辑</button>
+                                <button @click="deleteSfx(sfx.id)" class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-danger">删除</button>
                             </div>
                         </div>
                     </div>
@@ -1234,7 +1497,7 @@
                                 <input type="file" ref="bgmFileRef" @change="handleBgmFileUpload" accept=".wav,.mp3"
                                     class="hidden">
                                 <button type="button" @click="$refs.bgmFileRef.click()"
-                                    class="whitespace-nowrap px-3 py-2 bg-slate-100 border border-slate-300 text-slate-600 rounded-lg text-xs hover:bg-slate-200 transition-colors">选择文件</button>
+                                    class="whitespace-nowrap px-3 py-2 border rounded-lg text-xs transition-colors btn-sec">选择文件</button>
                                 <input v-model="bgmForm.filename"
                                     class="w-full px-3 py-2 border rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                                     placeholder="例如: sad_piano.mp3">
@@ -1246,7 +1509,7 @@
                                 <span class="text-[10px] font-bold text-slate-500 uppercase w-16">默认音量</span>
                                 <input type="range" v-model.number="bgmForm.volume" min="0" max="2" step="0.05" class="flex-1 h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
                                 <span class="text-xs text-slate-500 font-mono w-10 text-right">{{ Math.round((bgmForm.volume ?? 1) * 100) }}%</span>
-                                <button type="button" @click="playPreview(bgmForm)" :disabled="!bgmForm.filename" class="text-xs text-slate-400 hover:text-green-600 ml-2 disabled:opacity-30 disabled:cursor-not-allowed" title="试听">
+                                <button type="button" @click="playPreview(bgmForm)" :disabled="!bgmForm.filename" class="text-xs ml-2 disabled:opacity-30 disabled:cursor-not-allowed btn-icon" title="试听">
                                     <svg v-if="previewPlayingFile === bgmForm.filename" class="h-5 w-5 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                     </svg>
@@ -1281,10 +1544,10 @@
                     </div>
                     <div class="flex gap-2">
                         <button type="button" @click.prevent="saveBgm"
-                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存
+                            class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all btn-pri">保存
                             BGM</button>
                         <button type="button" v-if="isEditingBgm" @click="resetBgmForm"
-                            class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                            class="px-5 py-2 rounded-xl text-xs font-bold transition-all btn-sec">取消</button>
                     </div>
                 </div>
 
@@ -1300,7 +1563,7 @@
                                 </div>
                             </div>
                             <div class="flex gap-2 flex-shrink-0 ml-2">
-                                <button type="button" @click="playPreview(bgm)" aria-label="试听BGM" class="text-xs text-slate-400 hover:text-green-600 mr-1" title="试听">
+                                <button type="button" @click="playPreview(bgm)" aria-label="试听BGM" class="text-xs mr-1 btn-icon" title="试听">
                                     <svg v-if="previewPlayingFile === bgm.filename" class="h-4 w-4 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                     </svg>
@@ -1308,8 +1571,8 @@
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
                                     </svg>
                                 </button>
-                                <button @click="editBgm(bgm)" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
-                                <button @click="deleteBgm(bgm.id)" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
+                                <button @click="editBgm(bgm)" class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-sec">编辑</button>
+                                <button @click="deleteBgm(bgm.id)" class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-danger">删除</button>
                             </div>
                         </div>
                     </div>
@@ -1366,9 +1629,9 @@
                     </div>
                     <div class="flex gap-2">
                         <button type="button" @click.prevent="saveFilter"
-                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存滤波器</button>
+                            class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all btn-pri">保存滤波器</button>
                         <button type="button" v-if="isEditingFilter" @click="resetFilterForm"
-                            class="px-5 py-2 bg-slate-200 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-300 transition-all">取消</button>
+                            class="px-5 py-2 rounded-xl text-xs font-bold transition-all btn-sec">取消</button>
                     </div>
                 </div>
 
@@ -1389,9 +1652,9 @@
                         </div>
                         <div class="flex gap-2">
                             <button @click="editFilter(filter)"
-                                class="px-3 py-1.5 text-xs font-bold rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition-all">编辑</button>
+                                class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-sec">编辑</button>
                             <button @click="deleteFilter(filter.id)"
-                                class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all">删除</button>
+                                class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all btn-danger">删除</button>
                         </div>
                     </div>
                     <div v-if="filterLibrary.length === 0"
@@ -1424,9 +1687,9 @@
                                 <span v-if="editingScriptId !== script.id" class="whitespace-nowrap">{{ script.name }}</span>
                                 <input v-else v-model="script.name" @click.stop @blur="stopEditingScript" @keyup.enter="stopEditingScript" :ref="el => { if(el) scriptNameInputRefs[script.id] = el }" class="bg-transparent outline-none w-full" />
                                 <button type="button" @click.stop="deleteScriptTab(script.id)" aria-label="关闭脚本"
-                                    :class="[currentScriptId === script.id ? 'text-white/70 hover:text-white' : 'text-slate-400 hover:text-red-500']">×</button>
+                                    :class="[currentScriptId === script.id ? 'text-white/70 hover:text-white' : 'btn-icon hover:text-red-500']">×</button>
                             </div>
-                            <button @click="addScript" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 font-bold text-[11px] border border-slate-200 whitespace-nowrap">+ 新脚本</button>
+                            <button @click="addScript" class="px-3 py-1.5 rounded-xl font-bold text-[11px] border whitespace-nowrap btn-sec">+ 新脚本</button>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 gap-1.5 text-[11px] sm:flex sm:flex-wrap">
@@ -1450,8 +1713,15 @@
                     <h3 class="text-sm font-bold text-slate-700 mb-3 flex justify-between items-center flex-shrink-0">
                         角色列表
                         <button @click="addCharacter"
-                            class="text-xs font-bold rounded-xl bg-blue-600 text-white px-3 py-1.5 hover:bg-blue-700 transition-all">+ 新增</button>
+                            class="text-xs font-bold rounded-xl px-3 py-1.5 transition-all btn-pri">+ 新增</button>
                     </h3>
+                    <!-- 音色生成队列指示器 -->
+                    <div v-if="voiceTaskQueue.length > 0" class="mb-3 px-3 py-2 bg-amber-50 border border-amber-200 rounded-xl text-[11px] text-amber-700 flex items-center gap-2 flex-shrink-0">
+                        <svg class="h-4 w-4 animate-spin shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
+                        <span v-if="voiceTaskRunning">正在生成: <strong>{{ voiceTaskQueue.find(t => t.status === 'running')?.char.name || '...' }}</strong></span>
+                        <span v-else>排队中: <strong>{{ voiceTaskQueue.length }}</strong> 个任务</span>
+                        <span v-if="voiceTaskRunning && voiceTaskQueue.filter(t => t.status === 'queued').length > 0" class="text-amber-500">(剩余 {{ voiceTaskQueue.filter(t => t.status === 'queued').length }} 个)</span>
+                    </div>
                     <div class="space-y-3 pr-1 overflow-y-auto min-h-0 flex-1">
                         <div v-for="char in characters" :key="char.id"
                             class="bg-white p-3 rounded-lg border border-slate-200 shadow-sm text-sm space-y-2">
@@ -1460,7 +1730,7 @@
                                     class="font-bold text-slate-800 flex-1 min-w-0 bg-transparent border-b border-transparent focus:border-blue-500 outline-none px-2.5 py-1 rounded-md"
                                     placeholder="角色名">
                                 <button type="button" @click="deleteCharacter(char.id)"
-                                    class="px-3 py-1.5 text-xs font-bold rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-all whitespace-nowrap">删除</button>
+                                    class="px-3 py-1.5 text-xs font-bold rounded-xl transition-all whitespace-nowrap btn-danger">删除</button>
                             </div>
 
                             <div>
@@ -1474,7 +1744,7 @@
                                         </option>
                                     </select>
                                     <button type="button" @click="playPreview(char.voiceFile)" :disabled="!char.voiceFile" aria-label="试听当前音色"
-                                        class="px-2 bg-slate-100 border border-slate-200 rounded text-slate-500 hover:text-green-600 disabled:opacity-50"
+                                        class="px-2 border rounded disabled:opacity-50 btn-sec"
                                         title="试听当前音色">
                                         <svg v-if="previewPlayingFile === char.voiceFile" class="h-4 w-4 text-green-600"
                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -1505,12 +1775,16 @@
                                     placeholder="音色描述 (例如: 甜美少女音)"></textarea>
                                 <div class="flex gap-1">
                                     <button @click="analyzeCharacterVoice(char)"
-                                        :class="['flex-1 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all flex justify-center items-center gap-1', char.isAnalyzing ? 'bg-red-50 text-red-600 border border-red-100 hover:bg-red-100' : 'bg-indigo-50 text-indigo-600 border border-indigo-100 hover:bg-indigo-100']">
-                                        <svg v-if="char.isAnalyzing" class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>{{ char.isAnalyzing ? '停止分析' : '分析音色' }}
+                                        :class="['flex-1 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all flex justify-center items-center gap-1', char.isAnalyzing ? 'btn-running' : (isVoiceTaskQueued(char, 'analyze') ? 'btn-queued' : 'btn-pri')]">
+                                        <svg v-if="char.isAnalyzing" class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
+                                        <svg v-else-if="isVoiceTaskQueued(char, 'analyze')" class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        {{ char.isAnalyzing ? '停止分析' : (isVoiceTaskQueued(char, 'analyze') ? '排队中...' : '分析音色') }}
                                     </button>
                                     <button @click="generateQwenVoice(char)"
-                                        :class="['flex-1 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all flex justify-center items-center gap-1', char.isGeneratingVoice ? 'bg-red-50 text-red-600 border border-red-100 hover:bg-red-100' : 'bg-pink-50 text-pink-600 border border-pink-100 hover:bg-pink-100']">
-                                        <svg v-if="char.isGeneratingVoice" class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>{{ char.isGeneratingVoice ? '停止生成' : '生成音色' }}
+                                        :class="['flex-1 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all flex justify-center items-center gap-1', char.isGeneratingVoice ? 'btn-running' : (isVoiceTaskQueued(char, 'generate') ? 'btn-queued' : 'btn-gen')]">
+                                        <svg v-if="char.isGeneratingVoice" class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
+                                        <svg v-else-if="isVoiceTaskQueued(char, 'generate')" class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        {{ char.isGeneratingVoice ? '停止生成' : (isVoiceTaskQueued(char, 'generate') ? '排队中...' : '生成音色') }}
                                     </button>
                                 </div>
                             </div>
@@ -1550,7 +1824,7 @@
                                         </option>
                                     </select>
                                     <button @click="analyzeScript"
-                                        :class="['px-4 py-2 text-white rounded-lg text-sm font-bold transition-all flex items-center justify-center whitespace-nowrap min-h-[40px]', isAnalyzingScript ? 'bg-red-500 hover:bg-red-600' : 'bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50']">
+                                        :class="['px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center justify-center whitespace-nowrap min-h-[40px]', isAnalyzingScript ? 'btn-running' : 'btn-pri disabled:opacity-50']">
                                         <svg v-if="isAnalyzingScript" class="animate-spin h-4 w-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
                                         {{ isAnalyzingScript ? '停止分析' : 'AI 深度分析' }}
                                     </button>
@@ -1570,15 +1844,15 @@
                                 </div>
                                 <div class="grid gap-1.5 sm:grid-cols-3">
                                     <button @click="addDialogueBlock"
-                                        class="px-2.5 py-1.5 bg-blue-100 text-blue-600 rounded-lg text-[11px] sm:text-xs font-bold hover:bg-blue-200 transition-all whitespace-nowrap min-h-[36px]">
+                                        class="px-2.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold transition-all whitespace-nowrap min-h-[36px] btn-ins-blue">
                                         <svg class="h-3.5 w-3.5 -ml-0.5 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/></svg> 插入台词
                                     </button>
                                     <button @click="addBgmBlock"
-                                        class="px-2.5 py-1.5 bg-purple-100 text-purple-600 rounded-lg text-[11px] sm:text-xs font-bold hover:bg-purple-200 transition-all whitespace-nowrap min-h-[36px]">
+                                        class="px-2.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold transition-all whitespace-nowrap min-h-[36px] btn-ins-purple">
                                         <svg class="h-3.5 w-3.5 -ml-0.5 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/></svg> 插入BGM
                                     </button>
                                     <button @click="addBgImageBlock"
-                                        class="px-2.5 py-1.5 bg-emerald-100 text-emerald-700 rounded-lg text-[11px] sm:text-xs font-bold hover:bg-emerald-200 transition-all whitespace-nowrap min-h-[36px]">
+                                        class="px-2.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold transition-all whitespace-nowrap min-h-[36px] btn-ins-green">
                                         <svg class="h-3.5 w-3.5 -ml-0.5 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/></svg> 插入背景图
                                     </button>
                                 </div>
@@ -1596,22 +1870,29 @@
                                         </option>
                                     </select>
                                     <div class="flex flex-wrap items-center gap-1.5 xl:flex-none">
-                                        <button @click="clearAllGeneratedAudio" :disabled="isSequencePlaying || isGeneratingAll"
-                                            class="px-2.5 py-1 bg-red-600 text-white rounded-lg text-[11px] font-bold hover:bg-red-700 disabled:opacity-50 transition-all flex items-center justify-center whitespace-nowrap min-h-[32px]">
-                                            清空配音
-                                        </button>
+                                        <select v-model.number="playbackSpeed"
+                                            class="px-2 py-1 rounded-lg text-[11px] font-bold border border-slate-200 bg-white outline-none cursor-pointer min-h-[32px]">
+                                            <option :value="0.5">0.5x</option>
+                                            <option :value="0.75">0.75x</option>
+                                            <option :value="1">1x</option>
+                                            <option :value="1.25">1.25x</option>
+                                            <option :value="1.5">1.5x</option>
+                                            <option :value="2">2x</option>
+                                            <option :value="2.5">2.5x</option>
+                                            <option :value="3">3x</option>
+                                        </select>
                                         <button v-if="!isSequencePlaying" @click="playScriptSequentially"
-                                            class="px-2.5 py-1 bg-blue-600 text-white rounded-lg text-[11px] font-bold hover:bg-blue-700 disabled:opacity-50 transition-all whitespace-nowrap min-h-[32px]">
+                                            class="px-2.5 py-1 rounded-lg text-[11px] font-bold disabled:opacity-50 transition-all whitespace-nowrap min-h-[32px] btn-pri">
                                             {{ selectedLineIndex !== -1 ? '从选中播放' : '顺序播放' }}
                                         </button>
                                         <button v-else @click="stopScriptSequentially"
-                                            class="px-2.5 py-1 bg-red-500 text-white rounded-lg text-[11px] font-bold hover:bg-red-600 transition-all whitespace-nowrap min-h-[32px]">
+                                            class="px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all whitespace-nowrap min-h-[32px] btn-danger-solid">
                                             停止播放
                                         </button>
                                     </div>
                                     <button @click="handlePrimaryGenerationAction"
                                         :disabled="isSequencePlaying || (hasActiveRoleFilter && filteredDialogueLines.length === 0 && !isGeneratingAll)"
-                                        :class="['px-4 py-2 text-white rounded-lg text-sm font-bold transition-all flex items-center justify-center whitespace-nowrap min-h-[40px] xl:flex-1', isGeneratingAll ? 'bg-red-500 hover:bg-red-600' : 'bg-green-600 hover:bg-green-700 disabled:opacity-50']">
+                                        :class="['px-4 py-2 rounded-lg text-sm font-bold transition-all flex items-center justify-center whitespace-nowrap min-h-[40px] xl:flex-1', isGeneratingAll ? 'btn-running' : 'btn-pri disabled:opacity-50']">
                                         <svg v-if="isGeneratingAll" class="animate-spin h-4 w-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
                                         {{ isGeneratingAll ? (exportStatus || '停止生成') : '一键生成配音' }}
                                     </button>
@@ -1651,12 +1932,12 @@
                         <div class="flex flex-wrap items-center gap-2 px-3 py-3 bg-slate-50 border border-slate-200 rounded-xl">
                             <span class="text-[10px] font-bold text-slate-500 uppercase whitespace-nowrap">角色筛选</span>
                             <button @click="clearRoleFilters"
-                                :class="['px-2.5 py-1 rounded-full text-xs font-bold border transition-all', hasActiveRoleFilter ? 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100' : 'bg-blue-600 text-white border-blue-600 shadow-sm']">
+                                :class="['px-2.5 py-1 rounded-full text-xs font-bold border transition-all', hasActiveRoleFilter ? 'btn-tab-off' : 'btn-tab-on shadow-sm']">
                                 全部角色
                             </button>
                             <button v-for="roleName in roleFilterOptions" :key="roleName" @click="toggleRoleFilter(roleName)" type="button"
                                 :aria-pressed="selectedRoleFilters.includes(roleName)"
-                                :class="['px-2.5 py-1 rounded-full text-xs font-bold border transition-all', selectedRoleFilters.includes(roleName) ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100']">
+                                :class="['px-2.5 py-1 rounded-full text-xs font-bold border transition-all', selectedRoleFilters.includes(roleName) ? 'btn-tab-on shadow-sm' : 'btn-tab-off']">
                                 {{ roleName }}
                             </button>
                             <span v-if="hasActiveRoleFilter" class="text-xs text-slate-400 ml-auto">
@@ -1670,6 +1951,7 @@
                         </div>
                         <div v-for="(line, index) in renderedScriptLines" :key="line.id" @click="toggleLineSelection(renderedScriptLineIndexes[index], $event)"
                             :ref="el => { if (el) lineRefs[renderedScriptLineIndexes[index]] = el }"
+                            v-memo="[line.text, line.role, line.emotion, line.intensity, line.speed, line.break_duration, line.dialogueVolume, line.sfxVolume, line.filter, line.trimStart, line.trimEnd, line.audioUrl, line.isGenerating, line.sfx, line.type, selectedLineIndex === renderedScriptLineIndexes[index], currentSequenceIndex === renderedScriptLineIndexes[index]]"
                             class="transition-all duration-200">
 
                             <!-- BGM 控制块 -->
@@ -1678,11 +1960,11 @@
                                 <div
                                     class="flex flex-col items-center justify-center gap-1 w-8 flex-shrink-0 border-r border-purple-200 pr-2">
                                     <button @click.stop="moveLineUp(renderedScriptLineIndexes[index])"
-                                        class="text-purple-400 hover:text-purple-700 p-0.5 hover:bg-purple-100 rounded"
+                                        class="p-0.5 rounded btn-icon"
                                         type="button" aria-label="上移" title="上移"><svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/></svg></button>
                                     <div class="text-xs font-bold text-purple-500 select-none">{{ renderedScriptLineIndexes[index] + 1 }}</div>
                                     <button @click.stop="moveLineDown(renderedScriptLineIndexes[index])"
-                                        class="text-purple-400 hover:text-purple-700 p-0.5 hover:bg-purple-100 rounded"
+                                        class="p-0.5 rounded btn-icon"
                                         type="button" aria-label="下移" title="下移"><svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></button>
                                 </div>
                                 <div
@@ -1713,7 +1995,7 @@
                                 </div>
                                 <button @click="removeScriptLine(renderedScriptLineIndexes[index])"
                                     type="button" aria-label="删除" type="button" aria-label="删除" title="删除"
-                                    class="text-slate-300 hover:text-red-500 p-2">
+                                    class="p-2 btn-icon">
                                     <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd"
                                             d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
@@ -1729,11 +2011,11 @@
                                     <div
                                         class="flex flex-col items-center justify-center gap-1 w-8 flex-shrink-0 border-r border-emerald-200 pr-2">
                                         <button @click.stop="moveLineUp(renderedScriptLineIndexes[index])"
-                                            class="text-emerald-400 hover:text-emerald-700 p-0.5 hover:bg-emerald-100 rounded"
+                                            class="p-0.5 rounded btn-icon"
                                             type="button" aria-label="上移" title="上移"><svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/></svg></button>
                                         <div class="text-xs font-bold text-emerald-500 select-none">{{ renderedScriptLineIndexes[index] + 1 }}</div>
                                         <button @click.stop="moveLineDown(renderedScriptLineIndexes[index])"
-                                            class="text-emerald-400 hover:text-emerald-700 p-0.5 hover:bg-emerald-100 rounded"
+                                            class="p-0.5 rounded btn-icon"
                                             type="button" aria-label="下移" title="下移"><svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></button>
                                     </div>
 
@@ -1743,7 +2025,7 @@
                                                 背景图片块
                                             </div>
                                             <button @click="removeScriptLine(renderedScriptLineIndexes[index])"
-                                                class="text-slate-300 hover:text-red-500 p-2"
+                                                class="p-2 btn-icon"
                                                 type="button" aria-label="删除" title="删除"><svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd"
                                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
@@ -1768,7 +2050,7 @@
                                                     </div>
                                                 </div>
                                                 <button @click.stop="openBgImagePicker(renderedScriptLineIndexes[index])" type="button"
-                                                    class="w-full px-2 py-1.5 bg-emerald-100 text-emerald-700 text-[11px] border border-emerald-200 rounded hover:bg-emerald-200 transition-all font-bold">
+                                                    class="w-full px-2 py-1.5 text-[11px] border rounded transition-all font-bold btn-ins-green">
                                                     选择图片（保存）
                                                 </button>
                                             </div>
@@ -1780,7 +2062,7 @@
                                                         LLM 图片提示词（中文）
                                                     </div>
                                                     <button @click.stop="copyBgImagePrompt(line)" type="button"
-                                                        class="px-2 py-1 bg-white text-emerald-700 text-[11px] border border-emerald-200 rounded hover:bg-emerald-50 transition-all font-bold">
+                                                        class="px-2 py-1 text-[11px] rounded transition-all font-bold btn-ins-green">
                                                         复制
                                                     </button>
                                                 </div>
@@ -1801,11 +2083,11 @@
                                     <div
                                         class="flex flex-col items-center justify-center gap-1 w-8 flex-shrink-0 border-r border-slate-100 pr-2">
                                         <button @click.stop="moveLineUp(renderedScriptLineIndexes[index])"
-                                            class="text-slate-400 hover:text-blue-600 p-0.5 hover:bg-slate-100 rounded"
+                                            class="p-0.5 hover:bg-slate-100 rounded btn-icon"
                                             type="button" aria-label="上移" title="上移"><svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/></svg></button>
                                         <div class="text-xs font-bold text-slate-400 select-none">{{ renderedScriptLineIndexes[index] + 1 }}</div>
                                         <button @click.stop="moveLineDown(renderedScriptLineIndexes[index])"
-                                            class="text-slate-400 hover:text-blue-600 p-0.5 hover:bg-slate-100 rounded"
+                                            class="p-0.5 hover:bg-slate-100 rounded btn-icon"
                                             type="button" aria-label="下移" title="下移"><svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></button>
                                     </div>
 
@@ -1946,7 +2228,7 @@
                                             <div class="flex items-center gap-1">
                                                 <button @click.stop="generateLineAudio(line)"
                                                     :title="line.isGenerating ? '停止生成' : '生成音频'"
-                                                    :class="['p-2', line.isGenerating ? 'text-red-500 hover:text-red-700' : 'text-slate-400 hover:text-indigo-600 disabled:text-slate-300 disabled:cursor-wait']">
+                                                    :class="['p-2 btn-icon', line.isGenerating ? 'text-red-500' : 'disabled:text-slate-300 disabled:cursor-wait']">
                                                     <svg v-if="line.isGenerating" class="animate-spin h-4 w-4"
                                                         xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24">
@@ -1964,7 +2246,7 @@
                                                     </svg>
                                                 </button>
                                                 <button v-if="line.audioUrl" @click.stop="playLineAudio(line)"
-                                                    title="播放" class="text-slate-400 hover:text-green-600 p-2">
+                                                    title="播放" class="p-2 btn-icon">
                                                     <svg v-if="isAuditioningId === line.id"
                                                         class="h-4 w-4 animate-pulse text-green-600"
                                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -1981,7 +2263,7 @@
                                                     </svg>
                                                 </button>
                                                 <button v-if="line.audioUrl" @click.stop="clearLineAudio(line)" title="清除音频"
-                                                    class="text-slate-400 hover:text-red-600 p-2">
+                                                    class="p-2 btn-icon">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
@@ -1990,7 +2272,7 @@
                                                     </svg>
                                                 </button>
                                                 <button @click="removeScriptLine(renderedScriptLineIndexes[index])" type="button" aria-label="删除" title="删除"
-                                                    class="text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity p-2">
+                                                    class="opacity-0 group-hover:opacity-100 transition-opacity p-2 btn-icon">
                                                     <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
@@ -2017,10 +2299,10 @@
                                             class="w-10 bg-transparent text-center outline-none border-b border-transparent hover:border-blue-300"
                                             title="插入位置 (0.0 - 1.0)">
                                         <button type="button" @click="removeLineSfx(line, sIdx)" aria-label="移除音效"
-                                            class="ml-2 text-slate-400 hover:text-red-500 font-bold">×</button>
+                                            class="ml-2 font-bold btn-icon">×</button>
                                     </div>
                                     <button @click="addLineSfx(line)"
-                                        class="text-[10px] text-slate-400 hover:text-blue-600 border border-dashed border-slate-300 rounded px-2 py-1 hover:border-blue-400 transition-colors flex items-center gap-1">+
+                                        class="text-[10px] border border-dashed rounded px-2 py-1 hover:border-blue-400 transition-colors flex items-center gap-1 btn-icon">+
                                         音效</button>
                                 </div>
 
@@ -2058,9 +2340,9 @@
                     <h3 class="text-lg font-bold text-slate-700">自定义 Prompt 模板</h3>
                     <div class="space-x-2">
                         <button @click="savePrompt"
-                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存设置</button>
+                            class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all btn-pri">保存设置</button>
                         <button @click="resetPrompt"
-                            class="px-5 py-2 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-200 transition-all">恢复默认</button>
+                            class="px-5 py-2 rounded-xl text-xs font-bold transition-all btn-sec">恢复默认</button>
                     </div>
                 </div>
 
@@ -2090,9 +2372,9 @@
                     <h4 class="text-sm font-bold text-slate-600">2. 角色音色分析 Prompt</h4>
                     <div class="space-x-2">
                         <button @click="saveVoicePrompt"
-                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存设置</button>
+                            class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all btn-pri">保存设置</button>
                         <button @click="resetVoicePrompt"
-                            class="px-5 py-2 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-200 transition-all">恢复默认</button>
+                            class="px-5 py-2 rounded-xl text-xs font-bold transition-all btn-sec">恢复默认</button>
                     </div>
                 </div>
                 <div class="flex items-center gap-2 mb-4 bg-white p-3 rounded-lg border border-slate-200">
@@ -2118,9 +2400,9 @@
                     <h4 class="text-sm font-bold text-slate-600">3. Qwen 音色生成参考音频 文本模板</h4>
                     <div class="space-x-2">
                         <button @click="saveQwenVoiceText"
-                            class="px-5 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold hover:bg-blue-700 transition-all shadow-sm">保存设置</button>
+                            class="px-5 py-2.5 rounded-xl text-sm font-bold transition-all btn-pri">保存设置</button>
                         <button @click="resetQwenVoiceText"
-                            class="px-5 py-2 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-200 transition-all">恢复默认</button>
+                            class="px-5 py-2 rounded-xl text-xs font-bold transition-all btn-sec">恢复默认</button>
                     </div>
                 </div>
                 <div class="flex items-center gap-2 mb-4 bg-white p-3 rounded-lg border border-slate-200">
@@ -2492,7 +2774,11 @@
                 const rawAnalysisResult = ref('');
                 const analysisAbortController = ref(null);
                 const selectedLineIndex = ref(-1);
-                
+
+                // --- 角色音色生成队列 ---
+                const voiceTaskQueue = ref([]);     // { id, char, type: 'analyze'|'generate', status: 'queued'|'running', abortController }
+                const voiceTaskRunning = ref(false);
+
                 // --- 多脚本管理逻辑 ---
                 const scriptList = ref([{ id: 'default', name: '脚本 1', data: { rawScript: '', scriptLines: [], rawAnalysisResult: '', characters: [] } }]);
                 const currentScriptId = ref('default');
@@ -2517,11 +2803,14 @@
                 };
 
                 const switchScript = (id) => {
-                    if (isAnalyzingScript.value || isGeneratingAll.value || isSequencePlaying.value) {
+                    if (isAnalyzingScript.value || isGeneratingAll.value || isSequencePlaying.value || voiceTaskRunning.value) {
                         return alert('请先停止当前的生成或播放任务，再切换脚本。');
                     }
                     if (id === currentScriptId.value) return;
                     syncCurrentScriptState();
+                    voiceTaskQueue.value.forEach(t => { if (t.abortController) t.abortController.abort(); });
+                    voiceTaskQueue.value = [];
+                    voiceTaskRunning.value = false;
                     
                     const target = scriptList.value.find(s => s.id === id);
                     if (target) {
@@ -2603,6 +2892,7 @@
                 const isSequencePlaying = ref(false);
                 const currentSequenceIndex = ref(-1);
                 const lineRefs = ref([]);
+                const playbackSpeed = ref(1);
                 const scriptListContainer = ref(null);
                 const scriptListLoadMoreSentinel = ref(null);
                 const SCRIPT_LIST_INITIAL_RENDER = 40;
@@ -2731,14 +3021,14 @@
 
 ## 1. 拆分与识别
 - **完整保留**: 必须完整保留原文内容，不得遗漏、删改或省略任何字句。
-- **严禁删改**: **绝对禁止**删除原文中的说话人提示语（如“他低声说”、“笑着问道”）。这些内容必须作为“旁白”单独提取出来。
+- **严禁删改**: **绝对禁止**删除原文中的说话人提示语（如"他低声说"、"笑着问道"）。这些内容必须作为"旁白"单独提取出来。
 - **内容提取**: 提取对话内容和所有非对话的旁白。
-- **角色识别**: 根据小说内容分析说话人。旁白的角色名统一标记为“旁白”。
+- **角色识别**: 根据小说内容分析说话人。旁白的角色名统一标记为"旁白"。
 - **长度控制**: 文本拆分长度要适中。**避免过碎**（不要把每一句短句都拆成独立一行），也**避免过长**（单行文本建议不超过 50-80 字，过长的旁白请在句号处适当拆分）。
 - **旁白处理**: 连续的旁白内容应优先合并，除非中间需要插入音效、有明显的时间跳跃，或合并后长度过长。
 
 ## 3. 音效插入 (sfx)
-- 如果情节需要（如“摔门而去”、“雷声大作”），且音效库中有对应素材，请在 JSON 对象中添加 \`sfx\` 字段。
+- 如果情节需要（如"摔门而去"、"雷声大作"），且音效库中有对应素材，请在 JSON 对象中添加 \`sfx\` 字段。
 - **严格限制**: 只能使用【音效库】中列出的名称。如果库为空或没有匹配项，**绝对不要**添加此字段。
 - **禁止混用**: **绝对禁止**在 \`sfx\` 字段中使用【背景音乐库】中的名称。SFX 只能使用【音效库】的内容。
 - **支持多音效**: 一句台词中可以插入多个音效，只要位置合理（如开头关门，中间脚步声）。
@@ -2762,13 +3052,13 @@
 
 - **停顿时间**: 分析台词后的剧情节奏，设置该台词结束后的停顿时间（秒）。
 - 默认为 0。如果有动作描写或心理活动暗示停顿，请设置相应时长（如 0.5, 1.0, 2.0）。
-- 示例: 两人对话间的尴尬沉默，或动作描写（如“他喝了一口茶”）需要的时间。
+- 示例: 两人对话间的尴尬沉默，或动作描写（如"他喝了一口茶"）需要的时间。
 
 ## 5. 音频滤波器 (Filter)
-- 如果剧情环境特殊（如“在水下说话”、“电话通话中”、“回忆/内心独白”），且【滤波器库】中有对应效果，请在台词对象中添加 \`filter\` 字段。
+- 如果剧情环境特殊（如"在水下说话"、"电话通话中"、"回忆/内心独白"），且【滤波器库】中有对应效果，请在台词对象中添加 \`filter\` 字段。
 - **格式**: \`"filter": "滤波器名称"\`
 - **严格限制**: 必须使用【滤波器库】中存在的名称。如果没有匹配项，**不要**生成此字段。
-- **特别提醒**: 如果角色是“旁白”，**千万不要**使用滤波器功能。
+- **特别提醒**: 如果角色是"旁白"，**千万不要**使用滤波器功能。
 
 ## 6. 输出格式
 - **严格 JSON**: 输出格式必须是严格的 JSON 数组，不包含任何额外说明或代码块标记。
@@ -2780,29 +3070,29 @@
 
 ## 7. 背景图片块 (bgImage)
 - **插入时机**: 当场景氛围、地点、时间（白天/夜晚）、或叙事视角发生变化时，请在相邻的台词对象之间插入一个背景图片对象。
-- **插入位置**: 背景图片对象必须出现在“某个台词对象之后”并且“紧接着下一个台词对象之前”（不要插到台词组的内部）。
+- **插入位置**: 背景图片对象必须出现在"某个台词对象之后"并且"紧接着下一个台词对象之前"（不要插到台词组的内部）。
 - **对象格式**: \`{"type":"bgImage","image_prompt":"..."}\`
   - \`image_prompt\` 必须是用于生成图片的**中文提示词**，并且必须根据当前小说上下文生成（包含：场景/地点、人物外观与表情（如果画面中需要人物）、衣着风格、光线、画面构图、镜头感、氛围与情绪、画风偏好等）。
-  - **提示词质量**: \`image_prompt\` 只输出中文、不要输出任何 JSON/代码/多余解释，尽量是一段可直接用于“生成图片”的提示文本（越具体越好，避免“可能/也许/看起来”之类不确定词）。
-  - **人物一致性（严格统一）**: 如果 \`image_prompt\` 中出现人物（包括面部/身体/衣着等可识别外观），则必须对每个出现人物给出“统一人物外观设定”，并且同一人物在所有 \`bgImage\` 块中必须保持完全一致：性别、年龄（或年龄段）、服装款式/颜色/材质、发型（发色/发长）、标志性特征/配饰（如有）。为保证一致性，你必须把人物外观设定写成同一种中文短句模板，并且对同名人物要求“逐字不变”（不要同义改写）：
+  - **提示词质量**: \`image_prompt\` 只输出中文、不要输出任何 JSON/代码/多余解释，尽量是一段可直接用于"生成图片"的提示文本（越具体越好，避免"可能/也许/看起来"之类不确定词）。
+  - **人物一致性（严格统一）**: 如果 \`image_prompt\` 中出现人物（包括面部/身体/衣着等可识别外观），则必须对每个出现人物给出"统一人物外观设定"，并且同一人物在所有 \`bgImage\` 块中必须保持完全一致：性别、年龄（或年龄段）、服装款式/颜色/材质、发型（发色/发长）、标志性特征/配饰（如有）。为保证一致性，你必须把人物外观设定写成同一种中文短句模板，并且对同名人物要求"逐字不变"（不要同义改写）：
     - 模板示例：\`人物外观设定：{角色名}（性别=...，年龄=...，服装=...，发型=...，标志=...，主要配色=...）\`
-  - 角色名判定规则：\`{角色名}\` 必须使用当前背景图片所处场景中最近一次出现的 \`dialogue\` 对象的 \`role_name\`（例如“老李”“我”“旁白”等），同一 \`role_name\` 即视为同一人物。
-  - 除非当场景完全不出现该人物，否则不要省略其外观设定；否则可能导致不同图片出现“同一个人物外观不一致”。
+  - 角色名判定规则：\`{角色名}\` 必须使用当前背景图片所处场景中最近一次出现的 \`dialogue\` 对象的 \`role_name\`（例如"老李""我""旁白"等），同一 \`role_name\` 即视为同一人物。
+  - 除非当场景完全不出现该人物，否则不要省略其外观设定；否则可能导致不同图片出现"同一个人物外观不一致"。
   - 提示词只需要中文，不需要输出图片数据或链接。
 - **字段限制**: \`bgImage\` 对象只输出上述必要字段（至少必须有 \`type\` 与 \`image_prompt\`）。
 - **与第 6 点兼容**: 即使第 6 点列出了两种对象，本规则要求你额外输出 \`type":"bgImage"\` 的第三种对象；最终仍然是一个严格 JSON 数组。
 - **type 字段严格性**: \`type\` 字段必须严格等于 \`bgImage\`（大小写不要改）。
 - **数量约束（严格遵守）**: 请在整个 JSON 数组中严格插入且仅插入 \${bgImageCount} 个 \`type":"bgImage"\` 对象，并且它们必须全部与剧情相关（不能随便凑数）。
-- **开场强制**: 第一个 \`bgImage\` 对象必须出现在“第一个 dialogue 对象之前”，用于视频开场背景；允许开头存在 \`bgm\` 控制块，但 \`bgImage\` 仍必须早于第一个 \`dialogue\`。
+- **开场强制**: 第一个 \`bgImage\` 对象必须出现在"第一个 dialogue 对象之前"，用于视频开场背景；允许开头存在 \`bgm\` 控制块，但 \`bgImage\` 仍必须早于第一个 \`dialogue\`。
 - **分布要求**: 除开场第一张外，其余 \`bgImage\` 必须按照剧情节奏插入在台词之间（至少间隔一个 \`dialogue\`），避免连续出现多个 \`bgImage\`。
-- **例外开场**: 允许第一个 \`bgImage\` 作为开场背景，放在第一个 \`dialogue\` 之前；其余 \`bgImage\` 仍按“某个台词对象之后并紧接着下一个台词对象之前”的相邻插入规则执行。
+- **例外开场**: 允许第一个 \`bgImage\` 作为开场背景，放在第一个 \`dialogue\` 之前；其余 \`bgImage\` 仍按"某个台词对象之后并紧接着下一个台词对象之前"的相邻插入规则执行。
 
 
 ## 小说原文:
 <novel_content>
-“别接那个电话！”老李猛地按住了我的手，脸色惨白，“那是昨晚值班的小张打来的。”
-我愣住了，看着办公桌上疯狂震动的座机：“可是……小张不是今早已经确认死亡了吗？”
-“对，”老李的声音在发抖，“所以，别接。如果你接了，他会问你为什么不救他。”
+"别接那个电话！"老李猛地按住了我的手，脸色惨白，"那是昨晚值班的小张打来的。"
+我愣住了，看着办公桌上疯狂震动的座机："可是……小张不是今早已经确认死亡了吗？"
+"对，"老李的声音在发抖，"所以，别接。如果你接了，他会问你为什么不救他。"
 </novel_content>
 
 ## 输出:
@@ -2828,7 +3118,7 @@
                 const customPromptTemplate = ref(defaultPromptTemplate);
                 const useCustomPrompt = ref(false);
 
-                const defaultVoicePromptTemplate = `请根据以下小说片段，简要描述角色“\${charName}”的音色特征。\n要求：必须要带上性别，对音色的描述文本非常精炼，控制在20字以内。重点描述声音的物理质感（如声线粗细、年龄感、沙哑/清脆等），不要包含过多的性格或情绪描写。直接输出描述，不要废话。\n\n小说片段：\n\${rawScript}`;
+                const defaultVoicePromptTemplate = `请根据以下小说片段，简要描述角色"\${charName}"的音色特征。\n要求：必须要带上性别，对音色的描述文本非常精炼，控制在20字以内。重点描述声音的物理质感（如声线粗细、年龄感、沙哑/清脆等），不要包含过多的性格或情绪描写。直接输出描述，不要废话。\n\n小说片段：\n\${rawScript}`;
 
                 const customVoicePromptTemplate = ref(defaultVoicePromptTemplate);
                 const useCustomVoicePrompt = ref(false);
@@ -2861,11 +3151,19 @@
                             const { FFmpeg } = FFmpegGlobal;
                             const { toBlobURL } = FFmpegUtilGlobal;
                             const ffmpeg = new FFmpeg();
+                            // 注册日志/进度监听，便于诊断 FFmpeg 内部错误
+                            ffmpeg.on('log', ({ message }) => {
+                                console.log('[FFmpeg LOG]', message);
+                            });
+                            ffmpeg.on('progress', ({ progress }) => {
+                                console.log('[FFmpeg PROGRESS]', progress);
+                            });
                             const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/umd';
                             await ffmpeg.load({
                                 coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
                                 wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm')
                             });
+                            console.log('[FFmpeg] 加载完成');
                             ffmpegInstance = ffmpeg;
                             return ffmpeg;
                         })();
@@ -2875,7 +3173,9 @@
 
                 const runFFmpegTask = async (task) => {
                     const scheduled = ffmpegTaskQueue.then(task, task);
-                    ffmpegTaskQueue = scheduled.catch(() => {});
+                    ffmpegTaskQueue = scheduled.catch((err) => {
+                        console.error('[FFmpeg TASK ERROR]', err?.message || err);
+                    });
                     return scheduled;
                 };
 
@@ -2897,7 +3197,7 @@
 
                 const buildAtempoFilterChain = (speed) => {
                     const filters = [];
-                    let remaining = Math.max(0.2, Math.min(2, Number(speed) || 1));
+                    let remaining = Math.max(0.2, Math.min(6, Number(speed) || 1));
 
                     while (remaining < 0.5) {
                         filters.push('atempo=0.5');
@@ -2922,14 +3222,15 @@
                     return parts.join(',');
                 };
 
-                const getProcessedDialogueAsset = async (line) => {
+                const getProcessedDialogueAsset = async (line, globalSpeed = 1) => {
                     if (!line?.audioUrl) return null;
                     const sourceBuffer = await loadAudioBuffer(line.audioUrl);
                     if (!sourceBuffer) return null;
 
                     const trimStart = line.trimStart || 0;
                     const trimEnd = line.trimEnd || 1;
-                    const speed = line.speed || 1.0;
+                    const perLineSpeed = line.speed || 1.0;
+                    const combinedSpeed = perLineSpeed * globalSpeed;
                     const cacheKey = [
                         line.id,
                         line.audioUrl,
@@ -2937,7 +3238,8 @@
                         sourceBuffer.sampleRate,
                         trimStart,
                         trimEnd,
-                        speed
+                        perLineSpeed,
+                        globalSpeed
                     ].join('|');
 
                     if (processedDialogueAssetCache.has(cacheKey)) {
@@ -2948,7 +3250,7 @@
                     }
 
                     const processPromise = (async () => {
-                        const safeSpeed = Math.max(0.2, Math.min(2, Number(speed) || 1));
+                        const safeSpeed = Math.max(0.2, Math.min(6, Number(combinedSpeed) || 1));
                         const startSec = sourceBuffer.duration * trimStart;
                         const endSec = Math.max(startSec + 0.01, sourceBuffer.duration * trimEnd);
 
@@ -2970,21 +3272,66 @@
                         const sourceExt = getFileExtensionFromBlob(sourceBlob);
                         const inputName = `line_${line.id}_${Date.now()}.${sourceExt}`;
                         const outputName = `line_${line.id}_${Date.now()}_processed.wav`;
-
-                        const processedBytes = await runFFmpegTask(async () => {
-                            await ffmpeg.writeFile(inputName, new Uint8Array(await sourceBlob.arrayBuffer()));
-                            await ffmpeg.exec([
-                                '-i', inputName,
-                                '-af', buildDialogueAudioFilter(startSec, endSec, safeSpeed),
-                                '-vn',
-                                '-acodec', 'pcm_s16le',
-                                outputName
-                            ]);
-                            const data = await ffmpeg.readFile(outputName);
-                            await ffmpeg.deleteFile(inputName);
-                            await ffmpeg.deleteFile(outputName);
-                            return data;
+                        const filterChain = buildDialogueAudioFilter(startSec, endSec, safeSpeed);
+                        console.log('[FFmpeg 处理]', {
+                            lineId: line.id, safeSpeed, startSec, endSec,
+                            inputName, outputName, filterChain,
+                            sourceSize: sourceBlob.size
                         });
+
+                        let processedBytes;
+                        try {
+                            processedBytes = await runFFmpegTask(async () => {
+                                await ffmpeg.writeFile(inputName, new Uint8Array(await sourceBlob.arrayBuffer()));
+                                console.log('[FFmpeg 执行] 开始 exec...');
+                                await ffmpeg.exec([
+                                    '-y',
+                                    '-i', inputName,
+                                    '-af', filterChain,
+                                    '-vn',
+                                    '-acodec', 'pcm_s16le',
+                                    outputName
+                                ]);
+                                console.log('[FFmpeg 执行] exec 完成，读取输出...');
+                                const data = await ffmpeg.readFile(outputName);
+                                console.log('[FFmpeg 执行] 输出大小:', data?.byteLength || 0, 'bytes');
+                                await ffmpeg.deleteFile(inputName);
+                                await ffmpeg.deleteFile(outputName);
+                                return data;
+                            });
+                        } catch (ffmpegErr) {
+                            const errMsg = ffmpegErr?.message || String(ffmpegErr);
+                            const isMemCrash = /memory access out of bounds/i.test(errMsg);
+                            console.error('[FFmpeg 处理失败]', {
+                                lineId: line.id, safeSpeed, filterChain,
+                                error: errMsg,
+                                fallback: isMemCrash ? '返回原始音频 (FFmpeg WASM 内存耗尽，重建实例)' : '返回原始音频'
+                            });
+                            // 清理可能残留的文件
+                            try { await ffmpeg.deleteFile(inputName); } catch (_) {}
+                            try { await ffmpeg.deleteFile(outputName); } catch (_) {}
+                            // WASM 内存越界 → 重建 FFmpeg 实例，避免后续行也崩溃
+                            if (isMemCrash) {
+                                ffmpegInstance = null;
+                                ffmpegLoadPromise = null;
+                                console.warn('[FFmpeg] 已重置实例，下次使用时将重新加载');
+                            }
+                            // 回退：返回原始音频 buffer，调用方用 playbackRate 补速
+                            const fallbackBlob = await getAudioBlobFromUrl(line.audioUrl);
+                            const fallbackAsset = {
+                                buffer: sourceBuffer,
+                                blob: fallbackBlob,
+                                url: line.audioUrl,
+                                duration: sourceBuffer.duration,
+                                _ffmpegFallback: true
+                            };
+                            processedDialogueAssetCache.set(cacheKey, fallbackAsset);
+                            return fallbackAsset;
+                        }
+
+                        if (!processedBytes || processedBytes.byteLength === 0) {
+                            throw new Error(`FFmpeg 输出为空 (line ${line.id}, speed=${safeSpeed})`);
+                        }
 
                         const processedBlob = new Blob([processedBytes.buffer.slice(processedBytes.byteOffset, processedBytes.byteOffset + processedBytes.byteLength)], { type: 'audio/wav' });
                         const processedUrl = URL.createObjectURL(processedBlob);
@@ -3012,13 +3359,15 @@
                     return asset?.buffer || null;
                 };
 
-                const getDialogueTimingInfo = async (line) => {
-                    const asset = await getProcessedDialogueAsset(line);
+                const getDialogueTimingInfo = async (line, globalSpeed = 1) => {
+                    const asset = await getProcessedDialogueAsset(line, globalSpeed);
                     if (!asset) return null;
                     const sourceBuffer = await loadAudioBuffer(line.audioUrl);
                     const trimStart = Math.max(0, Math.min(1, Number(line.trimStart) || 0));
                     const trimEnd = Math.max(trimStart, Math.min(1, Number(line.trimEnd) || 1));
-                    const safeSpeed = Math.max(0.2, Math.min(2, Number(line.speed) || 1));
+                    const perLineSpeed = line.speed || 1.0;
+                    const combinedSpeed = perLineSpeed * globalSpeed;
+                    const safeSpeed = Math.max(0.2, Math.min(6, Number(combinedSpeed) || 1));
 
                     return {
                         trimStart,
@@ -3026,7 +3375,8 @@
                         safeSpeed,
                         trimmedDuration: sourceBuffer ? sourceBuffer.duration * Math.max(0.0001, trimEnd - trimStart) : asset.duration,
                         effectiveDuration: asset.duration,
-                        processedBuffer: asset.buffer
+                        processedBuffer: asset.buffer,
+                        ffmpegFallback: !!asset._ffmpegFallback
                     };
                 };
 
@@ -3134,6 +3484,7 @@
                                 playbackAnimationFrame = null;
                             }
                         };
+                        previewSource.playbackRate.value = playbackSpeed.value;
                         previewSource.start(now, startTimeOffset, playDuration);
                         previewPlayingFile.value = filename;
 
@@ -3574,24 +3925,41 @@
 
                 const deleteCharacter = async (id) => {
                     if (!await showConfirm('确定删除此角色吗？')) return;
+                    // 清理队列中该角色的所有任务
+                    voiceTaskQueue.value = voiceTaskQueue.value.filter(t => {
+                        if (t.char.id === id) {
+                            if (t.abortController) t.abortController.abort();
+                            return false;
+                        }
+                        return true;
+                    });
+                    if (voiceTaskRunning.value && !voiceTaskQueue.value.some(t => t.status === 'running')) {
+                        voiceTaskRunning.value = false;
+                        if (voiceTaskQueue.value.some(t => t.status === 'queued')) {
+                            processVoiceTaskQueue();
+                        }
+                    }
                     characters.value = characters.value.filter(c => c.id !== id);
                     showToast('角色已删除', 'success');
                 };
 
-                const analyzeCharacterVoice = async (char) => {
-                    if (char.isAnalyzing) {
-                        if (char.abortController) char.abortController.abort();
-                        return;
-                    }
+                // --- 队列辅助 ---
+                const getQueuedTask = (char, type) => {
+                    return voiceTaskQueue.value.find(t => t.char.id === char.id && t.type === type && t.status === 'queued');
+                };
 
-                    if (!currentConfig.value) return alert('请先在“模型配置”中配置 LLM');
-                    if (!rawScript.value.trim()) return alert('请先在右侧输入小说原文');
+                const removeQueuedTask = (char, type) => {
+                    const idx = voiceTaskQueue.value.findIndex(t => t.char.id === char.id && t.type === type && t.status === 'queued');
+                    if (idx !== -1) voiceTaskQueue.value.splice(idx, 1);
+                };
 
+                // --- 执行函数（纯网络请求逻辑，由队列调度） ---
+                const executeAnalyzeVoice = async (char, controller) => {
                     char.isAnalyzing = true;
-                    const controller = new AbortController();
-                    char.abortController = controller;
-
                     try {
+                        if (!currentConfig.value) throw new Error('请先在模型配置中配置 LLM');
+                        if (!rawScript.value.trim()) throw new Error('请先在右侧输入小说原文');
+
                         const templateToUse = useCustomVoicePrompt.value ? customVoicePromptTemplate.value : defaultVoicePromptTemplate;
                         const promptText = templateToUse
                             .replace(/\${charName}/g, char.name)
@@ -3617,36 +3985,29 @@
                         const data = await res.json();
                         const content = data.choices[0]?.message?.content || '';
                         char.voiceDescription = content.trim();
+                        showToast(`${char.name} 音色分析完成`, 'success');
                     } catch (e) {
                         if (e.name !== 'AbortError') {
                             alert('分析失败: ' + e.message);
                         }
+                        throw e;
                     } finally {
                         char.isAnalyzing = false;
-                        delete char.abortController;
                     }
                 };
 
-                const generateQwenVoice = async (char) => {
-                    if (char.isGeneratingVoice) {
-                        if (char.abortController) char.abortController.abort();
-                        return;
-                    }
-
-                    if (!currentTtsConfig.value) return alert('请先选择 TTS 服务');
-                    if (!char.voiceDescription) return alert('请先填写音色描述');
-
+                const executeGenerateVoice = async (char, controller) => {
                     char.isGeneratingVoice = true;
                     const startTime = Date.now();
-                    const controller = new AbortController();
-                    char.abortController = controller;
 
-                    // 设置 30 分钟 (1800秒) 的前端超时时间，防止前端代码主动放弃
                     const timeoutId = setTimeout(() => {
-                        if (char.abortController) char.abortController.abort("timeout");
+                        controller.abort("timeout");
                     }, 1800000);
 
                     try {
+                        if (!currentTtsConfig.value) throw new Error('请先选择 TTS 服务');
+                        if (!char.voiceDescription) throw new Error('请先填写音色描述');
+
                         const cfg = currentTtsConfig.value;
                         let baseUrl = cfg.baseUrl.trim().replace(/\/+$/, '');
                         if (baseUrl.endsWith('/v1')) baseUrl = baseUrl.slice(0, -3);
@@ -3659,7 +4020,6 @@
                             text: textToUse
                         };
 
-                        // 1. 调用 Qwen3 生成音频
                         const genRes = await fetch(`${baseUrl}/v1/qwen/design`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -3667,9 +4027,6 @@
                             signal: controller.signal,
                             cache: 'no-store'
                         });
-
-                        // Don't clear timeout here, as upload might still need it
-                        // clearTimeout(timeoutId); 
 
                         if (!genRes.ok) {
                             const err = await genRes.text();
@@ -3680,11 +4037,9 @@
                         const filename = `qwen_${char.name}_${Date.now()}.wav`;
                         const file = new File([blob], filename, { type: 'audio/wav' });
 
-                        // 2. 保存到本地资源管理
                         localFileMap.value.set(filename, file);
                         await saveAssetToDB(filename, file);
 
-                        // 3. 上传回 TTS 服务器 (用于 IndexTTS 调用)
                         const formData = new FormData();
                         formData.append('audio', file);
                         formData.append('full_path', filename);
@@ -3696,16 +4051,13 @@
                         });
                         if (!upRes.ok) throw new Error('上传参考音频失败');
 
-                        // 4. 添加或更新音色库
                         const timbreName = `${char.name}_AI`;
                         const existingIndex = timbres.value.findIndex(t => t.name === timbreName);
 
                         if (existingIndex !== -1) {
-                            // 更新已有音色
                             timbres.value[existingIndex].description = char.voiceDescription;
                             timbres.value[existingIndex].refPath = filename;
                         } else {
-                            // 新增音色
                             timbres.value.push({
                                 id: Date.now().toString(),
                                 name: timbreName,
@@ -3714,12 +4066,9 @@
                             });
                         }
 
-                        // 5. 选中该音色
                         char.voiceFile = filename;
-
-                        // 6. 自动保存
                         triggerAutoSave();
-
+                        showToast(`${char.name} 音色生成完成`, 'success');
                     } catch (e) {
                         console.error(e);
                         let msg = e.message;
@@ -3735,11 +4084,108 @@
                             msg = `连接异常中断 (耗时 ${Math.round(duration)}秒)。\n这不是前端代码设定的超时(30分钟)，而是您的浏览器或网络环境(如代理/Nginx)强制断开了连接。\n\n由于无法修改后端保存文件，此音频已丢失。\n建议：尝试精简音色描述以减少生成时间。`;
                         }
                         alert('生成音色失败: ' + msg);
+                        throw e;
                     } finally {
                         clearTimeout(timeoutId);
                         char.isGeneratingVoice = false;
-                        delete char.abortController;
                     }
+                };
+
+                // --- 队列消费 ---
+                const processVoiceTaskQueue = async () => {
+                    if (voiceTaskRunning.value) return;
+                    const task = voiceTaskQueue.value.find(t => t.status === 'queued');
+                    if (!task) return;
+
+                    task.status = 'running';
+                    voiceTaskRunning.value = true;
+
+                    try {
+                        if (task.type === 'analyze') {
+                            await executeAnalyzeVoice(task.char, task.abortController);
+                        } else {
+                            await executeGenerateVoice(task.char, task.abortController);
+                        }
+                    } catch (e) {
+                        // 错误已在执行函数内部处理
+                    } finally {
+                        voiceTaskQueue.value = voiceTaskQueue.value.filter(t => t.id !== task.id);
+                        voiceTaskRunning.value = false;
+                        if (voiceTaskQueue.value.some(t => t.status === 'queued')) {
+                            processVoiceTaskQueue();
+                        }
+                    }
+                };
+
+                const enqueueVoiceTask = (char, type) => {
+                    if (getQueuedTask(char, type)) {
+                        showToast(`${char.name} 已有排队任务`, 'warning');
+                        return;
+                    }
+
+                    const controller = new AbortController();
+                    voiceTaskQueue.value.push({
+                        id: `${char.id}_${type}_${Date.now()}`,
+                        char,
+                        type,
+                        status: 'queued',
+                        abortController: controller
+                    });
+
+                    if (!voiceTaskRunning.value) {
+                        processVoiceTaskQueue();
+                    }
+                };
+
+                // --- 按钮入口函数 ---
+                const analyzeCharacterVoice = async (char) => {
+                    if (char.isAnalyzing) {
+                        const task = voiceTaskQueue.value.find(t => t.char.id === char.id && t.type === 'analyze' && t.status === 'running');
+                        if (task && task.abortController) {
+                            task.abortController.abort();
+                        }
+                        return;
+                    }
+
+                    const queued = getQueuedTask(char, 'analyze');
+                    if (queued) {
+                        queued.abortController.abort();
+                        removeQueuedTask(char, 'analyze');
+                        showToast(`已取消 ${char.name} 的音色分析排队`, 'info');
+                        return;
+                    }
+
+                    if (!currentConfig.value) return alert('请先在"模型配置"中配置 LLM');
+                    if (!rawScript.value.trim()) return alert('请先在右侧输入小说原文');
+
+                    enqueueVoiceTask(char, 'analyze');
+                };
+
+                const generateQwenVoice = async (char) => {
+                    if (char.isGeneratingVoice) {
+                        const task = voiceTaskQueue.value.find(t => t.char.id === char.id && t.type === 'generate' && t.status === 'running');
+                        if (task && task.abortController) {
+                            task.abortController.abort();
+                        }
+                        return;
+                    }
+
+                    const queued = getQueuedTask(char, 'generate');
+                    if (queued) {
+                        queued.abortController.abort();
+                        removeQueuedTask(char, 'generate');
+                        showToast(`已取消 ${char.name} 的音色生成排队`, 'info');
+                        return;
+                    }
+
+                    if (!currentTtsConfig.value) return alert('请先选择 TTS 服务');
+                    if (!char.voiceDescription) return alert('请先填写音色描述');
+
+                    enqueueVoiceTask(char, 'generate');
+                };
+
+                const isVoiceTaskQueued = (char, type) => {
+                    return voiceTaskQueue.value.some(t => t.char.id === char.id && t.type === type && t.status === 'queued');
                 };
 
 
@@ -4415,7 +4861,7 @@
 
                             if (line.type === 'dialogue' && targetLineIds.has(line.id)) {
 
-                                exportStatus.value = `配音生成中 ${completedCount + 1}/${totalToGenerate}...`;
+                                exportStatus.value = `${completedCount + 1}/${totalToGenerate}`;
 
                                 try {
 
@@ -4623,12 +5069,12 @@
                                 return results.filter(r => r !== null);
                             };
 
-                            const timingInfo = await getDialogueTimingInfo(line);
+                            const timingInfo = await getDialogueTimingInfo(line, playbackSpeed.value);
                             if (!timingInfo) {
                                 isAuditioningId.value = null;
                                 return resolve();
                             }
-                            const { trimStart, trimEnd, processedBuffer } = timingInfo;
+                            const { trimStart, trimEnd, processedBuffer, ffmpegFallback } = timingInfo;
                             const processedDuration = processedBuffer.duration;
                             const sfxBuffers = await loadSfx();
                             const trimSpan = Math.max(0.0001, trimEnd - trimStart);
@@ -4650,6 +5096,7 @@
 
                                     const sOffset = buffer.duration * sfxTrimStart;
                                     const sDuration = buffer.duration * (sfxTrimEnd - sfxTrimStart);
+                                    sSrc.playbackRate.value = playbackSpeed.value;
                                     sSrc.start(sfxTime, sOffset, sDuration);
 
                                     sfxSources.push(sSrc);
@@ -4703,6 +5150,8 @@
                                 resolve();
                             };
                             dialogueSource.onended = finishPlayback;
+                            // FFmpeg 正常：速度已保调处理到 buffer；回退行：用 playbackRate 补速
+                            dialogueSource.playbackRate.value = ffmpegFallback ? playbackSpeed.value : 1;
                             dialogueSource.start(now, 0);
 
                             // 启动进度条动画
@@ -5326,7 +5775,7 @@
                                     if (data.rawAnalysisResult !== undefined) rawAnalysisResult.value = data.rawAnalysisResult;
 
                                     // 修复：读取存档时，如果存档包含角色列表则直接使用，否则根据台词重建角色列表
-                                    // 这样可以确保“没有的角色要删除”，并且“角色的音色选用也要保存”
+                                    // 这样可以确保"没有的角色要删除"，并且"角色的音色选用也要保存"
                                     if (data.characters && Array.isArray(data.characters)) {
                                         characters.value = data.characters;
                                         characters.value.forEach(c => { if (c.volume === undefined) c.volume = 1.0; });
@@ -6050,6 +6499,7 @@
                         bgmGainNode.gain.linearRampToValueAtTime(finalVolume, audioContext.currentTime + 2);
 
                         bgmAudioNode.connect(bgmGainNode).connect(getAudioOutputNode());
+                        bgmAudioNode.playbackRate.value = playbackSpeed.value;
                         bgmAudioNode.start(0, bgmAudioNode.loopStart);
                     } catch (e) {
                         console.error(`Failed to load or play BGM ${bgmLibItem.filename}:`, e);
@@ -6448,7 +6898,7 @@ const generateVideo = async () => {
                         return;
                     }
 
-                    if (!currentConfig.value) return alert('请先在“模型配置”选择一个 LLM 模型配置');
+                    if (!currentConfig.value) return alert('请先在"模型配置"选择一个 LLM 模型配置');
                     if (!rawScript.value.trim()) return alert('请输入原文内容');
 
                     isAnalyzingScript.value = true;
@@ -6503,7 +6953,7 @@ const generateVideo = async () => {
                         .replace(/\${rawScript}/g, rawScript.value)
                         .replace(/\${bgImageCount}/g, bgImageCount.value);
 
-                    // 兼容：当用户启用“自定义 Prompt”时，补充最低约束与数量约束（只添加，不删减原有 prompt）。
+                    // 兼容：当用户启用"自定义 Prompt"时，补充最低约束与数量约束（只添加，不删减原有 prompt）。
                     if (useCustomPrompt.value) {
                         if (!finalPrompt.includes('bgImage')) {
                             finalPrompt += `
@@ -6519,7 +6969,7 @@ const generateVideo = async () => {
 
 ## 背景图片块数量约束（严格遵守）
 - 请在整个 JSON 数组中严格插入且仅插入 ${bgImageCount.value} 个 \`type":"bgImage"\` 对象。
-- 第一个 \`bgImage\` 对象必须出现在“第一个 dialogue 对象之前”，用于视频开场背景；允许开头存在 \`bgm\` 控制块。
+- 第一个 \`bgImage\` 对象必须出现在"第一个 dialogue 对象之前"，用于视频开场背景；允许开头存在 \`bgm\` 控制块。
 - 除开场第一张外，其余 \`bgImage\` 必须按剧情节奏插入在台词之间（至少间隔一个 \`dialogue\`），避免连续出现多个 \`bgImage\`。
 `;
                     }
@@ -6966,6 +7416,7 @@ const generateVideo = async () => {
                     // Character Actions (New)
                     characters, addCharacter, deleteCharacter,
                     analyzeCharacterVoice, generateQwenVoice,
+                    voiceTaskQueue, voiceTaskRunning, isVoiceTaskQueued,
 
                     // Timbre Actions
                     timbres, timbreForm, isEditingTimbre, selectedTimbreId,
@@ -6993,7 +7444,7 @@ const generateVideo = async () => {
                     playPreview, previewPlayingFile,
                     send, stopGeneration, clearAll,
 
-                    playbackProgress, // Export for template
+                    playbackProgress, playbackSpeed, // Export for template
                     stageBgUrl,
                     bgImageCount,
                     bgImagePickerRef,
