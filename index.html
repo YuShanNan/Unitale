@@ -1712,15 +1712,27 @@
                 <div class="script-character-panel bg-slate-100 p-3 sm:p-4 rounded-xl border border-slate-200 flex flex-col overflow-hidden shadow-sm">
                     <h3 class="text-sm font-bold text-slate-700 mb-3 flex justify-between items-center flex-shrink-0">
                         角色列表
-                        <button @click="addCharacter"
-                            class="text-xs font-bold rounded-xl px-3 py-1.5 transition-all btn-pri">+ 新增</button>
+                        <div class="flex gap-1">
+                            <button @click="batchAnalyze" title="批量分析音色"
+                                class="p-1.5 rounded-lg transition-all btn-icon">
+                                <svg class="h-4 w-4" viewBox="0 0 1024 1024" fill="currentColor"><path d="M512 85.3C323.8 85.3 179.1 200.7 117.8 348.8S77.2 680.5 210.3 813.7s316.9 153.8 464.9 92.5C823.3 844.9 938.7 700.2 938.7 512a42.7 42.7 0 0 0-85.4 0c0 153.9-91.4 265.9-210.7 315.3-119.3 49.5-263.2 34.8-372-74-108.8-108.8-123.4-252.7-74-372C246.1 262.1 358.1 170.7 512 170.7c96.2 0 188.5 38.2 258 105l95.8 95.9a42.7 42.7 0 0 0 60.3 0 42.7 42.7 0 0 0 0-60.3l-96.4-96.4c-.2-.2-.4-.4-.6-.6C744.2 132.5 630.8 85.3 512 85.3z"/><path d="M896 85.3a42.7 42.7 0 0 0-42.7 42.7v170.7H682.7a42.7 42.7 0 0 0 0 85.3h213.3A42.7 42.7 0 0 0 938.7 341.3V128A42.7 42.7 0 0 0 896 85.3z"/></svg>
+                            </button>
+                            <button @click="batchGenerate" title="批量生成音色"
+                                class="p-1.5 rounded-lg transition-all btn-icon">
+                                <svg class="h-4 w-4" viewBox="0 0 1024 1024" fill="currentColor"><path d="M598.7 93.8l-15.4 305.4h254.7a21.3 21.3 0 0 1 16.6 34.6L447.8 945a21.3 21.3 0 0 1-38-14.4l14.6-293.4H147.6a21.3 21.3 0 0 1-16.5-34.8L560.9 79.2a21.3 21.3 0 0 1 37.8 14.6zM503.7 283.3L283 551.9h231.2l-2.2 44.8-7 139.4 200.2-251.5H493.4l2.3-44.8 7.9-156.4z"/></svg>
+                            </button>
+                            <button @click="addCharacter" title="新增角色"
+                                class="p-1.5 rounded-lg transition-all btn-icon">
+                                <svg class="h-4 w-4" viewBox="0 0 1024 1024" fill="currentColor"><path d="M213.3 469.3a42.7 42.7 0 0 0 0 85.4h597.4a42.7 42.7 0 0 0 0-85.4z"/><path d="M512 170.7a42.7 42.7 0 0 0-42.7 42.6v597.4a42.7 42.7 0 0 0 85.4 0V213.3A42.7 42.7 0 0 0 512 170.7z"/></svg>
+                            </button>
+                        </div>
                     </h3>
                     <!-- 音色生成队列指示器 -->
-                    <div v-if="voiceTaskQueue.length > 0" class="mb-3 px-3 py-2 bg-amber-50 border border-amber-200 rounded-xl text-[11px] text-amber-700 flex items-center gap-2 flex-shrink-0">
+                    <div v-if="voiceTaskQueue.length > 0" class="mb-3 px-3 py-2 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl text-[11px] text-amber-700 dark:text-amber-300 flex items-center gap-2 flex-shrink-0">
                         <svg class="h-4 w-4 animate-spin shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
                         <span v-if="voiceTaskRunning">正在生成: <strong>{{ voiceTaskQueue.find(t => t.status === 'running')?.char.name || '...' }}</strong></span>
                         <span v-else>排队中: <strong>{{ voiceTaskQueue.length }}</strong> 个任务</span>
-                        <span v-if="voiceTaskRunning && voiceTaskQueue.filter(t => t.status === 'queued').length > 0" class="text-amber-500">(剩余 {{ voiceTaskQueue.filter(t => t.status === 'queued').length }} 个)</span>
+                        <span v-if="voiceTaskRunning && voiceTaskQueue.filter(t => t.status === 'queued').length > 0" class="text-amber-500 dark:text-amber-400">(剩余 {{ voiceTaskQueue.filter(t => t.status === 'queued').length }} 个)</span>
                     </div>
                     <div class="space-y-3 pr-1 overflow-y-auto min-h-0 flex-1">
                         <div v-for="char in characters" :key="char.id"
@@ -1775,13 +1787,12 @@
                                     placeholder="音色描述 (例如: 甜美少女音)"></textarea>
                                 <div class="flex gap-1">
                                     <button @click="analyzeCharacterVoice(char)"
-                                        :class="['flex-1 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all flex justify-center items-center gap-1', char.isAnalyzing ? 'btn-running' : (isVoiceTaskQueued(char, 'analyze') ? 'btn-queued' : 'btn-pri')]">
+                                        :class="['flex-1 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all flex justify-center items-center gap-1', char.isAnalyzing ? 'btn-running' : 'btn-pri']">
                                         <svg v-if="char.isAnalyzing" class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
-                                        <svg v-else-if="isVoiceTaskQueued(char, 'analyze')" class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                        {{ char.isAnalyzing ? '停止分析' : (isVoiceTaskQueued(char, 'analyze') ? '排队中...' : '分析音色') }}
+                                        {{ char.isAnalyzing ? '停止分析' : '分析音色' }}
                                     </button>
                                     <button @click="generateQwenVoice(char)"
-                                        :class="['flex-1 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all flex justify-center items-center gap-1', char.isGeneratingVoice ? 'btn-running' : (isVoiceTaskQueued(char, 'generate') ? 'btn-queued' : 'btn-gen')]">
+                                        :class="['flex-1 px-3 py-1.5 rounded-xl text-[11px] font-bold transition-all flex justify-center items-center gap-1', char.isGeneratingVoice ? 'btn-running' : 'btn-gen']">
                                         <svg v-if="char.isGeneratingVoice" class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
                                         <svg v-else-if="isVoiceTaskQueued(char, 'generate')" class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                         {{ char.isGeneratingVoice ? '停止生成' : (isVoiceTaskQueued(char, 'generate') ? '排队中...' : '生成音色') }}
@@ -3925,7 +3936,12 @@
 
                 const deleteCharacter = async (id) => {
                     if (!await showConfirm('确定删除此角色吗？')) return;
-                    // 清理队列中该角色的所有任务
+                    // 终止并行分析（如有）
+                    if (_analyzeControllers[id]) {
+                        _analyzeControllers[id].abort();
+                        delete _analyzeControllers[id];
+                    }
+                    // 清理队列中该角色的所有任务（生成音色）
                     voiceTaskQueue.value = voiceTaskQueue.value.filter(t => {
                         if (t.char.id === id) {
                             if (t.abortController) t.abortController.abort();
@@ -4138,27 +4154,29 @@
                 };
 
                 // --- 按钮入口函数 ---
-                const analyzeCharacterVoice = async (char) => {
+                // 分析音色：并行执行，不排队
+                // 每个角色用独立的 AbortController
+                const _analyzeControllers = {};
+                const analyzeCharacterVoice = (char) => {
                     if (char.isAnalyzing) {
-                        const task = voiceTaskQueue.value.find(t => t.char.id === char.id && t.type === 'analyze' && t.status === 'running');
-                        if (task && task.abortController) {
-                            task.abortController.abort();
+                        // 停止正在进行的分析
+                        if (_analyzeControllers[char.id]) {
+                            _analyzeControllers[char.id].abort();
+                            delete _analyzeControllers[char.id];
                         }
-                        return;
-                    }
-
-                    const queued = getQueuedTask(char, 'analyze');
-                    if (queued) {
-                        queued.abortController.abort();
-                        removeQueuedTask(char, 'analyze');
-                        showToast(`已取消 ${char.name} 的音色分析排队`, 'info');
                         return;
                     }
 
                     if (!currentConfig.value) return alert('请先在"模型配置"中配置 LLM');
                     if (!rawScript.value.trim()) return alert('请先在右侧输入小说原文');
 
-                    enqueueVoiceTask(char, 'analyze');
+                    const controller = new AbortController();
+                    _analyzeControllers[char.id] = controller;
+                    executeAnalyzeVoice(char, controller).catch(() => {
+                        // 错误已在 executeAnalyzeVoice 内部处理
+                    }).finally(() => {
+                        delete _analyzeControllers[char.id];
+                    });
                 };
 
                 const generateQwenVoice = async (char) => {
@@ -4182,6 +4200,27 @@
                     if (!char.voiceDescription) return alert('请先填写音色描述');
 
                     enqueueVoiceTask(char, 'generate');
+                };
+
+                // --- 批量操作 ---
+                const batchAnalyze = () => {
+                    const pending = characters.value.filter(c => !c.voiceDescription && !c.isAnalyzing);
+                    if (pending.length === 0) {
+                        showToast('所有角色已分析完毕', 'info');
+                        return;
+                    }
+                    pending.forEach(c => analyzeCharacterVoice(c));
+                    showToast(`已触发 ${pending.length} 个角色的音色分析`, 'success');
+                };
+
+                const batchGenerate = () => {
+                    const pending = characters.value.filter(c => c.voiceDescription && !c.voiceFile && !c.isGeneratingVoice && !isVoiceTaskQueued(c, 'generate'));
+                    if (pending.length === 0) {
+                        showToast('没有可生成的音色', 'info');
+                        return;
+                    }
+                    pending.forEach(c => generateQwenVoice(c));
+                    showToast(`已添加 ${pending.length} 个音色生成任务到队列`, 'success');
                 };
 
                 const isVoiceTaskQueued = (char, type) => {
@@ -7415,7 +7454,7 @@ const generateVideo = async () => {
 
                     // Character Actions (New)
                     characters, addCharacter, deleteCharacter,
-                    analyzeCharacterVoice, generateQwenVoice,
+                    analyzeCharacterVoice, generateQwenVoice, batchAnalyze, batchGenerate,
                     voiceTaskQueue, voiceTaskRunning, isVoiceTaskQueued,
 
                     // Timbre Actions
